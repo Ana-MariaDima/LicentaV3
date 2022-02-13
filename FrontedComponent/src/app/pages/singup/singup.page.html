@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="mango">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding='true'>
+    <div class="center">
+      <img src="assets/images/logo.png" class="smallLogo"/>
+      <h1>Sign In</h1>
+    </div>
+  <form [formGroup]="myForm">
+
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input autocomplete="off" type="text" name="email" formControlName="email" ></ion-input>
+        <!--control-messages [control]="userForm.get('name')"></control-messages-->
+        <!--https://coryrylan.com/blog/angular-form-builder-and-validation-management-->
+
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">First Name</ion-label>
+        <ion-input autocomplete="off" type="text" name="firstName" formControlName="firstName" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Last Name</ion-label>
+        <ion-input autocomplete="off" type="text" name="LastNmae" formControlName="lastName" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Username</ion-label>
+        <ion-input autocomplete="off" type="text" name="username" formControlName="username" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input autocomplete="off" type="password" name="password"  formControlName="password"></ion-input>
+      </ion-item>
+
+
+    </ion-list>
+    <ion-button expand="block" share="round" color="success" (click)="doRegister()">Register</ion-button>
+  </form>
+</ion-content>

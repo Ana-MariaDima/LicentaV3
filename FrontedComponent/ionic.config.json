@@ -1,0 +1,7 @@
+{
+  "name": "licenta",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

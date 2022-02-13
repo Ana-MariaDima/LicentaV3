@@ -1,0 +1,139 @@
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\appsettings.Development.json
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\appsettings.json
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Licenta.exe
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Licenta.deps.json
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Licenta.runtimeconfig.json
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Licenta.runtimeconfig.dev.json
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Licenta.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\ref\Licenta.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Licenta.pdb
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Humanizer.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\System.Net.Http.Formatting.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\System.Web.Http.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Microsoft.OpenApi.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\System.Runtime.Caching.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.csprojAssemblyReference.cache
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.GeneratedMSBuildEditorConfig.editorconfig
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.AssemblyInfoInputs.cache
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.AssemblyInfo.cs
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.csproj.CoreCompileInputs.cache
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.MvcApplicationPartsAssemblyInfo.cs
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.MvcApplicationPartsAssemblyInfo.cache
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\staticwebassets\Licenta.StaticWebAssets.Manifest.cache
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\staticwebassets\Licenta.StaticWebAssets.xml
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\scopedcss\bundle\Licenta.styles.css
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.RazorTargetAssemblyInfo.cache
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.csproj.CopyComplete
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\ref\Licenta.dll
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.pdb
+D:\ANA\FACULTATE\Anul 2\Semestrul 1\bd\Lab24522021\Lab24522021\Lab24522021\obj\Debug\net5.0\Licenta.genruntimeconfig.cache
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\appsettings.Development.json
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\appsettings.json
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Licenta.exe
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Licenta.deps.json
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Licenta.runtimeconfig.json
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Licenta.runtimeconfig.dev.json
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Licenta.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\ref\Licenta.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Licenta.pdb
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Humanizer.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\System.Net.Http.Formatting.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\System.Web.Http.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.OpenApi.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\System.Runtime.Caching.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.csprojAssemblyReference.cache
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.GeneratedMSBuildEditorConfig.editorconfig
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.AssemblyInfoInputs.cache
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.AssemblyInfo.cs
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.csproj.CoreCompileInputs.cache
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.MvcApplicationPartsAssemblyInfo.cs
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.MvcApplicationPartsAssemblyInfo.cache
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\staticwebassets\Licenta.StaticWebAssets.Manifest.cache
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\staticwebassets\Licenta.StaticWebAssets.xml
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\scopedcss\bundle\Licenta.styles.css
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.RazorTargetAssemblyInfo.cache
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.csproj.CopyComplete
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\ref\Licenta.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.pdb
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\obj\Debug\net5.0\Licenta.genruntimeconfig.cache
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\AutoMapper.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\BCrypt.Net-Next.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
