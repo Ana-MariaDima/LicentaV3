@@ -74,7 +74,8 @@ export class LoginPage implements OnInit{
         if(response && response.token)
         {
           localStorage.setItem('token', response.token);
-          this.router.navigate(['home']);
+          //this.router.navigate(['/home'],{replaceUrl:true});
+          this.router.navigateByUrl("/home")
         }
       })
     }

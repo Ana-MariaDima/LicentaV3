@@ -5,13 +5,18 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-slides pager="true">
+  <swiper>
+    <ng-template swiperSlide>
+      <img src="assets/images/logo.png" />
+      <h2>Welcome to Cocktails' Dance </h2>
+    </ng-template>
+  </swiper>
+  <!-- <ion-slides pager="true">
     <ion-slide>
       <img src="assets/images/logo.png" />
       <h2>Welcome to Cocktails' Dance </h2>
     </ion-slide>
-  </ion-slides>
+  </ion-slides> -->
 
 
   <ion-button expand="block" share="round" color="mango" (click)="navigateToLogin()">Start</ion-button>

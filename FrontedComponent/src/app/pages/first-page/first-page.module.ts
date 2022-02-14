@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { FirstPagePageRoutingModule } from './first-page-routing.module';
 
 import { FirstPagePage } from './first-page.page';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FirstPagePageRoutingModule
+    FirstPagePageRoutingModule,
+    SwiperModule
   ],
   declarations: [FirstPagePage]
 })

@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, HttpClientModule,BrowserModule,FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, IonicModule.forRoot({animated: false}), AppRoutingModule, ReactiveFormsModule, HttpClientModule,BrowserModule,FormsModule, ReactiveFormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

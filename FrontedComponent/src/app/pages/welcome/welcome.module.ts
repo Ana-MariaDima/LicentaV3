@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { WelcomePageRoutingModule } from './welcome-routing.module';
+import { SwiperModule } from 'swiper/angular';
 
 import { WelcomePage } from './welcome.page';
 
@@ -13,7 +14,8 @@ import { WelcomePage } from './welcome.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    WelcomePageRoutingModule
+    WelcomePageRoutingModule,
+    SwiperModule
   ],
   declarations: [WelcomePage]
 })

@@ -1,6 +1,9 @@
-ion-slide {
+swiper, .swiper-slide.swiper-slide-active {
   padding: 80px 20px 80px 20px;
-  display: block;
+  div{
+    display: block!important;
+  }
+  display: block!important;
   img {
     width: 100px;
   }
@@ -9,4 +12,8 @@ ion-slide {
     font-size: 36px;
     font-weight: bold;
   }
+}
+
+swiper>*:first-child>*:first-child{
+  display: block!important;
 }

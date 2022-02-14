@@ -21,6 +21,7 @@ export class AuthService {
 
   login(data:User)
   {
+    console.log("creating user", data)
     return this.http.post(this.baseUrl+"Users/authenticate",
                           data,
                           this.publicHeaders)
