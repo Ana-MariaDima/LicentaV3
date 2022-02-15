@@ -1,0 +1,99 @@
+Table Reteta_Ingrediente as RI {
+  id_reteta_ingredient guid [pk, increment] // oare ar fi bine sa fie o cheie primara compusa din id_reteta si id_ingredient?
+ id_reteta guid
+ id_ingredient guid
+ cantitate_ingredient float
+ id_unitate guid 
+ 
+}
+Table Unitati as U{
+id_unitate guid [pk, increment] 
+nume_unitate varchar
+  
+}
+ 
+Table Ingrediente  as I{
+  id_ingredient guid [pk,increment]
+  nume_ingredient varchar
+  id_categorie_ingredient varchar
+ }
+Table SubCategorii_Ingrediente as SI{
+  id_subcategorie_ingredient guid [pk,increment]
+  descriere_categorie_ingredient varchar
+  
+}
+Table Categorii_Ingrediente as CI{
+  id_categorie_ingredient guid [pk,increment]
+  descriere_categorie_ingredient varchar
+  
+}
+
+Table Retete as R {
+  id_reteta guid [pk,increment]
+  id_categorie_reteta guid 
+  id_tip_reteta guid
+  id_pahar guid
+  nume_reteta varchar
+  descriere_reteta varchar
+  poza_reteta varchar
+  instructiuni_reteta varchar
+  rating_reteta float 
+ 
+  
+}
+
+Table Tipuri_Retete  as  TR{
+ id_tip_reteta guid [pk,increment]
+ nume_tip_reteta varchar
+
+   
+ }
+Table Pahare  as  P{
+ id_pahar guid [pk,increment]
+ nume_pahar varchar
+
+   
+ }
+Table Categorii_Retete as CR{
+  
+  id_categorie_reteta guid [pk ,increment]
+  nume_categorie_reteta varchar
+}
+Table Utilizatori as Util{
+  
+  id_utilizator guid [pk ,increment]
+  nume_utilizator varchar
+  prenume_utilizator varchar
+  username varchar
+  parola varchar
+  moment_creere timestamp
+}
+
+Table Aprecieri as A{
+  
+  id_apreciere guid [pk ,increment]
+  id_reteta guid
+  id_utilizator guid 
+  moment_apreciere timestamp
+
+}
+
+
+
+  
+ 
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one
+Ref: RI.id_ingredient > I.id_ingredient
+Ref: I.id_categorie_ingredient > SI.id_subcategorie_ingredient
+Ref: SI.id_subcategorie_ingredient > CI.id_categorie_ingredient
+Ref: RI.id_reteta > R.id_reteta
+Ref: R.id_categorie_reteta > CR.id_categorie_reteta 
+Ref: R.id_tip_reteta > TR.id_tip_reteta
+Ref: R.id_pahar > P.id_pahar
+Ref: RI.id_unitate > U.id_unitate
+Ref: A.id_utilizator > Util.id_utilizator
+Ref: A.id_reteta > R.id_reteta
+
