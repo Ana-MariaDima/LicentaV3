@@ -15,10 +15,11 @@ nume_unitate varchar
 Table Ingrediente  as I{
   id_ingredient guid [pk,increment]
   nume_ingredient varchar
-  id_categorie_ingredient varchar
+  id_subcategorie_ingredient varchar
  }
 Table SubCategorii_Ingrediente as SI{
   id_subcategorie_ingredient guid [pk,increment]
+   id_categorie_ingredient guid
   descriere_categorie_ingredient varchar
   
 }
@@ -87,8 +88,8 @@ Table Aprecieri as A{
 // You can also define relaionship separately
 // > many-to-one; < one-to-many; - one-to-one
 Ref: RI.id_ingredient > I.id_ingredient
-Ref: I.id_categorie_ingredient > SI.id_subcategorie_ingredient
-Ref: SI.id_subcategorie_ingredient > CI.id_categorie_ingredient
+Ref: I.id_subcategorie_ingredient > SI.id_subcategorie_ingredient
+Ref: SI.id_categorie_ingredient > CI.id_categorie_ingredient
 Ref: RI.id_reteta > R.id_reteta
 Ref: R.id_categorie_reteta > CR.id_categorie_reteta 
 Ref: R.id_tip_reteta > TR.id_tip_reteta

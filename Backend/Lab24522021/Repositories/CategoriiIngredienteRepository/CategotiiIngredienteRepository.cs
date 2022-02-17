@@ -1,6 +1,5 @@
 ﻿using Licenta.Data;
 using Licenta.Models.Relations.One_to_Many;
-using Licenta.Repositories.DatabaseRepository;
 using Licenta.Repositories.Generic_Repository;
 using System;
 using System.Collections.Generic;
@@ -17,9 +16,9 @@ namespace Licenta.Repositories.CategoriiIngredienteRepository
         }
         public CategoriiIngrediente GetByNume(string name)
         {
-            
-                return _table.FirstOrDefault(x => x.Nume_categoriie_ingredient.ToLower().Equals(name.ToLower()));
-            
+
+            return _table.FirstOrDefault(x => x.Nume_categoriie_ingredient.ToLower().Equals(name.ToLower()));
+
 
         }
     }

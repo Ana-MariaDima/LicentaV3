@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RrAiKgc7dAGQqFDfZT6kasPRSprkuUr5rBMLFbh64QG78KofiJZKf3Wnx/HAjmWO/1Ed1Pm7k3w+LO1JfSrj/A==",
+  "dgSpecHash": "ny9OPAkBorO0jw/yx2ZH/f/be8/tezagMm1jqQtojyYrW01304OCH0ErDfiogefyuieOx+syfMEOhMMJguG66Q==",
   "success": true,
-  "projectFilePath": "D:\\ANA\\FACULTATE\\Licenta\\Licenta\\Lab24522021\\Licenta.csproj",
+  "projectFilePath": "D:\\ANA\\FACULTATE\\LicentaV3\\Backend\\Lab24522021\\Licenta.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ana Dima\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Ana Dima\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

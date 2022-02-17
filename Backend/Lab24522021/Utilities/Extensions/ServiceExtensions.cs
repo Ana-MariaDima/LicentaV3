@@ -1,4 +1,4 @@
-﻿using Licenta.Repositories.CategoriiIngredienteRepository;
+﻿using Licenta.Repositories.SubCategoriiIngredienteRepository;
 using Licenta.Repositories.CategoriiReteteRepository;
 using Licenta.Repositories.DatabaseRepository;
 using Licenta.Repositories.RetetegRepository;
@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Licenta.Repositories.CategoriiIngredienteRepository;
+using Licenta.Repositories.TipuriReteteRepository;
+using Licenta.Repositories.PahareRepository;
 
 namespace Licenta.Utilities.Extensions
 {
@@ -22,8 +25,11 @@ namespace Licenta.Utilities.Extensions
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddTransient<IIngredienteRepository, IngredienteRepository>();
+            services.AddTransient<ISubCategoriiIngredienteRepository, SubCategoriiIngredienteRepository>();
             services.AddTransient<ICategoriiIngredienteRepository, CategoriiIngredienteRepository>();
+            services.AddTransient<ITipuriReteteRepository, TipuriReteteRepository>();
             services.AddTransient<ICategoriiReteteRepository, CategoriiReteteRepository>();
+            services.AddTransient<IPahareRepository, PahareRepository>();
             services.AddTransient<IUnitatiRepository, UnitatiRepository>();
             services.AddTransient<IReteteIngredienteRepository, ReteteIngredienteRepository>();
             services.AddTransient<IReteteRepository, ReteteRepository>();

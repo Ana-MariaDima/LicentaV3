@@ -23,6 +23,11 @@ namespace Licenta.Models.Relations.One_to_Many
 
         public CategoriiRetete CategorieReteta { get; set; }
         public Guid IdCategorieReteta { get; set; }
+        public TipuriRetete TipReteta { get; set; }
+        public Guid IdTipReteta { get; set; }
+
+        public Pahare Pahar { get; set; }
+        public Guid IdPahar { get; set; }
 
         //for many-to-many
         public ICollection<RetetaIngrediente> RetetaIngredient { get; set; }

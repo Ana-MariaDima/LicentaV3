@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Licenta.Repositories.CategoriiIngredienteRepository
 {
-    public interface ICategoriiIngredienteRepository: IGenericRepository<CategoriiIngrediente>
-    {
-       
-        CategoriiIngrediente GetByNume(string name);
+    
+        public interface ICategoriiIngredienteRepository : IGenericRepository<CategoriiIngrediente>
+        {
+
+            CategoriiIngrediente GetByNume(string name);
 
 
+        }
     }
-}

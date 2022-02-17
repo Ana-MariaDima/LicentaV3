@@ -115,7 +115,7 @@ namespace Licenta.Migrations
                     b.ToTable("Ingredient");
                 });
 
-            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.CategoriiIngrediente", b =>
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.SubCategoriiIngrediente", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -129,17 +129,17 @@ namespace Licenta.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Descriere_categorie_ingredient")
+                    b.Property<string>("Descriere_subcategorie_ingredient")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nume_categoriie_ingredient")
+                    b.Property<string>("Nume_Subcategoriie_ingredient")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Nume_categoriie_ingredient")
+                    b.HasIndex("Nume_Subcategoriie_ingredient")
                         .IsUnique()
-                        .HasFilter("[Nume_categoriie_ingredient] IS NOT NULL");
+                        .HasFilter("[Nume_Subcategoriie_ingredient] IS NOT NULL");
 
                     b.ToTable("CategorieIngredient");
                 });
@@ -294,7 +294,7 @@ namespace Licenta.Migrations
 
             modelBuilder.Entity("Licenta.Models.Relations.Many_to_Many.Ingrediente", b =>
                 {
-                    b.HasOne("Licenta.Models.Relations.One_to_Many.CategoriiIngrediente", "CategorieIngredient")
+                    b.HasOne("Licenta.Models.Relations.One_to_Many.SubCategoriiIngrediente", "CategorieIngredient")
                         .WithMany("Ingrediente")
                         .HasForeignKey("CategorieIngredientId");
 
@@ -340,7 +340,7 @@ namespace Licenta.Migrations
                     b.Navigation("RetetaIngredient");
                 });
 
-            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.CategoriiIngrediente", b =>
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.SubCategoriiIngrediente", b =>
                 {
                     b.Navigation("Ingrediente");
                 });

@@ -18,7 +18,9 @@ namespace Licenta.Data
        // public DbSet<Bucatari> Bucatar{ get; set; }
         public DbSet<Retete> Reteta { get; set; }
 
-        public DbSet<CategoriiIngrediente>  CategorieIngredient { get; set; }
+        public DbSet<SubCategoriiIngrediente>  SubCategorieIngredient { get; set; }
+        public DbSet<CategoriiIngrediente> CategorieIngredient { get; set; }
+
         public DbSet<CategoriiRetete> CategorieReteta { get; set; }
 
         public DbSet<Ingrediente> Ingredient { get; set; }
@@ -50,8 +52,8 @@ namespace Licenta.Data
                 .HasIndex(u => u.Nume_Categorie_Retete)
                 .IsUnique();
 
-            builder.Entity<CategoriiIngrediente>()
-                .HasIndex(u => u.Nume_categoriie_ingredient)
+            builder.Entity<SubCategoriiIngrediente>()
+                .HasIndex(u => u.Nume_Subcategoriie_ingredient)
                 .IsUnique();
 
             builder.Entity<Ingrediente>()
@@ -75,16 +77,42 @@ namespace Licenta.Data
                 .HasOne(m2 => m2.CategorieReteta)
                 .WithMany(m1 => m1.Retete);
 
-            //CategorieIngrediente-Ingrediente
-           
+            //-TipuriRetete- Retete
+            builder.Entity<TipuriRetete>()
+             .HasMany(m1 => m1.Retete)
+             .WithOne(m2 => m2.TipReteta);
 
-            builder.Entity<CategoriiIngrediente>()
+            builder.Entity<Retete>()
+                .HasOne(m2 => m2.TipReteta)
+                .WithMany(m1 => m1.Retete);
+
+            //-Pahare- Retete
+            builder.Entity<Pahare>()
+             .HasMany(m1 => m1.Retete)
+             .WithOne(m2 => m2.Pahar);
+
+            builder.Entity<Retete>()
+                .HasOne(m2 => m2.Pahar)
+                .WithMany(m1 => m1.Retete);
+
+            //SubCategorieIngrediente-Ingrediente
+            builder.Entity<SubCategoriiIngrediente>()
             .HasMany(m1 => m1.Ingrediente)
-            .WithOne(m2 => m2.CategorieIngredient);
+            .WithOne(m2 => m2.SubCategorieIngredient);
 
             builder.Entity<Ingrediente>()
-                .HasOne(m2 => m2.CategorieIngredient)
+                .HasOne(m2 => m2.SubCategorieIngredient)
                 .WithMany(m1 => m1.Ingrediente);
+            //CategorieIngrediente-SubCategorieIngrediente
+
+
+            builder.Entity<CategoriiIngrediente>()
+            .HasMany(m1 => m1.SubCategoriiIngrediente)
+            .WithOne(m2 => m2.CategorieIngredient);
+
+            builder.Entity<SubCategoriiIngrediente>()
+                .HasOne(m2 => m2.CategorieIngredient)
+                .WithMany(m1 => m1.SubCategoriiIngrediente);
 
 
             //Unitati-Ingrediente

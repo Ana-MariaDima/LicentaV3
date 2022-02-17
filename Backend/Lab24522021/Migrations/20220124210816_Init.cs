@@ -12,8 +12,8 @@ namespace Licenta.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nume_categoriie_ingredient = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Descriere_categorie_ingredient = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Nume_Subcategoriie_ingredient = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Descriere_subcategorie_ingredient = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -173,11 +173,11 @@ namespace Licenta.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategorieIngredient_Nume_categoriie_ingredient",
+                name: "IX_CategorieIngredient_Nume_Subcategoriie_ingredient",
                 table: "CategorieIngredient",
-                column: "Nume_categoriie_ingredient",
+                column: "Nume_Subcategoriie_ingredient",
                 unique: true,
-                filter: "[Nume_categoriie_ingredient] IS NOT NULL");
+                filter: "[Nume_Subcategoriie_ingredient] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CategorieReteta_Nume_Categorie_Retete",

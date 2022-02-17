@@ -5897,11 +5897,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ANA\\FACULTATE\\Licenta\\Licenta\\Lab24522021\\Licenta.csproj",
+      "projectUniqueName": "D:\\ANA\\FACULTATE\\LicentaV3\\Backend\\Lab24522021\\Licenta.csproj",
       "projectName": "Licenta",
-      "projectPath": "D:\\ANA\\FACULTATE\\Licenta\\Licenta\\Lab24522021\\Licenta.csproj",
+      "projectPath": "D:\\ANA\\FACULTATE\\LicentaV3\\Backend\\Lab24522021\\Licenta.csproj",
       "packagesPath": "C:\\Users\\Ana Dima\\.nuget\\packages\\",
-      "outputPath": "D:\\ANA\\FACULTATE\\Licenta\\Licenta\\Lab24522021\\obj\\",
+      "outputPath": "D:\\ANA\\FACULTATE\\LicentaV3\\Backend\\Lab24522021\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5994,7 +5994,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
       }
     }
   },

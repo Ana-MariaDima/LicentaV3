@@ -35,23 +35,23 @@ namespace Licenta.Repositories.DatabaseRepository
         public void OrderbyCategorieIngredient()
         {
             
-            var IngredienteAscCategorieIngredient = _table.OrderBy(x => x.IdCategorieIngredient);
-            var IngredienteDescCategorieIngredient = _table.OrderByDescending(x => x.IdCategorieIngredient);
+            var IngredienteAscCategorieIngredient = _table.OrderBy(x => x.IdSubCategorieIngredient);
+            var IngredienteDescCategorieIngredient = _table.OrderByDescending(x => x.IdSubCategorieIngredient);
 
         }
 
         public void OrderbyCategorieAndName()
         {
             
-            var IngredienteAscCategorieAndName = _table.OrderBy(x => x.Nume_ingredient).ThenBy(x => x.IdCategorieIngredient);
-            var IngredienteDescCategorieAndName = _table.OrderByDescending(x => x.Nume_ingredient).ThenBy(x => x.IdCategorieIngredient);
+            var IngredienteAscCategorieAndName = _table.OrderBy(x => x.Nume_ingredient).ThenBy(x => x.IdSubCategorieIngredient);
+            var IngredienteDescCategorieAndName = _table.OrderByDescending(x => x.Nume_ingredient).ThenBy(x => x.IdSubCategorieIngredient);
 
         }
 
         public void GroupBy()
         {
             //Linq
-            var groupIngredients = _table.GroupBy(s => s.IdCategorieIngredient);
+            var groupIngredients = _table.GroupBy(s => s.IdSubCategorieIngredient);
 
             //creez o lista cu toate id-urile de categorii ingrediente si apoi pt fiecare categgorie de ingrediente parcurg toate ingredientele
             foreach( var ingredGroupByCateg in groupIngredients)
@@ -92,9 +92,9 @@ namespace Licenta.Repositories.DatabaseRepository
             // model1-a.model2-a.Id
         }
 
-        public Ingrediente GetByCategorie(Guid IdCategorieIngredient)
+        public Ingrediente GetByCategorie(Guid IdSubCategorieIngredient)
         {
-            return _table.Include(x => x.IdCategorieIngredient).FirstOrDefault(x => x.IdCategorieIngredient.Equals(IdCategorieIngredient));
+            return _table.Include(x => x.IdSubCategorieIngredient).FirstOrDefault(x => x.IdSubCategorieIngredient.Equals(IdSubCategorieIngredient));
         }
 
         public Ingrediente GetById(int id)

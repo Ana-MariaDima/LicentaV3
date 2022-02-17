@@ -1,6 +1,6 @@
 ﻿using Licenta.Models.DTOs;
 using Licenta.Models.Relations.Many_to_Many;
-using Licenta.Repositories.CategoriiIngredienteRepository;
+using Licenta.Repositories.SubCategoriiIngredienteRepository;
 using Licenta.Repositories.CategoriiReteteRepository;
 using Licenta.Repositories.DatabaseRepository;
 using Licenta.Repositories.RetetegRepository;
@@ -10,6 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Licenta.Repositories.CategoriiIngredienteRepository;
+using Licenta.Repositories.TipuriReteteRepository;
+using Licenta.Repositories.PahareRepository;
 
 namespace Licenta.Services
 {
@@ -17,8 +20,11 @@ namespace Licenta.Services
     {
         public IIngredienteRepository _ingredienteRepository;
         public IReteteIngredienteRepository _reteteIngredienteRepository;
+        public ISubCategoriiIngredienteRepository _subCategoriiIngredienteRepository;
         public ICategoriiIngredienteRepository _categoriiIngredienteRepository;
         public ICategoriiReteteRepository _categoriiReteteRepository;
+        public ITipuriReteteRepository _tipuriReteteRepository;
+        public IPahareRepository _pahareRepository;
         public IUnitatiRepository _unitatiRepository;
         public IReteteRepository _reteteRepository;
 
@@ -26,16 +32,22 @@ namespace Licenta.Services
         //primim o instanta de dto al ingredientului pe care o putem folosii peste tot in serviciile noastre
         public DemoService(IIngredienteRepository ingredienteRepository,
                             IReteteIngredienteRepository reteteIngredienteRepository,
-                            ICategoriiIngredienteRepository categoriiIngredienteRepository, 
+                            ISubCategoriiIngredienteRepository SubCategoriiIngredienteRepository,
+                            ICategoriiIngredienteRepository CategoriiIngredienteRepository,
                             ICategoriiReteteRepository categoriiReteteRepository,
+                            IPahareRepository pahareRepository,
+                            ITipuriReteteRepository tipuriReteteRepository,
                             IUnitatiRepository unitatiRepository,
                             IReteteRepository reteteRepository)
         {
             _ingredienteRepository = ingredienteRepository;
             _reteteIngredienteRepository = reteteIngredienteRepository;
-            _categoriiIngredienteRepository = categoriiIngredienteRepository;
+            _subCategoriiIngredienteRepository = SubCategoriiIngredienteRepository;
+            _categoriiIngredienteRepository = CategoriiIngredienteRepository;
             _categoriiReteteRepository = categoriiReteteRepository;
-            _unitatiRepository=unitatiRepository;
+            _pahareRepository = pahareRepository;
+            _tipuriReteteRepository = tipuriReteteRepository;
+            _unitatiRepository =unitatiRepository;
             _reteteRepository = reteteRepository;
         }
         public IIngredienteRepository GetIngredienteRepository()
@@ -46,6 +58,10 @@ namespace Licenta.Services
         {
             return _reteteIngredienteRepository;
         }
+        public ISubCategoriiIngredienteRepository GetSubCategoriiIngredienteRepository()
+        {
+            return _subCategoriiIngredienteRepository;
+        }
         public ICategoriiIngredienteRepository GetCategoriiIngredienteRepository()
         {
             return _categoriiIngredienteRepository;
@@ -55,6 +71,15 @@ namespace Licenta.Services
         {
             return _categoriiReteteRepository;
         }
+        public ITipuriReteteRepository GetTipuriReteteRepository()
+        {
+            return _tipuriReteteRepository;
+        }
+        public IPahareRepository GetPahareRepository()
+        {
+            return _pahareRepository;
+        }
+
         public IUnitatiRepository GetUnitatiRepository()
         {
             return _unitatiRepository;

@@ -20,9 +20,9 @@ namespace Licenta.Utilities.Seeders
         {
             if (!_context.CategorieIngredient.Any())
             {
-                var CategIngredient = new CategoriiIngrediente
+                var CategIngredient = new SubCategoriiIngrediente
                 {
-                    Nume_categoriie_ingredient = "Vinuri"
+                    Nume_Subcategoriie_ingredient = "Vinuri"
 
                 };
                 _context.Add(CategIngredient);
