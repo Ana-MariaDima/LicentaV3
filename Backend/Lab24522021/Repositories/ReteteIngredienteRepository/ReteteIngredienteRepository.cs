@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Licenta.Repositories.ReteteRepository
+namespace Licenta.Repositories.ReteteIngredienteRepository
 {
     public class ReteteIngredienteRepository : GenericRepository<RetetaIngrediente>, IReteteIngredienteRepository
     {

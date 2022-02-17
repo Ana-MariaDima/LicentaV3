@@ -1,9 +1,12 @@
-CREATE TABLE [Reteta_Ingrediente] (
-  [id_reteta_ingredient] guid PRIMARY KEY IDENTITY(1, 1),
-  [id_reteta] guid,
-  [id_ingredient] guid,
-  [cantitate_ingredient] float,
-  [id_unitate] guid
+CREATE TABLE [Utilizatori] (
+  [id_utilizator] guid PRIMARY KEY IDENTITY(1, 1),
+  [nume_utilizator] nvarchar(255),
+  [prenume_utilizator] nvarchar(255),
+  [username] nvarchar(255),
+  [parola] nvarchar(255),
+  [moment_creere] timestamp,
+  [activ] bool,
+  [rol] nvarchar(255)
 )
 GO
 
@@ -13,17 +16,11 @@ CREATE TABLE [Unitati] (
 )
 GO
 
-CREATE TABLE [Ingrediente] (
-  [id_ingredient] guid PRIMARY KEY IDENTITY(1, 1),
-  [nume_ingredient] nvarchar(255),
-  [id_subcategorie_ingredient] nvarchar(255)
-)
-GO
-
-CREATE TABLE [SubCategorii_Ingrediente] (
-  [id_subcategorie_ingredient] guid PRIMARY KEY IDENTITY(1, 1),
-  [id_categorie_ingredient] guid,
-  [descriere_categorie_ingredient] nvarchar(255)
+CREATE TABLE [Aprecieri] (
+  [id_apreciere] guid PRIMARY KEY IDENTITY(1, 1),
+  [id_reteta] guid,
+  [id_utilizator] guid,
+  [moment_apreciere] timestamp
 )
 GO
 
@@ -33,16 +30,16 @@ CREATE TABLE [Categorii_Ingrediente] (
 )
 GO
 
-CREATE TABLE [Retete] (
-  [id_reteta] guid PRIMARY KEY IDENTITY(1, 1),
-  [id_categorie_reteta] guid,
-  [id_tip_reteta] guid,
-  [id_pahar] guid,
-  [nume_reteta] nvarchar(255),
-  [descriere_reteta] nvarchar(255),
-  [poza_reteta] nvarchar(255),
-  [instructiuni_reteta] nvarchar(255),
-  [rating_reteta] float
+CREATE TABLE [SubCategorii_Ingrediente] (
+  [id_subcategorie_ingredient] guid PRIMARY KEY IDENTITY(1, 1),
+  [id_categorie_ingredient] guid,
+  [descriere_subcategorie_ingredient] nvarchar(255)
+)
+GO
+
+CREATE TABLE [Categorii_Retete] (
+  [id_categorie_reteta] guid PRIMARY KEY IDENTITY(1, 1),
+  [nume_categorie_reteta] nvarchar(255)
 )
 GO
 
@@ -58,27 +55,32 @@ CREATE TABLE [Pahare] (
 )
 GO
 
-CREATE TABLE [Categorii_Retete] (
-  [id_categorie_reteta] guid PRIMARY KEY IDENTITY(1, 1),
-  [nume_categorie_reteta] nvarchar(255)
-)
-GO
-
-CREATE TABLE [Utilizatori] (
-  [id_utilizator] guid PRIMARY KEY IDENTITY(1, 1),
-  [nume_utilizator] nvarchar(255),
-  [prenume_utilizator] nvarchar(255),
-  [username] nvarchar(255),
-  [parola] nvarchar(255),
-  [moment_creere] timestamp
-)
-GO
-
-CREATE TABLE [Aprecieri] (
-  [id_apreciere] guid PRIMARY KEY IDENTITY(1, 1),
+CREATE TABLE [Reteta_Ingrediente] (
+  [id_reteta_ingredient] guid PRIMARY KEY IDENTITY(1, 1),
   [id_reteta] guid,
-  [id_utilizator] guid,
-  [moment_apreciere] timestamp
+  [id_ingredient] guid,
+  [cantitate_ingredient] float,
+  [id_unitate] guid
+)
+GO
+
+CREATE TABLE [Ingrediente] (
+  [id_ingredient] guid PRIMARY KEY IDENTITY(1, 1),
+  [nume_ingredient] nvarchar(255),
+  [id_subcategorie_ingredient] nvarchar(255)
+)
+GO
+
+CREATE TABLE [Retete] (
+  [id_reteta] guid PRIMARY KEY IDENTITY(1, 1),
+  [id_categorie_reteta] guid,
+  [id_tip_reteta] guid,
+  [id_pahar] guid,
+  [nume_reteta] nvarchar(255),
+  [descriere_reteta] nvarchar(255),
+  [poza_reteta] nvarchar(255),
+  [instructiuni_reteta] nvarchar(255),
+  [rating_reteta] float
 )
 GO
 

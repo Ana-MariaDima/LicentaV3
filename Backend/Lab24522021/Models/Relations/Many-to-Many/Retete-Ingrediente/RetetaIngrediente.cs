@@ -20,6 +20,6 @@ namespace Licenta.Models.Relations.One_to_Many
 
 
         public string Cantitate_Ingredient { get; set; }
-        public string Observatii { get; set; }
+    
     }
 }

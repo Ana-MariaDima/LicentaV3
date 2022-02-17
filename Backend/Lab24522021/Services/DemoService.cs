@@ -3,7 +3,6 @@ using Licenta.Models.Relations.Many_to_Many;
 using Licenta.Repositories.SubCategoriiIngredienteRepository;
 using Licenta.Repositories.CategoriiReteteRepository;
 using Licenta.Repositories.DatabaseRepository;
-using Licenta.Repositories.RetetegRepository;
 using Licenta.Repositories.ReteteRepository;
 using Licenta.Repositories.UnitatiRepository;
 using System;
@@ -13,6 +12,8 @@ using System.Threading.Tasks;
 using Licenta.Repositories.CategoriiIngredienteRepository;
 using Licenta.Repositories.TipuriReteteRepository;
 using Licenta.Repositories.PahareRepository;
+using Licenta.Repositories.ReteteIngredienteRepository;
+using Licenta.Repositories.AprecieriRepository;
 
 namespace Licenta.Services
 {
@@ -27,6 +28,7 @@ namespace Licenta.Services
         public IPahareRepository _pahareRepository;
         public IUnitatiRepository _unitatiRepository;
         public IReteteRepository _reteteRepository;
+        public IAprecieriRepository _aprecieriRepository;
 
 
         //primim o instanta de dto al ingredientului pe care o putem folosii peste tot in serviciile noastre
@@ -38,7 +40,8 @@ namespace Licenta.Services
                             IPahareRepository pahareRepository,
                             ITipuriReteteRepository tipuriReteteRepository,
                             IUnitatiRepository unitatiRepository,
-                            IReteteRepository reteteRepository)
+                            IReteteRepository reteteRepository,
+                            IAprecieriRepository aprecieriRepository)
         {
             _ingredienteRepository = ingredienteRepository;
             _reteteIngredienteRepository = reteteIngredienteRepository;
@@ -49,6 +52,7 @@ namespace Licenta.Services
             _tipuriReteteRepository = tipuriReteteRepository;
             _unitatiRepository =unitatiRepository;
             _reteteRepository = reteteRepository;
+            _aprecieriRepository = aprecieriRepository;
         }
         public IIngredienteRepository GetIngredienteRepository()
         {
@@ -87,6 +91,10 @@ namespace Licenta.Services
         public IReteteRepository GetReteteRepository()
         {
             return _reteteRepository;
+        }
+        public IAprecieriRepository GetAprecieriRepository()
+        {
+            return _aprecieriRepository;
         }
         public IngredienteDTO GetDataMappedByNume(string nume_ingredient)
         {

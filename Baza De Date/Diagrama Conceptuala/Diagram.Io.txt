@@ -1,3 +1,60 @@
+Table Utilizatori as Util{
+  id_utilizator guid [pk ,increment]
+  nume_utilizator varchar
+  prenume_utilizator varchar
+  username varchar
+  parola varchar
+  moment_creere timestamp
+  activ bool
+  rol varchar 
+}
+
+
+Table Unitati as U{
+id_unitate guid [pk, increment] 
+nume_unitate varchar
+}
+
+
+Table Aprecieri as A{
+  id_apreciere guid [pk ,increment]
+  id_reteta guid
+  id_utilizator guid 
+  moment_apreciere timestamp
+}
+
+
+Table Categorii_Ingrediente as CI{
+  id_categorie_ingredient guid [pk,increment]
+  descriere_categorie_ingredient varchar
+}
+
+
+Table SubCategorii_Ingrediente as SI{
+  id_subcategorie_ingredient guid [pk,increment]
+   id_categorie_ingredient guid
+  descriere_subcategorie_ingredient varchar
+}
+
+
+Table Categorii_Retete as CR{
+  id_categorie_reteta guid [pk ,increment]
+  nume_categorie_reteta varchar
+}
+
+
+Table Tipuri_Retete  as  TR{
+ id_tip_reteta guid [pk,increment]
+ nume_tip_reteta varchar
+ }
+ 
+ 
+Table Pahare  as  P{
+ id_pahar guid [pk,increment]
+ nume_pahar varchar
+ }
+ 
+ 
 Table Reteta_Ingrediente as RI {
   id_reteta_ingredient guid [pk, increment] // oare ar fi bine sa fie o cheie primara compusa din id_reteta si id_ingredient?
  id_reteta guid
@@ -6,28 +63,14 @@ Table Reteta_Ingrediente as RI {
  id_unitate guid 
  
 }
-Table Unitati as U{
-id_unitate guid [pk, increment] 
-nume_unitate varchar
-  
-}
+
  
 Table Ingrediente  as I{
   id_ingredient guid [pk,increment]
   nume_ingredient varchar
   id_subcategorie_ingredient varchar
  }
-Table SubCategorii_Ingrediente as SI{
-  id_subcategorie_ingredient guid [pk,increment]
-   id_categorie_ingredient guid
-  descriere_categorie_ingredient varchar
-  
-}
-Table Categorii_Ingrediente as CI{
-  id_categorie_ingredient guid [pk,increment]
-  descriere_categorie_ingredient varchar
-  
-}
+
 
 Table Retete as R {
   id_reteta guid [pk,increment]
@@ -43,41 +86,9 @@ Table Retete as R {
   
 }
 
-Table Tipuri_Retete  as  TR{
- id_tip_reteta guid [pk,increment]
- nume_tip_reteta varchar
 
-   
- }
-Table Pahare  as  P{
- id_pahar guid [pk,increment]
- nume_pahar varchar
 
-   
- }
-Table Categorii_Retete as CR{
-  
-  id_categorie_reteta guid [pk ,increment]
-  nume_categorie_reteta varchar
-}
-Table Utilizatori as Util{
-  
-  id_utilizator guid [pk ,increment]
-  nume_utilizator varchar
-  prenume_utilizator varchar
-  username varchar
-  parola varchar
-  moment_creere timestamp
-}
 
-Table Aprecieri as A{
-  
-  id_apreciere guid [pk ,increment]
-  id_reteta guid
-  id_utilizator guid 
-  moment_apreciere timestamp
-
-}
 
 
 
@@ -98,3 +109,4 @@ Ref: RI.id_unitate > U.id_unitate
 Ref: A.id_utilizator > Util.id_utilizator
 Ref: A.id_reteta > R.id_reteta
 
+ 

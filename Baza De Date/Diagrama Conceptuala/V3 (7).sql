@@ -1,9 +1,12 @@
-CREATE TABLE `Reteta_Ingrediente` (
-  `id_reteta_ingredient` guid PRIMARY KEY AUTO_INCREMENT,
-  `id_reteta` guid,
-  `id_ingredient` guid,
-  `cantitate_ingredient` float,
-  `id_unitate` guid
+CREATE TABLE `Utilizatori` (
+  `id_utilizator` guid PRIMARY KEY AUTO_INCREMENT,
+  `nume_utilizator` varchar(255),
+  `prenume_utilizator` varchar(255),
+  `username` varchar(255),
+  `parola` varchar(255),
+  `moment_creere` timestamp,
+  `activ` bool,
+  `rol` varchar(255)
 );
 
 CREATE TABLE `Unitati` (
@@ -11,16 +14,11 @@ CREATE TABLE `Unitati` (
   `nume_unitate` varchar(255)
 );
 
-CREATE TABLE `Ingrediente` (
-  `id_ingredient` guid PRIMARY KEY AUTO_INCREMENT,
-  `nume_ingredient` varchar(255),
-  `id_subcategorie_ingredient` varchar(255)
-);
-
-CREATE TABLE `SubCategorii_Ingrediente` (
-  `id_subcategorie_ingredient` guid PRIMARY KEY AUTO_INCREMENT,
-  `id_categorie_ingredient` guid,
-  `descriere_categorie_ingredient` varchar(255)
+CREATE TABLE `Aprecieri` (
+  `id_apreciere` guid PRIMARY KEY AUTO_INCREMENT,
+  `id_reteta` guid,
+  `id_utilizator` guid,
+  `moment_apreciere` timestamp
 );
 
 CREATE TABLE `Categorii_Ingrediente` (
@@ -28,16 +26,15 @@ CREATE TABLE `Categorii_Ingrediente` (
   `descriere_categorie_ingredient` varchar(255)
 );
 
-CREATE TABLE `Retete` (
-  `id_reteta` guid PRIMARY KEY AUTO_INCREMENT,
-  `id_categorie_reteta` guid,
-  `id_tip_reteta` guid,
-  `id_pahar` guid,
-  `nume_reteta` varchar(255),
-  `descriere_reteta` varchar(255),
-  `poza_reteta` varchar(255),
-  `instructiuni_reteta` varchar(255),
-  `rating_reteta` float
+CREATE TABLE `SubCategorii_Ingrediente` (
+  `id_subcategorie_ingredient` guid PRIMARY KEY AUTO_INCREMENT,
+  `id_categorie_ingredient` guid,
+  `descriere_subcategorie_ingredient` varchar(255)
+);
+
+CREATE TABLE `Categorii_Retete` (
+  `id_categorie_reteta` guid PRIMARY KEY AUTO_INCREMENT,
+  `nume_categorie_reteta` varchar(255)
 );
 
 CREATE TABLE `Tipuri_Retete` (
@@ -50,25 +47,30 @@ CREATE TABLE `Pahare` (
   `nume_pahar` varchar(255)
 );
 
-CREATE TABLE `Categorii_Retete` (
-  `id_categorie_reteta` guid PRIMARY KEY AUTO_INCREMENT,
-  `nume_categorie_reteta` varchar(255)
-);
-
-CREATE TABLE `Utilizatori` (
-  `id_utilizator` guid PRIMARY KEY AUTO_INCREMENT,
-  `nume_utilizator` varchar(255),
-  `prenume_utilizator` varchar(255),
-  `username` varchar(255),
-  `parola` varchar(255),
-  `moment_creere` timestamp
-);
-
-CREATE TABLE `Aprecieri` (
-  `id_apreciere` guid PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE `Reteta_Ingrediente` (
+  `id_reteta_ingredient` guid PRIMARY KEY AUTO_INCREMENT,
   `id_reteta` guid,
-  `id_utilizator` guid,
-  `moment_apreciere` timestamp
+  `id_ingredient` guid,
+  `cantitate_ingredient` float,
+  `id_unitate` guid
+);
+
+CREATE TABLE `Ingrediente` (
+  `id_ingredient` guid PRIMARY KEY AUTO_INCREMENT,
+  `nume_ingredient` varchar(255),
+  `id_subcategorie_ingredient` varchar(255)
+);
+
+CREATE TABLE `Retete` (
+  `id_reteta` guid PRIMARY KEY AUTO_INCREMENT,
+  `id_categorie_reteta` guid,
+  `id_tip_reteta` guid,
+  `id_pahar` guid,
+  `nume_reteta` varchar(255),
+  `descriere_reteta` varchar(255),
+  `poza_reteta` varchar(255),
+  `instructiuni_reteta` varchar(255),
+  `rating_reteta` float
 );
 
 ALTER TABLE `Reteta_Ingrediente` ADD FOREIGN KEY (`id_ingredient`) REFERENCES `Ingrediente` (`id_ingredient`);
