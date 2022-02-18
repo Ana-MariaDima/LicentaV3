@@ -16,18 +16,20 @@ namespace Licenta.Data
         public DbSet<SubCategoriiIngrediente> SubCategorieIngredient { get; set; }
         public DbSet<CategoriiIngrediente> CategorieIngredient { get; set; }
         public DbSet<CategoriiRetete> CategorieReteta { get; set; }
+        public DbSet<TipuriRetete> TipReteta { get; set; }
         public DbSet<Ingrediente> Ingredient { get; set; }
         public DbSet<Unitati> Unitate { get; set; }
         public DbSet<RetetaIngrediente> RetetaIngredient { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Aprecieri> Apreciere { get; set; }
+        public DbSet<Pahare> Pahar { get; set; }
         public bool Ingrediente { get; internal set; }
 
         public Context(DbContextOptions<Context> options) : base(options)
         {
 
         }
-
+         
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
@@ -120,6 +122,7 @@ namespace Licenta.Data
             builder.Entity<Retete>()
                 .HasOne(m2 => m2.Pahar)
                 .WithMany(m1 => m1.Retete);
+                
 
             //SubCategorieIngrediente-Ingrediente
             builder.Entity<SubCategoriiIngrediente>()
@@ -161,7 +164,9 @@ namespace Licenta.Data
             builder.Entity<RetetaIngrediente>()
                    .HasOne<Retete>(mr => mr.Reteta)
                    .WithMany(m3 => m3.RetetaIngredient)
-                   .HasForeignKey(mr => mr.IdReteta);
+                   .HasForeignKey(mr => mr.IdReteta)
+                   .IsRequired(true)
+                   .OnDelete(DeleteBehavior.Cascade); 
 
             // Many to Many - Retete-Useri 
 
@@ -175,7 +180,9 @@ namespace Licenta.Data
             builder.Entity<Aprecieri>()
                    .HasOne<Retete>(mr => mr.Reteta)
                    .WithMany(m3 => m3.Apreciere)
-                   .HasForeignKey(mr => mr.IdReteta);
+                   .HasForeignKey(mr => mr.IdReteta)
+                   .IsRequired(true)
+                   .OnDelete(DeleteBehavior.Cascade); 
 
 
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licenta.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220124210816_Init")]
-    partial class Init
+    [Migration("20220218090400_AfterCreatingAllModels")]
+    partial class AfterCreatingAllModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,15 +36,18 @@ namespace Licenta.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
@@ -54,17 +57,26 @@ namespace Licenta.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Username")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Licenta.Models.DataBaseModel", b =>
+            modelBuilder.Entity("Licenta.Models.Relations.Many_to_Many.Aprecieri", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("IdReteta")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdUser")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DateCreated")
@@ -75,12 +87,18 @@ namespace Licenta.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdReteta", "IdUser");
 
-                    b.ToTable("DataBaseModels");
+                    b.HasIndex("IdUser");
+
+                    b.HasIndex("IdReteta", "IdUser")
+                        .IsUnique();
+
+                    b.ToTable("Apreciere");
                 });
 
             modelBuilder.Entity("Licenta.Models.Relations.Many_to_Many.Ingrediente", b =>
@@ -89,9 +107,6 @@ namespace Licenta.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CategorieIngredientId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime?>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
@@ -100,24 +115,27 @@ namespace Licenta.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("IdCategorieIngredient")
+                    b.Property<Guid>("IdSubCategorieIngredient")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nume_ingredient")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid?>("SubCategorieIngredientId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategorieIngredientId");
-
                     b.HasIndex("Nume_ingredient")
-                        .IsUnique()
-                        .HasFilter("[Nume_ingredient] IS NOT NULL");
+                        .IsUnique();
+
+                    b.HasIndex("SubCategorieIngredientId");
 
                     b.ToTable("Ingredient");
                 });
 
-            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.SubCategoriiIngrediente", b =>
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.CategoriiIngrediente", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -131,17 +149,17 @@ namespace Licenta.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Descriere_subcategorie_ingredient")
+                    b.Property<string>("Descriere_categorie_ingredient")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nume_Subcategoriie_ingredient")
+                    b.Property<string>("Nume_categoriie_ingredient")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Nume_Subcategoriie_ingredient")
-                        .IsUnique()
-                        .HasFilter("[Nume_Subcategoriie_ingredient] IS NOT NULL");
+                    b.HasIndex("Nume_categoriie_ingredient")
+                        .IsUnique();
 
                     b.ToTable("CategorieIngredient");
                 });
@@ -161,15 +179,41 @@ namespace Licenta.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nume_Categorie_Retete")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Nume_Categorie_Retete")
-                        .IsUnique()
-                        .HasFilter("[Nume_Categorie_Retete] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("CategorieReteta");
+                });
+
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.Pahare", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nume_Pahar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Nume_Pahar")
+                        .IsUnique();
+
+                    b.ToTable("Pahar");
                 });
 
             modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.RetetaIngrediente", b =>
@@ -197,9 +241,6 @@ namespace Licenta.Migrations
 
                     b.Property<Guid>("IdUnitate")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Observatii")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("UnitateId")
                         .HasColumnType("uniqueidentifier");
@@ -236,36 +277,106 @@ namespace Licenta.Migrations
                     b.Property<Guid>("IdCategorieReteta")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Link_reteta")
+                    b.Property<Guid>("IdPahar")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdTipReteta")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Instructiuni_reteta")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nume_reteta")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid?>("PaharId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Poza_reteta")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Scor_retea")
+                    b.Property<float>("Rating_retea")
                         .HasColumnType("real");
 
-                    b.Property<int>("durata_gatire")
-                        .HasColumnType("int");
-
-                    b.Property<int>("durata_preparare")
-                        .HasColumnType("int");
-
-                    b.Property<int>("durata_totala")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("TipRetetaId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategorieRetetaId");
 
                     b.HasIndex("Nume_reteta")
-                        .IsUnique()
-                        .HasFilter("[Nume_reteta] IS NOT NULL");
+                        .IsUnique();
+
+                    b.HasIndex("PaharId");
+
+                    b.HasIndex("TipRetetaId");
 
                     b.ToTable("Reteta");
+                });
+
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.SubCategoriiIngrediente", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CategorieIngredientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descriere_subcategorie_ingredient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("IdCategorieIngredient")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Nume_Subcategoriie_ingredient")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategorieIngredientId");
+
+                    b.HasIndex("Nume_Subcategoriie_ingredient")
+                        .IsUnique();
+
+                    b.ToTable("SubCategorieIngredient");
+                });
+
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.TipuriRetete", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nume_Tip_Retete")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Nume_Tip_Retete")
+                        .IsUnique();
+
+                    b.ToTable("TipReteta");
                 });
 
             modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.Unitati", b =>
@@ -283,24 +394,43 @@ namespace Licenta.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nume_unitate")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Nume_unitate")
-                        .IsUnique()
-                        .HasFilter("[Nume_unitate] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Unitate");
                 });
 
+            modelBuilder.Entity("Licenta.Models.Relations.Many_to_Many.Aprecieri", b =>
+                {
+                    b.HasOne("Licenta.Models.Relations.One_to_Many.Retete", "Reteta")
+                        .WithMany("Apreciere")
+                        .HasForeignKey("IdReteta")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Laborator54522021.Models.User", "User")
+                        .WithMany("Apreciere")
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Reteta");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Licenta.Models.Relations.Many_to_Many.Ingrediente", b =>
                 {
-                    b.HasOne("Licenta.Models.Relations.One_to_Many.SubCategoriiIngrediente", "CategorieIngredient")
+                    b.HasOne("Licenta.Models.Relations.One_to_Many.SubCategoriiIngrediente", "SubCategorieIngredient")
                         .WithMany("Ingrediente")
-                        .HasForeignKey("CategorieIngredientId");
+                        .HasForeignKey("SubCategorieIngredientId");
 
-                    b.Navigation("CategorieIngredient");
+                    b.Navigation("SubCategorieIngredient");
                 });
 
             modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.RetetaIngrediente", b =>
@@ -334,11 +464,59 @@ namespace Licenta.Migrations
                         .WithMany("Retete")
                         .HasForeignKey("CategorieRetetaId");
 
+                    b.HasOne("Licenta.Models.Relations.One_to_Many.Pahare", "Pahar")
+                        .WithMany("Retete")
+                        .HasForeignKey("PaharId");
+
+                    b.HasOne("Licenta.Models.Relations.One_to_Many.TipuriRetete", "TipReteta")
+                        .WithMany("Retete")
+                        .HasForeignKey("TipRetetaId");
+
                     b.Navigation("CategorieReteta");
+
+                    b.Navigation("Pahar");
+
+                    b.Navigation("TipReteta");
+                });
+
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.SubCategoriiIngrediente", b =>
+                {
+                    b.HasOne("Licenta.Models.Relations.One_to_Many.CategoriiIngrediente", "CategorieIngredient")
+                        .WithMany("SubCategoriiIngrediente")
+                        .HasForeignKey("CategorieIngredientId");
+
+                    b.Navigation("CategorieIngredient");
+                });
+
+            modelBuilder.Entity("Laborator54522021.Models.User", b =>
+                {
+                    b.Navigation("Apreciere");
                 });
 
             modelBuilder.Entity("Licenta.Models.Relations.Many_to_Many.Ingrediente", b =>
                 {
+                    b.Navigation("RetetaIngredient");
+                });
+
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.CategoriiIngrediente", b =>
+                {
+                    b.Navigation("SubCategoriiIngrediente");
+                });
+
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.CategoriiRetete", b =>
+                {
+                    b.Navigation("Retete");
+                });
+
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.Pahare", b =>
+                {
+                    b.Navigation("Retete");
+                });
+
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.Retete", b =>
+                {
+                    b.Navigation("Apreciere");
+
                     b.Navigation("RetetaIngredient");
                 });
 
@@ -347,14 +525,9 @@ namespace Licenta.Migrations
                     b.Navigation("Ingrediente");
                 });
 
-            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.CategoriiRetete", b =>
+            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.TipuriRetete", b =>
                 {
                     b.Navigation("Retete");
-                });
-
-            modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.Retete", b =>
-                {
-                    b.Navigation("RetetaIngredient");
                 });
 
             modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.Unitati", b =>
