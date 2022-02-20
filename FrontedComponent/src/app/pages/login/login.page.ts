@@ -67,8 +67,9 @@ export class LoginPage implements OnInit{
     this.error=false;
     console.log('Login Clicked', this.user);
 
-    if(this.validateEmail(this.user.username))
-    {
+    // if(this.validateEmail(this.user.username))
+    // {
+      console.log('Login Clicked2');
       this.authService.login(this.user).subscribe((response: any) =>{
         console.log(response);
         if(response && response.token)
@@ -78,11 +79,11 @@ export class LoginPage implements OnInit{
           this.router.navigateByUrl("/home")
         }
       })
-    }
-    else{
-      this.error="Email is not valid";
+    // }
+    // else{
+    //   this.error="Email is not valid";
 
-    }
+    // }
 
   }
 
