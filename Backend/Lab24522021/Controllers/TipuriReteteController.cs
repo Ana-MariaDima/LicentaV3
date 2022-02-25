@@ -45,13 +45,26 @@ namespace Licenta.Controllers
         }
         //post =create 
 
+        /* [HttpPost("add")]
+         public async Task<IActionResult> Add(TipuriRetete CatRet)
+         {
+             CatRet.Id = Guid.NewGuid();
+             var repo = _demoService.GetTipuriReteteRepository();
+             await repo.CreateAsync(CatRet);
+             await repo.SaveAsync();
+             return Ok();
+         }*/
+
         [HttpPost("add")]
-        public async Task<IActionResult> Add(TipuriRetete CatRet)
+        public async Task<IActionResult> Add(List<TipuriRetete> CategoriiRet)
         {
-            CatRet.Id = Guid.NewGuid();
-            var repo = _demoService.GetTipuriReteteRepository();
-            await repo.CreateAsync(CatRet);
-            await repo.SaveAsync();
+            foreach (var CatRet in CategoriiRet)
+            {
+                CatRet.Id = Guid.NewGuid();
+                var repo = _demoService.GetTipuriReteteRepository();
+                await repo.CreateAsync(CatRet);
+                await repo.SaveAsync();
+            }
             return Ok();
         }
 

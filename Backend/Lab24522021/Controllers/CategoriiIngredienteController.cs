@@ -44,19 +44,32 @@ namespace Licenta.Controllers
         //return Ok(await _context.CategorieIngredient.ToListAsync());
 
     }
-    //post =create 
+        //post =create 
+        /*
+            [HttpPost("add")]
+            public async Task<IActionResult> Add(CategoriiIngrediente CatIng)
+            {
+                CatIng.Id = Guid.NewGuid();
+                var repo = _demoService.GetCategoriiIngredienteRepository();
+                await repo.CreateAsync(CatIng);
+                await repo.SaveAsync();
+                return Ok();
+            }*/
+        [HttpPost("add")]
+        public async Task<IActionResult> Add(List<CategoriiIngrediente> CategoriiIng)
+        {
+            foreach (var CatIng in CategoriiIng)
+                {
+                CatIng.Id = Guid.NewGuid();
+                var repo = _demoService.GetCategoriiIngredienteRepository();
+                await repo.CreateAsync(CatIng);
+                await repo.SaveAsync(); 
+            }
+            return Ok();
+        }
 
-    [HttpPost("add")]
-    public async Task<IActionResult> Add(CategoriiIngrediente CatIng)
-    {
-        CatIng.Id = Guid.NewGuid();
-        var repo = _demoService.GetCategoriiIngredienteRepository();
-        await repo.CreateAsync(CatIng);
-        await repo.SaveAsync();
-        return Ok();
-    }
 
-    [HttpPost("update")]
+        [HttpPost("update")]
     public async Task<IActionResult> Update(CategoriiIngrediente CatIng)
     {
 

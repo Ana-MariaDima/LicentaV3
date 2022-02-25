@@ -42,13 +42,25 @@ namespace Licenta.Controllers
         }
         //post =create 
 
-        [HttpPost("add")]
+        /*[HttpPost("add")]
         public async Task<IActionResult> Add(Ingrediente Ing)
         {
             Ing.Id = Guid.NewGuid();
             var repo = _demoService.GetIngredienteRepository();
             await repo.CreateAsync(Ing);
             await repo.SaveAsync();
+            return Ok();
+        }*/
+        [HttpPost("add")]
+        public async Task<IActionResult> Add(List<Ingrediente> Ingrediente)
+        {
+            foreach (var Ing in Ingrediente)
+            {
+                Ing.Id = Guid.NewGuid();
+                var repo = _demoService.GetIngredienteRepository();
+                await repo.CreateAsync(Ing);
+                await repo.SaveAsync();
+            }
             return Ok();
         }
 

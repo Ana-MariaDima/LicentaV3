@@ -42,13 +42,25 @@ namespace Licenta.Controllers
         }
         //post =create 
 
-        [HttpPost("add")]
+        /*[HttpPost("add")]
         public async Task<IActionResult> Add(Retete Ret)
         {
             Ret.Id = Guid.NewGuid();
             var repo = _demoService.GetReteteRepository();
             await repo.CreateAsync(Ret);
             await repo.SaveAsync();
+            return Ok();
+        }*/
+        [HttpPost("add")]
+        public async Task<IActionResult> Add(List<Retete> Retete)
+        {
+            foreach (var Ret in Retete)
+            {
+                Ret.Id = Guid.NewGuid();
+                var repo = _demoService.GetReteteRepository();
+                await repo.CreateAsync(Ret);
+                await repo.SaveAsync();
+            }
             return Ok();
         }
 

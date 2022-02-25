@@ -46,12 +46,16 @@ namespace Licenta.Controllers
         //post =create 
 
         [HttpPost("add")]
-        public async Task<IActionResult> Add(Pahare pahar)
+        public async Task<IActionResult> Add(List< Pahare> pahare)
         {
-            pahar.Id = Guid.NewGuid();
-            var repo = _demoService.GetPahareRepository();
-            await repo.CreateAsync(pahar);
-            await repo.SaveAsync();
+            foreach (var pahar in pahare)
+            {
+                pahar.Id = Guid.NewGuid();
+                var repo = _demoService.GetPahareRepository();
+                await repo.CreateAsync(pahar);
+                await repo.SaveAsync();
+                
+            }
             return Ok();
         }
 

@@ -41,13 +41,26 @@ namespace Licenta.Controllers
         }
         //post =create 
 
-        [HttpPost("add")]
+        /*[HttpPost("add")]
         public async Task<IActionResult> Add(Aprecieri Apre)
         {
             Apre.Id = Guid.NewGuid();
             var repo = _demoService.GetAprecieriRepository();
             await repo.CreateAsync(Apre);
             await repo.SaveAsync();
+            return Ok();
+        }
+*/
+        [HttpPost("add")]
+        public async Task<IActionResult> Add(List<Aprecieri> Aprecieri)
+        {
+            foreach (var Apre in Aprecieri)
+            {
+                Apre.Id = Guid.NewGuid();
+                var repo = _demoService.GetAprecieriRepository();
+                await repo.CreateAsync(Apre);
+                await repo.SaveAsync();
+            }
             return Ok();
         }
 
