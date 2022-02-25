@@ -37,6 +37,15 @@ namespace Licenta.Controllers
             //return Ok(await _context.CategorieIngredient.ToListAsync());
 
         }
+
+        
+
+        [HttpGet("GetByCategorieIngrediente/{id}")]
+        public ActionResult GetByCategorieIngrediente(Guid id)
+        {
+            var result =  _demoService.GetSubCategoriiIngredienteRepository().GetByCategorieIngrediente(id);
+            return Ok(result);
+        }
         [HttpGet("{id}")]
 
         public async Task<IActionResult> GetById(Guid id)

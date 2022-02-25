@@ -22,5 +22,11 @@ namespace Licenta.Repositories.SubCategoriiIngredienteRepository
             
 
         }
+
+        public IEnumerable<SubCategoriiIngrediente> GetByCategorieIngrediente(Guid id)
+        {
+            return _table.Where(x => x.IdCategorieIngredient == id);
+        }
+
     }
 }

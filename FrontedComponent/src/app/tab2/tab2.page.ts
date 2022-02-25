@@ -8,5 +8,22 @@ import { Component } from '@angular/core';
 export class Tab2Page {
 
   constructor() {}
+  onClick(event){
+
+    if(event.detail.checked){
+      document.body.setAttribute('data-theme', 'dark');
+    }
+    else{
+      document.body.setAttribute('data-theme', 'light');
+    }
+  }
+
+   colorTest(systemInitiatedDark) {
+    if (systemInitiatedDark.matches) {
+      document.body.setAttribute('data-theme', 'dark');
+    } else {
+      document.body.setAttribute('data-theme', 'light');
+    }
+  }
 
 }

@@ -5,17 +5,30 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button expand="block" share="round" color="mango"  > Ingrediente</ion-button>
+        <ion-button expand="block" share="round" color="mycolor"  > Ingrediente</ion-button>
       </ion-col>
 
       <ion-col >
-        <ion-button expand="block" share="round" color="mango" >Toate Bauturile </ion-button>
+        <ion-button expand="block" share="round" color="mycolor" >Toate Bauturile </ion-button>
       </ion-col>
     </ion-row>
     </ion-grid>
+<ion-accordion-group>
+    <ion-accordion *ngFor="let categorie of categorii" value="colors">
+      <ion-item slot="header">
+        <ion-label>{{ categorie.nume_categoriie_ingredient }}!</ion-label>
+      </ion-item>
+
+      <ion-list  slot="content">
+        <ion-item *ngFor="let subcategorie of categorie.subCategoriiIngrediente">
+          <ion-label>{{subcategorie.nume_Subcategoriie_ingredient}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-accordion>
+  </ion-accordion-group>
 </ion-header>
 
 
-  <!--app-explore-container name="Tab 1 page"></app-explore-container>
-  <ion-content [fullscreen]="true"></ion-content-->
+  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-content [fullscreen]="true"></ion-content>
 

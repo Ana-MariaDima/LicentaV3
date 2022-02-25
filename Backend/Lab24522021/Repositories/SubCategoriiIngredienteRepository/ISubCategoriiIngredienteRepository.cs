@@ -11,7 +11,9 @@ namespace Licenta.Repositories.SubCategoriiIngredienteRepository
     {
        
         SubCategoriiIngrediente GetByNume(string name);
+        IEnumerable<SubCategoriiIngrediente> GetByCategorieIngrediente(Guid id);
 
+           
 
     }
 }
