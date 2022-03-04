@@ -64,6 +64,19 @@ namespace Licenta.Controllers
             return Ok();
         }
 
+        [HttpPost("addWithGuid")]
+        public async Task<IActionResult> AddWithGuid(List<Retete> Retete)
+        {
+            foreach (var Ret in Retete)
+            {
+                //Ret.Id = Guid.NewGuid();
+                var repo = _demoService.GetReteteRepository();
+                await repo.CreateAsync(Ret);
+                await repo.SaveAsync();
+            }
+            return Ok();
+        }
+
         [HttpPost("update")]
         public async Task<IActionResult> Update(Retete Ret)
         {

@@ -4,9 +4,12 @@ Table Utilizatori as Util{
   prenume_utilizator varchar
   username varchar
   parola varchar
-  moment_creere timestamp
+  moment_creare timestamp
   activ bool
   rol varchar 
+  varsta int 
+  sex char
+  poza_utilizator varchar
 }
 
 
@@ -21,11 +24,14 @@ Table Aprecieri as A{
   id_reteta guid
   id_utilizator guid 
   moment_apreciere timestamp
+  scor_apreciere float
 }
 
 
 Table Categorii_Ingrediente as CI{
   id_categorie_ingredient guid [pk,increment]
+  nume_categorie_ingredient varchar
+  poza_categorie_ingredient varchar
   descriere_categorie_ingredient varchar
 }
 
@@ -33,6 +39,8 @@ Table Categorii_Ingrediente as CI{
 Table SubCategorii_Ingrediente as SI{
   id_subcategorie_ingredient guid [pk,increment]
    id_categorie_ingredient guid
+    nume_subcategorie_ingredient varchar
+  poza_subcategorie_ingredient varchar
   descriere_subcategorie_ingredient varchar
 }
 

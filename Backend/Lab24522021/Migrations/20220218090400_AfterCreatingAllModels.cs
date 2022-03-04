@@ -103,7 +103,7 @@ namespace Licenta.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nume_Subcategoriie_ingredient = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Nume_Subcategorie_ingredient = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Descriere_subcategorie_ingredient = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategorieIngredientId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IdCategorieIngredient = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -325,9 +325,9 @@ namespace Licenta.Migrations
                 column: "CategorieIngredientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategorieIngredient_Nume_Subcategoriie_ingredient",
+                name: "IX_SubCategorieIngredient_Nume_Subcategorie_ingredient",
                 table: "SubCategorieIngredient",
-                column: "Nume_Subcategoriie_ingredient",
+                column: "Nume_Subcategorie_ingredient",
                 unique: true);
 
             migrationBuilder.CreateIndex(

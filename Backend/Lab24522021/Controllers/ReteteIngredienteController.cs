@@ -63,6 +63,18 @@ namespace Licenta.Controllers
             return Ok();
         }
 
+        [HttpPost("addWithGuid")]
+        public async Task<IActionResult> AddWithGuid(List<RetetaIngrediente> ReteteIng)
+        {
+            foreach (var RetIng in ReteteIng)
+            {
+                //RetIng.Id = Guid.NewGuid();
+                var repo = _demoService.GetReteteIngredienteRepository();
+                await repo.CreateAsync(RetIng);
+                await repo.SaveAsync();
+            }
+            return Ok();
+        }
         [HttpPost("update")]
         public async Task<IActionResult> Update(RetetaIngrediente RetIng)
         {

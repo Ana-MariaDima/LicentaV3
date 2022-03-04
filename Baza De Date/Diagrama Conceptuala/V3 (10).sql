@@ -4,9 +4,12 @@ CREATE TABLE `Utilizatori` (
   `prenume_utilizator` varchar(255),
   `username` varchar(255),
   `parola` varchar(255),
-  `moment_creere` timestamp,
+  `moment_creare` timestamp,
   `activ` bool,
-  `rol` varchar(255)
+  `rol` varchar(255),
+  `varsta` int,
+  `sex` char,
+  `poza_utilizator` varchar(255)
 );
 
 CREATE TABLE `Unitati` (
@@ -18,17 +21,22 @@ CREATE TABLE `Aprecieri` (
   `id_apreciere` guid PRIMARY KEY AUTO_INCREMENT,
   `id_reteta` guid,
   `id_utilizator` guid,
-  `moment_apreciere` timestamp
+  `moment_apreciere` timestamp,
+  `scor_apreciere` float
 );
 
 CREATE TABLE `Categorii_Ingrediente` (
   `id_categorie_ingredient` guid PRIMARY KEY AUTO_INCREMENT,
+  `nume_categorie_ingredient` varchar(255),
+  `poza_categorie_ingredient` varchar(255),
   `descriere_categorie_ingredient` varchar(255)
 );
 
 CREATE TABLE `SubCategorii_Ingrediente` (
   `id_subcategorie_ingredient` guid PRIMARY KEY AUTO_INCREMENT,
   `id_categorie_ingredient` guid,
+  `nume_subcategorie_ingredient` varchar(255),
+  `poza_subcategorie_ingredient` varchar(255),
   `descriere_subcategorie_ingredient` varchar(255)
 );
 

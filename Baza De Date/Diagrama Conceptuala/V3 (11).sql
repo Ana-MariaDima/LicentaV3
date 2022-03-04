@@ -4,9 +4,12 @@ CREATE TABLE [Utilizatori] (
   [prenume_utilizator] nvarchar(255),
   [username] nvarchar(255),
   [parola] nvarchar(255),
-  [moment_creere] timestamp,
+  [moment_creare] timestamp,
   [activ] bool,
-  [rol] nvarchar(255)
+  [rol] nvarchar(255),
+  [varsta] int,
+  [sex] char,
+  [poza_utilizator] nvarchar(255)
 )
 GO
 
@@ -20,12 +23,15 @@ CREATE TABLE [Aprecieri] (
   [id_apreciere] guid PRIMARY KEY IDENTITY(1, 1),
   [id_reteta] guid,
   [id_utilizator] guid,
-  [moment_apreciere] timestamp
+  [moment_apreciere] timestamp,
+  [scor_apreciere] float
 )
 GO
 
 CREATE TABLE [Categorii_Ingrediente] (
   [id_categorie_ingredient] guid PRIMARY KEY IDENTITY(1, 1),
+  [nume_categorie_ingredient] nvarchar(255),
+  [poza_categorie_ingredient] nvarchar(255),
   [descriere_categorie_ingredient] nvarchar(255)
 )
 GO
@@ -33,6 +39,8 @@ GO
 CREATE TABLE [SubCategorii_Ingrediente] (
   [id_subcategorie_ingredient] guid PRIMARY KEY IDENTITY(1, 1),
   [id_categorie_ingredient] guid,
+  [nume_subcategorie_ingredient] nvarchar(255),
+  [poza_subcategorie_ingredient] nvarchar(255),
   [descriere_subcategorie_ingredient] nvarchar(255)
 )
 GO

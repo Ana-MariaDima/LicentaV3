@@ -62,7 +62,7 @@ namespace Licenta.Data
 
             //SubCategorieIngrediente - nume SubCategorie
             builder.Entity<SubCategoriiIngrediente>()
-              .HasIndex(u => u.Nume_Subcategoriie_ingredient)
+              .HasIndex(u => u.Nume_Subcategorie_ingredient)
               .IsUnique();
 
             //Ingrediente - nume ingredient

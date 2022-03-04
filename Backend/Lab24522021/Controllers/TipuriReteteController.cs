@@ -68,6 +68,19 @@ namespace Licenta.Controllers
             return Ok();
         }
 
+        [HttpPost("addWithGuid")]
+        public async Task<IActionResult> AddWithGuid(List<TipuriRetete> CategoriiRet)
+        {
+            foreach (var CatRet in CategoriiRet)
+            {
+                //CatRet.Id = Guid.NewGuid();
+                var repo = _demoService.GetTipuriReteteRepository();
+                await repo.CreateAsync(CatRet);
+                await repo.SaveAsync();
+            }
+            return Ok();
+        }
+
         [HttpPost("update")]
         public async Task<IActionResult> Update(TipuriRetete CatRet)
         {

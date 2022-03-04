@@ -59,6 +59,19 @@ namespace Licenta.Controllers
             return Ok();
         }
 
+        [HttpPost("addWithGuid")]
+        public async Task<IActionResult> AddWithGuid(List<Pahare> pahare)
+        {
+            foreach (var pahar in pahare)
+            {
+                //pahar.Id = Guid.NewGuid();
+                var repo = _demoService.GetPahareRepository();
+                await repo.CreateAsync(pahar);
+                await repo.SaveAsync();
+
+            }
+            return Ok();
+        }
         [HttpPost("update")]
         public async Task<IActionResult> Update(Pahare pahar)
         {

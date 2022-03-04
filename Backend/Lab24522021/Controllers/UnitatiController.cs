@@ -66,6 +66,19 @@ namespace Licenta.Controllers
             }
             return Ok();
         }
+
+        [HttpPost("addWithGuid")]
+        public async Task<IActionResult> AddWithGuid(List<Unitati> Unitati)
+        {
+            foreach (var Unit in Unitati)
+            {
+                //Unit.Id = Guid.NewGuid();
+                var repo = _demoService.GetUnitatiRepository();
+                await repo.CreateAsync(Unit);
+                await repo.SaveAsync();
+            }
+            return Ok();
+        }
         [HttpPost("update")]
         public async Task<IActionResult> Update(Unitati Unit)
         {

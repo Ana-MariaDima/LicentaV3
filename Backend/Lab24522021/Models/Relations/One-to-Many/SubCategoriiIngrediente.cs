@@ -11,9 +11,13 @@ namespace Licenta.Models.Relations.One_to_Many
     public class SubCategoriiIngrediente: BaseEntity
     {
         [Required]
-        public string Nume_Subcategoriie_ingredient { get; set; }
+        public string Nume_Subcategorie_ingredient { get; set; }
+      
         public string Descriere_subcategorie_ingredient { get; set; }
 
+        public string PozaSubcategorieIngredient { get; set; }
+
+        public string LinkPoza { get; set; }
         public CategoriiIngrediente CategorieIngredient { get; set; }
         public Guid IdCategorieIngredient { get; set; }
         public ICollection<Ingrediente> Ingrediente { get; set; }

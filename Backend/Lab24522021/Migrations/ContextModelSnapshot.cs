@@ -337,7 +337,7 @@ namespace Licenta.Migrations
                     b.Property<Guid>("IdCategorieIngredient")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Nume_Subcategoriie_ingredient")
+                    b.Property<string>("Nume_Subcategorie_ingredient")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -345,7 +345,7 @@ namespace Licenta.Migrations
 
                     b.HasIndex("CategorieIngredientId");
 
-                    b.HasIndex("Nume_Subcategoriie_ingredient")
+                    b.HasIndex("Nume_Subcategorie_ingredient")
                         .IsUnique();
 
                     b.ToTable("SubCategorieIngredient");

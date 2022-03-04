@@ -16,12 +16,12 @@
 <ion-accordion-group>
     <ion-accordion *ngFor="let categorie of categorii" value="colors">
       <ion-item slot="header">
-        <ion-label>{{ categorie.nume_categoriie_ingredient }}!</ion-label>
+        <ion-label>{{ categorie.nume_categoriie_ingredient }}</ion-label>
       </ion-item>
 
       <ion-list  slot="content">
         <ion-item *ngFor="let subcategorie of categorie.subCategoriiIngrediente">
-          <ion-label>{{subcategorie.nume_Subcategoriie_ingredient}}</ion-label>
+          <ion-label>{{subcategorie.nume_Subcategorie_ingredient}}</ion-label>
         </ion-item>
       </ion-list>
     </ion-accordion>

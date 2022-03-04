@@ -18,7 +18,7 @@ namespace Licenta.Repositories.SubCategoriiIngredienteRepository
         public SubCategoriiIngrediente GetByNume(string name)
         {
             
-                return _table.FirstOrDefault(x => x.Nume_Subcategoriie_ingredient.ToLower().Equals(name.ToLower()));
+                return _table.FirstOrDefault(x => x.Nume_Subcategorie_ingredient.ToLower().Equals(name.ToLower()));
             
 
         }
