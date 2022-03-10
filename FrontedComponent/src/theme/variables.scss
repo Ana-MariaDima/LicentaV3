@@ -325,6 +325,9 @@
   --ion-color-mycolor-tint: #dc5ffc;
   --ion-color-mycolor-background: white;
 
+  --ion-color-mycolorpressed: #281531;
+
+
   ion-tab-button.tab-selected {
     ion-icon, ion-label {
       color: var(--ion-color-mycolor) !important;
@@ -341,7 +344,7 @@
   --ion-color-contrast-rgb: var(--ion-color-mycolor-contrast-rgb);
   --ion-color-shade: var(--ion-color-mycolor-shade);
   --ion-color-tint: var(--ion-color-mycolor-tint);
-  //--ion-color-buttons: var(--ion-color-mycolor-buttons);
+  --ion-color-buttons: var(--ion-color-mycolor-buttons);
 }
 
 .smallLogo{
@@ -352,4 +355,7 @@
 }
 .ImportantButton{
   background-color:#561c6d;;
+}
+.PressedButton{
+  background-color:#340447;
 }

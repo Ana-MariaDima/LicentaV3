@@ -14,12 +14,26 @@ export class CategoryService {
     for(let index in categorii){
        var categorie = categorii[index];
        categorie.subCategoriiIngrediente = await this.getSubCategoriiIngrediente(categorie.id);
+       for(let index2 in  categorie.subCategoriiIngrediente){
+        var subcategorie =  categorie.subCategoriiIngrediente[index2];
+       categorie.subCategoriiIngrediente.Ingrediente=await this.getIngrediente( subcategorie.id);
+       console.log( categorie.subCategoriiIngrediente.Ingrediente)
+       }
+
     }
     return categorii;
   }
+
+
+
+
   ///api/SubCategoriiIngrediente/GetByCategorieIngrediente/{id}
 
   getSubCategoriiIngrediente(idCategorieIngredient:string):Promise<any>{
     return this.http.get(environment.baseUrl+"SubCategoriiIngrediente/GetByCategorieIngrediente/"+idCategorieIngredient).toPromise();
+  }
+///api/Ingrediente/GetBySubCategorieIngrediente/{id}
+  getIngrediente(idSubCategorieIngredient:string):Promise<any>{
+    return this.http.get(environment.baseUrl+"Ingrediente/GetBySubCategorieIngrediente/"+idSubCategorieIngredient).toPromise();
   }
 }

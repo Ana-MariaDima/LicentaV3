@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Acasă - Băuturi</ion-title>
+  </ion-toolbar>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" share="round" color="mycolor" routerLink='/home/tab1' > Ingrediente</ion-button>
+      </ion-col>
+
+      <ion-col >
+        <ion-button expand="block" share="round" color="mycolor" routerLink='/tab1-toate-retetele' >
+
+            Toate Bauturile
+
+          </ion-button>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
+  </ion-header>
+  <ion-content >
+    <div>
+    <ion-list slot="content">
+
+        <ion-card *ngFor="let reteta of retete" style="padding:10px;">
+
+          <ion-card-title>{{reteta.nume_reteta}}</ion-card-title>
+
+            <ion-card-content>
+            </ion-card-content>
+          </ion-card>
+
+  </ion-list>
+</div>
+</ion-content>

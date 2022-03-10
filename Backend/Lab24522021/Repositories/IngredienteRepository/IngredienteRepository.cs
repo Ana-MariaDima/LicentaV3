@@ -92,11 +92,10 @@ namespace Licenta.Repositories.DatabaseRepository
             // model1-a.model2-a.Id
         }
 
-        public Ingrediente GetByCategorie(Guid IdSubCategorieIngredient)
+        public IEnumerable<Ingrediente> GetBySubCategorieIngrediente(Guid id)
         {
-            return _table.Include(x => x.IdSubCategorieIngredient).FirstOrDefault(x => x.IdSubCategorieIngredient.Equals(IdSubCategorieIngredient));
+            return _table.Where(x => x.IdSubCategorieIngredient == id);
         }
-
         public Ingrediente GetById(int id)
         {
             return _table.FirstOrDefault(x => x.Id.Equals(id));
@@ -112,7 +111,7 @@ namespace Licenta.Repositories.DatabaseRepository
             return _table.FirstOrDefault(x => x.Nume_ingredient.ToLower().Equals(nume_ingredient.ToLower()));
         }
 
-       
+        
     }
 
     

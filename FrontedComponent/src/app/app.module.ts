@@ -8,13 +8,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CategoryService } from './category.service';
+import { CategoryService } from './services/Ingrediente/category.service';
+import { ReteteService } from './services/Retete/retete.service';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot({animated: false}), AppRoutingModule, ReactiveFormsModule, HttpClientModule,BrowserModule,FormsModule, ReactiveFormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CategoryService],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CategoryService,ReteteService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

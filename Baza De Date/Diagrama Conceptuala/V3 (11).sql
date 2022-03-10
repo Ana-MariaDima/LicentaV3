@@ -3,6 +3,7 @@ CREATE TABLE [Utilizatori] (
   [nume_utilizator] nvarchar(255),
   [prenume_utilizator] nvarchar(255),
   [username] nvarchar(255),
+  [email] nvarchar(255),
   [parola] nvarchar(255),
   [moment_creare] timestamp,
   [activ] bool,

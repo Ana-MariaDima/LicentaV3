@@ -75,7 +75,13 @@ namespace Licenta.Controllers
             }
             return Ok();
         }
-
+        [HttpGet("GetBySubCategorieIngrediente/{id}")]
+        public ActionResult GetBySubCategorieIngrediente(Guid id)
+        {
+            var result = _demoService.GetIngredienteRepository().GetBySubCategorieIngrediente(id);
+            return Ok(result);
+        }
+      
         [HttpPost("update")]
         public async Task<IActionResult> Update(Ingrediente Ing)
         {

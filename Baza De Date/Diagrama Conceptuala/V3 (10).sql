@@ -3,6 +3,7 @@ CREATE TABLE `Utilizatori` (
   `nume_utilizator` varchar(255),
   `prenume_utilizator` varchar(255),
   `username` varchar(255),
+  `email` varchar(255),
   `parola` varchar(255),
   `moment_creare` timestamp,
   `activ` bool,

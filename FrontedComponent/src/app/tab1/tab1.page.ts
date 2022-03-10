@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { CategoryService } from '../category.service';
+import { ModalController } from '@ionic/angular';
+import { environment } from 'src/environments/environment';
+import { ModalPopupPage } from '../modal-popup/modal-popup.page';
+import { CategoryService } from '../services/Ingrediente/category.service';
 
 @Component({
   selector: 'app-tab1',
@@ -10,7 +13,8 @@ import { CategoryService } from '../category.service';
 
 export class Tab1Page {
   categorii:Array<any> = []
-  constructor(private categoriiService: CategoryService) {
+  imagesUrl = environment.imagesUrl
+  constructor(private categoriiService: CategoryService, private modalController: ModalController) {
 
   }
 
@@ -19,8 +23,27 @@ export class Tab1Page {
     .then((results)=>{
       console.log(results);
       this.categorii = results;
+      console.log(this.categorii, "test")
     });
   }
 
-buttonActive: boolean = true;
+  async openCardModal(subcategorie, ingrediente){
+    console.log("showing ",subcategorie)
+    var modal = await this.modalController.create({
+      component:ModalPopupPage,
+      cssClass:"modalTest",
+      componentProps: {
+        'model_title':'testModal',
+        'subcategorie':subcategorie,
+        'ingrediente':ingrediente
+      }
+    })
+
+    modal.present()
+
+    const {data} = await modal.onWillDismiss();
+    console.log("modal returned data", data)
+  }
+
+//buttonActive: boolean = true;
 }
