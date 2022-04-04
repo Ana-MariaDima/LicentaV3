@@ -10,7 +10,8 @@ namespace Licenta.Repositories.ReteteIngredienteRepository
    public interface IReteteIngredienteRepository : IGenericRepository<RetetaIngrediente>
     {
         RetetaIngrediente GetByIngredient(Guid id_ingredient);
-        RetetaIngrediente GetByReteta(Guid id_retetea);
+       
+        IEnumerable<RetetaIngrediente> GetByReteta(Guid id);
         RetetaIngrediente GetByUnitate(Guid id_unitate);
 
         //Retete GetByIdIncludingRetetaIngredient(int id);

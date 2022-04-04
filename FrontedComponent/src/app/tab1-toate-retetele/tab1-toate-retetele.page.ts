@@ -11,9 +11,12 @@ export class Tab1ToateRetetelePage  {
 
   constructor(private ReteteService: ReteteService) { }
   retete:Array<any> = []
+  tip:Array<any> = []
   async ngOnInit() {
     environment.baseUrl
     this.retete = await this.ReteteService.getRetete();
+
+
     console.log(this.retete)
     // .then((results)=>{
     //  console.log(results);

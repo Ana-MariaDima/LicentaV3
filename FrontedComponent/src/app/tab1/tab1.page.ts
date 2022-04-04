@@ -18,30 +18,25 @@ export class Tab1Page {
 
   }
 
-  ngOnInit(){
-    this.categoriiService.getCategoriiIngrediente()
-    .then((results)=>{
-      console.log(results);
-      this.categorii = results;
-      console.log(this.categorii, "test")
-    });
+  async ngOnInit(){
+    this.categorii = await this.categoriiService.getCategoriiIngrediente()
+    console.log(this.categorii, "test");
   }
 
-  async openCardModal(subcategorie, ingrediente){
+  async openCardModal(subcategorie){
     console.log("showing ",subcategorie)
     var modal = await this.modalController.create({
       component:ModalPopupPage,
       cssClass:"modalTest",
       componentProps: {
-        'model_title':'testModal',
-        'subcategorie':subcategorie,
-        'ingrediente':ingrediente
+        'model_title':subcategorie.nume_Subcategorie_ingredient,
+        'ingrediente':subcategorie.ingrediente
       }
     })
 
     modal.present()
 
-    const {data} = await modal.onWillDismiss();
+    const {data} = await modal.onWillDismiss();0
     console.log("modal returned data", data)
   }
 

@@ -15,7 +15,7 @@ export class ModalPopupPage implements OnInit {
   ) { }
   ngOnInit() {
 
-    console.log(this.ingrediente,"from modal")
+    console.log(this.subcategorie,"from modal")
   }
 
   async dismiss() {

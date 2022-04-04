@@ -39,6 +39,16 @@ namespace Licenta.Controllers
 
 
         }
+
+        [HttpGet("GetByReteta/{id}")]
+
+        public ActionResult GetByReteta(Guid id)
+        {
+            var result =  _demoService.GetReteteIngredienteRepository().GetByReteta(id);
+            return Ok(result);
+        
+
+        }
         //post =create 
 
         /* [HttpPost("add")]

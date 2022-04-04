@@ -1,20 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Ionic Modal Popup Example</ion-title>
+    <ion-title>{{model_title}}</ion-title>
+
+    <ion-button (click)="dismiss()">Close</ion-button>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col text-center>
-        Model Title : {{ model_title }}
-        {{subcategorie.nume_Subcategorie_ingredient}}
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col text-center>
-        <ion-button (click)="dismiss()">Close</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-card *ngFor="let ingredient of ingrediente">
+      <ion-card-header>
+        <ion-card-title> {{ingredient.nume_ingredient}} </ion-card-title>
+      </ion-card-header>
+        <ion-card-content>
+
+
+          <ion-checkbox  style="text-align: center;" >
+          <ion-icon name="add"></ion-icon>
+        </ion-checkbox>
+        </ion-card-content>
+
+   </ion-card>
+
+
+
+
+
+
+
+
+
 </ion-content>

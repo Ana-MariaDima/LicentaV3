@@ -15,9 +15,9 @@ export class CategoryService {
        var categorie = categorii[index];
        categorie.subCategoriiIngrediente = await this.getSubCategoriiIngrediente(categorie.id);
        for(let index2 in  categorie.subCategoriiIngrediente){
-        var subcategorie =  categorie.subCategoriiIngrediente[index2];
-       categorie.subCategoriiIngrediente.Ingrediente=await this.getIngrediente( subcategorie.id);
-       console.log( categorie.subCategoriiIngrediente.Ingrediente)
+          var subcategorie =  categorie.subCategoriiIngrediente[index2];
+          subcategorie.ingrediente = await this.getIngrediente(subcategorie.id);
+       console.log( "GetIng",categorie.subCategoriiIngrediente.ing)
        }
 
     }

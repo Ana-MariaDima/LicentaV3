@@ -44,6 +44,8 @@ namespace Licenta.Controllers
         //return Ok(await _context.CategorieIngredient.ToListAsync());
 
     }
+
+       
         //post =create 
         /*
             [HttpPost("add")]

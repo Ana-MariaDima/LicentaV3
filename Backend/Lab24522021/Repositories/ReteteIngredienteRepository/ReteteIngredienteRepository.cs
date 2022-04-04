@@ -24,11 +24,11 @@ namespace Licenta.Repositories.ReteteIngredienteRepository
             return _table.Include(x => x.IdIngredient).FirstOrDefault(x => x.IdIngredient.Equals(id_ingredient));
         }
 
-        public RetetaIngrediente GetByReteta(Guid id_retetea)
+       
+        public IEnumerable<RetetaIngrediente> GetByReteta(Guid id)
         {
-            return _table.Include(x => x.IdReteta).FirstOrDefault(x => x.IdReteta.Equals(id_retetea));
+            return _table.Where(x => x.IdReteta == id);
         }
-
         public RetetaIngrediente GetByUnitate(Guid id_unitate)
         {
             return _table.Include(x => x.IdUnitate).FirstOrDefault(x => x.IdUnitate.Equals(id_unitate));
