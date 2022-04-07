@@ -1,17 +1,25 @@
-<ion-header [translucent]="true">
+<ion-header>
+
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title>O reteta la intamplare </ion-title>
   </ion-toolbar>
+
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+<ion-content >
+  <ion-button  class="button"  share="round" color="mycolor"  (click)="PreopenCardModal(null)"> Incearca ceva nou </ion-button>
 </ion-content>
+<style>
+
+
+.button {
+  width:50%;
+    margin-left:25%;
+    margin-right:25%;
+    height: 15%;
+    margin-top: 65%;
+    margin-bottom: 40%;
+}
+</style>
+
+
+

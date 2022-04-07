@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
-import { ModalPopupPage } from '../modal-popup/modal-popup.page';
+import { ModalPopupPage } from '../modal-popup-ing/modal-popup.page';
 import { CategoryService } from '../services/Ingrediente/category.service';
 
 @Component({
@@ -14,6 +14,9 @@ import { CategoryService } from '../services/Ingrediente/category.service';
 export class Tab1Page {
   categorii:Array<any> = []
   imagesUrl = environment.imagesUrl
+  itemsInCart: Object[]=[];
+
+
   constructor(private categoriiService: CategoryService, private modalController: ModalController) {
 
   }
@@ -21,6 +24,12 @@ export class Tab1Page {
   async ngOnInit(){
     this.categorii = await this.categoriiService.getCategoriiIngrediente()
     console.log(this.categorii, "test");
+  }
+  addtoCart(item)
+  {
+
+    item.quantityInCart += 1;
+    this.itemsInCart.push(item);
   }
 
   async openCardModal(subcategorie){
@@ -36,7 +45,8 @@ export class Tab1Page {
 
     modal.present()
 
-    const {data} = await modal.onWillDismiss();0
+
+    const {data} = await modal.onWillDismiss();
     console.log("modal returned data", data)
   }
 

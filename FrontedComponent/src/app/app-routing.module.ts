@@ -27,9 +27,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/singup/singup.module').then(m => m.SingupPageModule)
   },
   {
-    path: 'modal-popup',
-    loadChildren: () => import('./modal-popup/modal-popup.module').then( m => m.ModalPopupPageModule)
+    path: 'modal-popup-ing',
+    loadChildren: () => import('./modal-popup-ing/modal-popup.module').then( m => m.ModalPopupPageModule)
   },
+  {
+    path: 'modal-popup-ret',
+    loadChildren: () => import('./modal-popup-ret/modal-popup-ret.module').then( m => m.ModalPopupPageRetModule)
+  },
+
+
+
   {
     path: 'tab1-toate-retetele',
     loadChildren: () => import('./tab1-toate-retetele/tab1-toate-retetele.module').then( m => m.Tab1ToateRetetelePageModule)

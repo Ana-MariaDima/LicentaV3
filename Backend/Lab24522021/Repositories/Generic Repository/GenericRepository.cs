@@ -24,6 +24,7 @@ namespace Licenta.Repositories.Generic_Repository
             _table = _context.Set<TEntity>();
         }
 
+
         // Get all
 
         public async Task<List<TEntity>> GetAll()

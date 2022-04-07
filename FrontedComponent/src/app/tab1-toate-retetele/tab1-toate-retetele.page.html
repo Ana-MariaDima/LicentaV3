@@ -18,7 +18,7 @@
     </ion-row>
     </ion-grid>
   </ion-header>
-  <ion-content >
+  <ion-content [scrollEvents]="true" (ionScroll)="lazyLoadRetete()" >
     <div>
     <ion-list slot="content">
 
@@ -33,9 +33,6 @@
               <tr>
               <td>
                 <ion-img [src]="reteta.poza_reteta" class="ImgRetete"  >
-
-
-
                 </ion-img>
               </td>
                    <td>
@@ -44,7 +41,20 @@
               Ingrediente:
             </tr>
             <tr *ngFor="let ing of reteta.retetaIngredient" >
-              {{ing.ingredient.nume_ingredient}}
+              {{ing.nume_ingredient}}
+              </tr>
+              <tr>
+
+              </tr>
+              <tr>
+
+
+                  <ion-button  class="round" expand="block" share="round" color="mycolor"  (click)="openCardModal(reteta)" width="50%"> Vezi mai multe detalii</ion-button>
+
+
+
+
+
               </tr>
             </table>
                 </td>
@@ -69,3 +79,14 @@
   </ion-list>
 </div>
 </ion-content>
+
+<style>
+    .round {
+  --width: 60px;
+  --height: 60px;
+  --border-radius: 50%;
+  --vertical-align: middle;
+  --padding-start: 10px;
+  --padding-end: 10px;
+}
+</style>

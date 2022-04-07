@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Tab1ToateRetetelePage } from '../tab1-toate-retetele/tab1-toate-retetele.page';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(private Tab1ToateRetetelePage:Tab1ToateRetetelePage ) {}
+  PreopenCardModal(param){
+    this.Tab1ToateRetetelePage.openCardModal(param);
+  }
+
 
 }

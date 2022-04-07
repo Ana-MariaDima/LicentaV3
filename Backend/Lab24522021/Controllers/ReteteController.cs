@@ -24,9 +24,9 @@ namespace Licenta.Controllers
 
         //get 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get(int page, int recordsPerPage)
         {
-            var result = await _demoService.GetReteteRepository().GetAll();
+            var result =  _demoService.GetReteteRepository().GetAllJoined(page, recordsPerPage);
             return Ok(result);
 
 
