@@ -4,21 +4,24 @@
 <ion-header [translucent]="true">
 
   <ion-toolbar>
-    <ion-title>Acasă - Ingrediente</ion-title>
     <ion-buttons style="text-align: right;">
-      <button ion-button icon-only>
+      <button (click)="openCart()">
+        <ion-badge>{{this.itemsInCart}}</ion-badge>
+         <ion-icon name="wine" style="font-size: 18px;"  ></ion-icon>
       </button>
     </ion-buttons>
+    <ion-title>Acasă - Ingrediente</ion-title>
+
 
   </ion-toolbar>
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button expand="block" share="round" color="mycolor" routerLink='/tab1' > Ingrediente</ion-button>
+        <ion-button expand="block" share="round" color="mycolor" routerLink='/home/tab1' > Ingrediente</ion-button>
       </ion-col>
 
       <ion-col >
-        <ion-button expand="block" share="round" color="mycolor" routerLink='/tab1-toate-retetele' >
+        <ion-button expand="block" share="round" color="mycolor" routerLink='/home/tab1-toate-retetele' >
 
             Toate Bauturile
 

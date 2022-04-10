@@ -34,13 +34,13 @@ const routes: Routes = [
     path: 'modal-popup-ret',
     loadChildren: () => import('./modal-popup-ret/modal-popup-ret.module').then( m => m.ModalPopupPageRetModule)
   },
-
-
-
   {
-    path: 'tab1-toate-retetele',
-    loadChildren: () => import('./tab1-toate-retetele/tab1-toate-retetele.module').then( m => m.Tab1ToateRetetelePageModule)
-  }
+    path: 'modal-popup-cart',
+    loadChildren: () => import('./modal-popup-cart/modal-popup-cart.module').then( m => m.ModalPopupCartPageModule)
+  },
+
+
+
 
 
 

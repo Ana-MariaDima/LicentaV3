@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,15 +31,22 @@ namespace Licenta.Controllers
 
 
         }
-        [HttpGet("{id}")]
 
-        public async Task<IActionResult> GetById(Guid id)
+
+        [HttpPost("GetById")]
+
+        public async Task<IActionResult> GetById(GetByIdDTO payload)
         {
-            var result = await _demoService.GetAprecieriRepository().FindByIdAsync(id);
-            return Ok(result);
-
+            var handler = new JwtSecurityTokenHandler();
+            var jwtSecurityToken = handler.ReadJwtToken(payload.Token);
+            var id = jwtSecurityToken.Claims.Where(z => z.Type == "id").FirstOrDefault().Value;
+            var result = await _demoService.GetAprecieriRepository().GetAll();
+            var toReturn = result.Where(z => { return z.IdUser == Guid.Parse(id); }).ToList();
+            return Ok(toReturn);
 
         }
+
+
         //post =create 
 
         /*[HttpPost("add")]
@@ -87,4 +95,9 @@ namespace Licenta.Controllers
             return Ok();
         }
     }
+}
+
+public class GetByIdDTO
+{
+    public string Token;
 }

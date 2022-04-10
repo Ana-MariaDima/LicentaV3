@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -46,13 +46,32 @@ export class ReteteService {
       return Object.values(retete);
     }
 
+    async getRetetaRandom(){
+      var reteta = (await this.http.get(environment.baseUrl+"Retete/random").toPromise() as Array<any>);
+      console.log(reteta)
+      return this.groupBy(reteta)[0]
+    }
 
-
+    async toggleLike(model_title){
+      console.log (model_title, localStorage.getItem('token'))
+      var reteta = (await this.http.post(environment.baseUrl+"Retete/like",{Name:model_title, Token:localStorage.getItem('token')}).toPromise() as Array<any>);
+      console.log(reteta, 'toggle');
+      return this.groupBy(reteta)[0]
+    }
 
     async getRetete(page:Number, recordsPerPage:Number):Promise<any>{
-      var retete = (await this.http.get(environment.baseUrl+"Retete?page="+page+"&recordsPerPage="+recordsPerPage).toPromise() as Array<any>);
+      var retete = (await this.http.post(environment.baseUrl+"Retete",{page,recordsPerPage}).toPromise() as Array<any>);
       console.log(retete)
-      return this.groupBy(retete)
+      var result = this.groupBy(retete)
+      var likedRetete = (await this.http.post(environment.baseUrl+"Aprecieri/GetById",{token:localStorage.getItem('token')}).toPromise() as Array<any>);
+      console.log(likedRetete, result)
+      likedRetete.forEach(lR =>{
+        console.log(lR);
+        try{
+        (result.find((x:any) =>{ console.log(x.id, lR.idReteta, x.id == lR.idReteta);  return x.id == lR.idReteta;}) as any).liked = true;
+        }catch(e){console.log(e)}
+      })
+      return result
 
       // for(let index in retete){
       //    var reteta = retete[index];

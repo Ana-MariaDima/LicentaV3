@@ -28,16 +28,19 @@ export class Tab1ToateRetetelePage  {
     this.hasReachedEnd = this.retete.length == 0;
   }
 
-
   async openCardModal(reteta){
+     //await Tab1ToateRetetelePage.openRetetaModal(reteta);
+  }
+
+  async openRetetaModal(reteta){
 
 
-    if (reteta==null)
-    {
-      var nr= this.retete.length;
-      var randNumber = Math.random() * nr;
-      reteta=this.retete[randNumber];
-    }
+    // if (reteta==null)
+    // {
+    //   var nr= this.retete.length;
+    //   var randNumber = Math.random() * nr;
+    //   reteta=this.retete[randNumber];
+    // }
 
     console.log("reteta from modal ",reteta);
     console.log("reteta from modal +ing ",reteta.retetaIngredient);
@@ -53,16 +56,14 @@ export class Tab1ToateRetetelePage  {
         'pahar':reteta.nume_pahar ,
         'poza':reteta.poza_reteta,
         'raiting': reteta.rating_retea,
-        'ingrediente':reteta.retetaIngredient
-
+        'ingrediente':reteta.retetaIngredient,
+        'liked':  reteta.liked
       }
     })
 
 
     modal.present()
-
-
-    const {data} = await modal.onWillDismiss();0
+    const {data} = await modal.onWillDismiss();
     console.log("modal returned data", data)
 
   }

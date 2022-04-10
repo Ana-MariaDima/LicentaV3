@@ -15,6 +15,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.Owin.Security.OAuth;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -136,6 +138,7 @@ namespace Licenta
                 endpoints.MapControllers();
             });
 
+            //Owin.AppBuilderExtensions.UseOAuthBearerTokens(app, OAuthBearerOptions);
             //app.UseSpa(spa =>
             //{
             //    spa.Options.SourcePath = "ClientApp";

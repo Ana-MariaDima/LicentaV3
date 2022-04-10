@@ -9,10 +9,12 @@ namespace Licenta.Repositories.ReteteRepository
 {
     public interface IReteteRepository : IGenericRepository<Retete>
     {
-        object GetByNume(string nume_ingredient);
+        dynamic GetByNume(string nume_ingredient);
         Retete GetByCategorie(Guid categorie_reteta);
         Retete GetByIdIncludingRetetaIngredient(Guid id_reteta);
         List<Retete> GetAllWithInclude();
+
+        Retete GetById(Guid id);
 
         IEnumerable<object> GetAllJoined(int page, int recordsPerPage);
     }

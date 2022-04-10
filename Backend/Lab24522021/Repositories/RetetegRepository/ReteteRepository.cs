@@ -95,10 +95,7 @@ namespace Licenta.Repositories.ReteteRepository
             return _table.Include(x => x.IdCategorieReteta).FirstOrDefault(x => x.IdCategorieReteta.Equals(categorie_reteta));
         }
 
-        public Retete GetById(int id)
-        {
-            return _table.FirstOrDefault(x => x.Id.Equals(id));
-        }
+       
 
         public Retete GetByIdIncludingRetetaIngredient(Guid id)
         {
@@ -110,18 +107,30 @@ namespace Licenta.Repositories.ReteteRepository
 	join dbo.RetetaIngredient retetaIngredient on retetaIngredient.IdReteta = reteta.Id
 	join dbo.Ingredient ingredient on ingredient.Id = retetaIngredient.IdIngredient
         */
-        public object GetByNume(string nume_reteta)
+
+        public Retete GetById(Guid id)
+        {
+            return _table.FirstOrDefault(x => x.Id.Equals(id));
+        }
+        public dynamic GetByNume(string nume_reteta)
         {
             return _table.Join(_context.TipReteta, r => r.IdTipReteta, tr => tr.Id,
-                                (r, tr) => new { idReteta = r.Id, r.Nume_reteta, tr.Nume_Tip_Retete })
-                         .Join(_context.RetetaIngredient, o => o.idReteta, ri => ri.IdReteta,
-                                (o, ri) => new { o.idReteta, o.Nume_reteta, o.Nume_Tip_Retete, ri.IdIngredient })
-                         .Join(_context.Ingredient, o => o.IdIngredient, i => i.Id,
-                                (o, ing) => new { o.idReteta, o.Nume_reteta, o.Nume_Tip_Retete, o.IdIngredient, ing.Nume_ingredient })
+                                 (r, tr) => new { r.Id, r.Poza_reteta, r.IdTipReteta, r.IdPahar, idReteta = r.Id, r.Nume_reteta, r.Instructiuni_reteta, r.Rating_retea, tr.Nume_Tip_Retete })
+                          .Join(_context.RetetaIngredient, o => o.idReteta, ri => ri.IdReteta,
+                                 (o, ri) => new { o.Id, o.Poza_reteta, o.IdTipReteta, o.idReteta, o.IdPahar, o.Nume_reteta, o.Nume_Tip_Retete, o.Instructiuni_reteta, o.Rating_retea, ri.IdIngredient, ri.IdUnitate, ri.Cantitate_Ingredient })
+                          .Join(_context.Ingredient, o => o.IdIngredient, i => i.Id,
+                                 (o, ing) => new { o.Id, o.Poza_reteta, o.IdTipReteta, o.idReteta, o.Nume_reteta, o.IdPahar, o.Nume_Tip_Retete, o.Instructiuni_reteta, o.IdIngredient, o.Rating_retea, o.IdUnitate, o.Cantitate_Ingredient, ing.Nume_ingredient })
+                          .Join(_context.Pahar, o => o.IdPahar, p => p.Id,
+                                (o, pah) => new { o.Id, o.Poza_reteta, o.IdTipReteta, o.idReteta, o.Nume_reteta, o.IdPahar, o.Nume_Tip_Retete, o.IdIngredient, o.Instructiuni_reteta, o.IdUnitate, o.Cantitate_Ingredient, o.Rating_retea, o.Nume_ingredient, pah.Nume_Pahar })
+                          .Join(_context.Unitate, o => o.IdUnitate, u => u.Id,
+                                (o, unit) => new { o.Id, o.Poza_reteta, o.IdTipReteta, o.idReteta, o.Nume_reteta, o.IdPahar, o.Nume_Tip_Retete, o.IdIngredient, o.Instructiuni_reteta, o.IdUnitate, o.Cantitate_Ingredient, o.Nume_ingredient, o.Rating_retea, o.Nume_Pahar, unit.Nume_unitate })
+                          
                           .ToList()
 
-                                .FirstOrDefault(x => x.Nume_reteta.ToLower().Equals(nume_reteta.ToLower()));
+                                .Where(x => x.Nume_reteta.ToLower().Equals(nume_reteta.ToLower())).FirstOrDefault();
         }
+
+
 
         
         public IEnumerable<object> GetAllJoined(int page, int recordsPerPage)
@@ -136,7 +145,6 @@ namespace Licenta.Repositories.ReteteRepository
                                 (o, pah)=> new { o.Id, o.Poza_reteta, o.IdTipReteta, o.idReteta, o.Nume_reteta, o.IdPahar, o.Nume_Tip_Retete, o.IdIngredient, o.Instructiuni_reteta, o.IdUnitate, o.Cantitate_Ingredient, o.Rating_retea, o.Nume_ingredient, pah.Nume_Pahar })
                           .Join (_context.Unitate, o=>o.IdUnitate, u=>u.Id,
                                 (o, unit) => new { o.Id, o.Poza_reteta, o.IdTipReteta, o.idReteta, o.Nume_reteta, o.IdPahar, o.Nume_Tip_Retete, o.IdIngredient, o.Instructiuni_reteta, o.IdUnitate, o.Cantitate_Ingredient, o.Nume_ingredient, o.Rating_retea, o.Nume_Pahar, unit.Nume_unitate })
-
                           .Skip(page*recordsPerPage)
                           .Take(recordsPerPage)
                            .AsEnumerable<object>();

@@ -12,11 +12,11 @@ import { AppComponent } from './app.component';
 import { CategoryService } from './services/Ingrediente/category.service';
 import { ReteteService } from './services/Retete/retete.service';
 import { IonicRatingModule } from 'ionic4-rating';
-
+import { Tab1ToateRetetelePageModule } from './tab1-toate-retetele/tab1-toate-retetele.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot({animated: false}), AppRoutingModule, ReactiveFormsModule, HttpClientModule,BrowserModule,FormsModule, ReactiveFormsModule,IonicRatingModule],
+  imports: [BrowserModule, IonicModule.forRoot({animated: false}), AppRoutingModule, ReactiveFormsModule, HttpClientModule,BrowserModule,FormsModule, ReactiveFormsModule,IonicRatingModule, Tab1ToateRetetelePageModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CategoryService,ReteteService],
 
   bootstrap: [AppComponent],

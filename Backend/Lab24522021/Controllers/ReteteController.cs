@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using Licenta.Models.Relations.Many_to_Many;
 
 namespace Licenta.Controllers
 {
@@ -22,15 +24,27 @@ namespace Licenta.Controllers
             _demoService = demoService;
         }
 
-        //get 
-        [HttpGet]
-        public IActionResult Get(int page, int recordsPerPage)
+        [HttpPost]
+        public IActionResult Get(GetReteteDTO payload)
         {
-            var result =  _demoService.GetReteteRepository().GetAllJoined(page, recordsPerPage);
+         
+            var result =  _demoService.GetReteteRepository().GetAllJoined(payload.Page, payload.RecordsPerPage);
             return Ok(result);
 
 
         }
+
+        [HttpGet("random")]
+        public async Task<IActionResult> GetRandom()
+        {  var retete = await _demoService.GetReteteRepository().GetAll();
+            var rnd = new Random();
+            var result = retete.ElementAt(rnd.Next(retete.Count-1));
+            var reteta = _demoService.GetReteteRepository().GetByNume(result.Nume_reteta);
+            return Ok(reteta);
+
+
+        }
+
         [HttpGet("{id}")]
 
         public async Task<IActionResult> GetById(Guid id)
@@ -61,6 +75,22 @@ namespace Licenta.Controllers
                 await repo.CreateAsync(Ret);
                 await repo.SaveAsync();
             }
+            return Ok();
+        }
+        //
+        //aici cred ca e problema 
+        [HttpPost("like")]
+        public IActionResult Like(LikeDTO payload)
+        {
+           
+            var handler = new JwtSecurityTokenHandler();
+            var jwtSecurityToken = handler.ReadJwtToken(payload.Token);
+            var id = jwtSecurityToken.Claims.Where(z => z.Type == "id").FirstOrDefault().Value;
+            var retetaJoined =  _demoService.GetReteteRepository().GetByNume(payload.Name);
+            //var reteta = _demoService.GetReteteRepository().GetById(retetaJoined.Id);
+            var apreciere = new Aprecieri() { IdReteta = retetaJoined.Id, IdUser = Guid.Parse(id) };
+            _demoService.GetAprecieriRepository().Create(apreciere);
+
             return Ok();
         }
 
@@ -100,4 +130,18 @@ namespace Licenta.Controllers
             return Ok();
         }
     }
+}
+
+
+public class GetReteteDTO
+{
+    public int RecordsPerPage;
+    public int Page;
+}
+
+
+public class LikeDTO
+{
+    public string Name;
+    public string Token;
 }
