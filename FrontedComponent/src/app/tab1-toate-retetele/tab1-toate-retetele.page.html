@@ -16,13 +16,22 @@
           </ion-button>
       </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-searchbar
+
+      animated
+      [(ngModel)]="searchTerm"
+      showCancelButton="focus"
+
+      ></ion-searchbar>
+      </ion-row>
     </ion-grid>
   </ion-header>
   <ion-content [scrollEvents]="true" (ionScroll)="lazyLoadRetete()" >
     <div>
     <ion-list slot="content">
 
-        <ion-card *ngFor="let reteta of retete" style="padding:10px;">
+        <ion-card *ngFor="let reteta of retete | filter: searchTerm" style="padding:10px;">
 
           <ion-card-title style="text-align: center;">{{reteta.nume_reteta}}</ion-card-title>
           <ion-card-subtitle style="text-align: center;padding-bottom: 5%;" ng>
@@ -56,6 +65,16 @@
 
 
               </tr>
+              <!--tr>
+                <ion-button  share="round" color="mycolor"  *ngIf="!liked" (click)="toggleLiked()">
+                  <ion-icon name="heart-outline"></ion-icon>
+
+                </ion-button>
+
+                <ion-button share="round" color="mycolor"*ngIf="liked" (click)="toggleLiked()">
+                  <ion-icon name="heart"></ion-icon>
+                </ion-button>
+              </tr-->
             </table>
                 </td>
 
@@ -67,6 +86,24 @@
 
 
                 </ion-card-content>
+
+                <ion-footer>
+                  <ion-row>
+                    <ion-col left text-center size="6">
+                      <button class="round" color="mycolor">
+                        <ion-icon name="heart"></ion-icon>
+                        <div>1.5k Likes</div>
+                      </button>
+                    </ion-col>
+                    <ion-col  text-center size="6">
+                      <button class="round" color="mycolor">
+                        <ion-icon name="star"></ion-icon>
+                        <div>4 Comments</div>
+                      </button>
+                    </ion-col>
+
+                  </ion-row>
+                </ion-footer>
 
 
 

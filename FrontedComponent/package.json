@@ -30,6 +30,7 @@
     "cordova-wheel-selector-plugin": "^1.1.7",
     "ionic-native": "^2.9.0",
     "ionic4-rating": "^1.0.9",
+    "ng2-search-filter": "^0.5.1",
     "ngx-wheel": "^4.0.5",
     "rxjs": "~6.6.0",
     "swiper": "^8.0.5",

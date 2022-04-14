@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { Tab1ToateRetetelePageRoutingModule } from './tab1-toate-retetele-routing.module';
 
 import { Tab1ToateRetetelePage } from './tab1-toate-retetele.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    Tab1ToateRetetelePageRoutingModule
+    Tab1ToateRetetelePageRoutingModule,
+    Ng2SearchPipeModule
   ],
   declarations: [Tab1ToateRetetelePage]
 })

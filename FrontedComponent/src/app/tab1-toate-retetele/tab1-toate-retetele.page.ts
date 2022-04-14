@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { ModalPopupPage } from '../modal-popup-ing/modal-popup.page';
@@ -11,21 +11,34 @@ import { ReteteService } from '../services/Retete/retete.service';
   styleUrls: ['./tab1-toate-retetele.page.scss'],
 })
 export class Tab1ToateRetetelePage  {
+  @Input() liked: any;
+  @Input() model_title: string;
+  searchTerm: string;
 
-  constructor(private ReteteService: ReteteService,private modalController: ModalController) { }
+
+
+
+  constructor(private ReteteService: ReteteService,private modalController: ModalController, private reteteService: ReteteService) { }
   retete:Array<any> = []
+  retete_all:Array<any> = []
   tip:Array<any> = []
   currentPage:number = 1
   recordsPerPage:number = 30;
   hasReachedEnd:boolean = false;
+
   async ngOnInit() {
     this.currentPage = 1;
     this.retete = [];
+    this.retete_all = [];
     environment.baseUrl
     this.retete = (await this.ReteteService.getRetete(this.currentPage, this.recordsPerPage));
     //console.log(this.retete)
 
     this.hasReachedEnd = this.retete.length == 0;
+
+    this.retete_all=(await this.ReteteService.allRetete());
+
+    //console.log(this.retete_all)
   }
 
   async openCardModal(reteta){
@@ -79,6 +92,15 @@ export class Tab1ToateRetetelePage  {
       }else{
         this.hasReachedEnd = true;
       }
+  }
+  toggleLiked() {
+    this.liked = !this.liked;
+    this.reteteService.toggleLike(this.model_title);
+    // if (liked ') {
+    //   liked = 'heart-outline';
+    // } else {
+    //   liked= 'heart';
+    // }
   }
 }
 

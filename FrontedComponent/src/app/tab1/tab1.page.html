@@ -4,36 +4,42 @@
 <ion-header [translucent]="true">
 
   <ion-toolbar>
-    <ion-buttons style="text-align: right;">
-      <button (click)="openCart()">
-        <ion-badge>{{this.itemsInCart}}</ion-badge>
-         <ion-icon name="wine" style="font-size: 18px;"  ></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-title>Acasă - Ingrediente</ion-title>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+    <button  style="background-color: transparent;  padding: 2%;" (click)="openCart()">
+      <ion-badge>{{this.itemsInCart}}</ion-badge>
+       <ion-icon name="wine" style="font-size: 35px;"  ></ion-icon>
+    </button>
+  </ion-col>
+  <ion-col size="6">
+    <ion-title class="title">Ingrediente</ion-title>
+  </ion-col>
+  <ion-col size="3">
 
-
-  </ion-toolbar>
-  <ion-grid>
+  </ion-col>
+  </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button expand="block" share="round" color="mycolor" routerLink='/home/tab1' > Ingrediente</ion-button>
+        <ion-button expand="block" share="round" color="mycolor" routerLink='/home/tab1' >
+          Ingrediente
+        </ion-button>
       </ion-col>
-
       <ion-col >
         <ion-button expand="block" share="round" color="mycolor" routerLink='/home/tab1-toate-retetele' >
-
             Toate Bauturile
-
           </ion-button>
       </ion-col>
     </ion-row>
+
     </ion-grid>
+  </ion-toolbar>
+
 
   </ion-header>
   <ion-content [fullscreen]="true">
 
-<ion-accordion-group  *ngFor="let categorie of categorii">
+<ion-accordion-group  *ngFor="let categorie of categorii  " >
     <ion-accordion >
       <ion-item slot="header">
         <ion-label>{{ categorie.nume_categoriie_ingredient }}</ion-label>
@@ -41,7 +47,7 @@
 
       <ion-list slot="content">
 
-        <ion-card *ngFor="let subcategorie of categorie.subCategoriiIngrediente">
+        <ion-card *ngFor="let subcategorie of categorie.subCategoriiIngrediente ">
           <ion-card-header>
             <ion-card-subtitle>{{categorie.nume_categoriie_ingredient }}</ion-card-subtitle>
             <ion-card-title>{{subcategorie.nume_Subcategorie_ingredient}}</ion-card-title>
@@ -49,7 +55,7 @@
             <ion-card-content>
 
               <ion-img [src]="imagesUrl+ subcategorie.pozaSubcategorieIngredient+'.png'"></ion-img>
-              <ion-button expand="block" (click)="openCardModal(subcategorie)">
+              <ion-button expand="block" class="round" color="mycolor" (click)="openCardModal(subcategorie)">
               <ion-icon name="add"></ion-icon>
             </ion-button>
             </ion-card-content>

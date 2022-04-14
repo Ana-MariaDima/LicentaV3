@@ -53,6 +53,7 @@ namespace Licenta.Repositories.Generic_Repository
         public void Create(TEntity entity)
         {
             _table.Add(entity);
+            _context.SaveChanges();
         }
 
         public async Task CreateAsync(TEntity entity)

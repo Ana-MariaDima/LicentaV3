@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { CategoryService } from '../services/Ingrediente/category.service';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { CategoryService } from '../services/Ingrediente/category.service';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule
+    Tab1PageRoutingModule,
+    Ng2SearchPipeModule
   ],
   providers:[CategoryService],
   declarations: [Tab1Page]

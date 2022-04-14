@@ -45,6 +45,17 @@ namespace Licenta.Controllers
 
         }
 
+
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllRet()
+        {
+            var retete = await _demoService.GetReteteRepository().GetAll();
+           
+            return Ok(retete);
+
+
+        }
+
         [HttpGet("{id}")]
 
         public async Task<IActionResult> GetById(Guid id)
@@ -82,15 +93,24 @@ namespace Licenta.Controllers
         [HttpPost("like")]
         public IActionResult Like(LikeDTO payload)
         {
-           
+            
             var handler = new JwtSecurityTokenHandler();
             var jwtSecurityToken = handler.ReadJwtToken(payload.Token);
             var id = jwtSecurityToken.Claims.Where(z => z.Type == "id").FirstOrDefault().Value;
             var retetaJoined =  _demoService.GetReteteRepository().GetByNume(payload.Name);
-            //var reteta = _demoService.GetReteteRepository().GetById(retetaJoined.Id);
-            var apreciere = new Aprecieri() { IdReteta = retetaJoined.Id, IdUser = Guid.Parse(id) };
-            _demoService.GetAprecieriRepository().Create(apreciere);
-
+            
+            var reteta = _demoService.GetReteteRepository().GetById(retetaJoined.Id);
+            List<Aprecieri> ap = _demoService.GetAprecieriRepository().GetByCompositeKey(Guid.Parse(id), reteta.Id);
+            if (ap.Count == 0)
+            {
+                var apreciere = new Aprecieri() { Reteta = reteta, IdUser = Guid.Parse(id) };
+                _demoService.GetAprecieriRepository().Create(apreciere);
+            }
+            else
+            {
+                _demoService.GetAprecieriRepository().Delete(ap[0]);
+                _demoService.GetAprecieriRepository().Save();
+            }
             return Ok();
         }
 

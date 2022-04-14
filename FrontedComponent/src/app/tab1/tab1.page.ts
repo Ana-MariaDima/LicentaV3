@@ -14,8 +14,11 @@ import { CategoryService } from '../services/Ingrediente/category.service';
 
 export class Tab1Page {
   categorii:Array<any> = []
+  subcategorii: Array<any> = []
+  ingrediente:Array<any> = []
   imagesUrl = environment.imagesUrl
   itemsInCart: number;
+  searchTerm: string;
 
 
   constructor(private categoriiService: CategoryService, private modalService:ModalServiceService) {
@@ -24,7 +27,25 @@ export class Tab1Page {
 
   async ngOnInit(){
     this.categorii = await this.categoriiService.getCategoriiIngrediente()
-    console.log("test init");
+    /*for( let index in this.categorii){
+      var categorie=this.categorii[index]
+      //this.subcategorii=await this.categoriiService.getSubCategoriiIngrediente(categorie["id"])
+     categorie.subCategoriiIngrediente= await this.categoriiService.getSubCategoriiIngrediente(categorie.id)
+     // console.log(categorie.subCategoriiIngrediente, "categorie " )
+
+      for (let index2 in categorie.subCategoriiIngrediente){
+        var subcategorie =categorie.subCategoriiIngrediente[index2]
+        categorie.subCategoriiIngrediente.ingrediente =await this.categoriiService.getIngrediente (subcategorie.id)
+        //console.log( categorie.subCategoriiIngrediente.ingrediente , "ingredient")
+        this.ingrediente+= categorie.subCategoriiIngrediente.ingrediente
+        console.log(this.ingrediente, "toate ingredientele ")
+      }
+
+    }
+
+   // this.ingrediente=  await this.Ingredient.allRetete();
+    */
+
 
   }
 

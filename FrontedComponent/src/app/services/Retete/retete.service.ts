@@ -48,15 +48,20 @@ export class ReteteService {
 
     async getRetetaRandom(){
       var reteta = (await this.http.get(environment.baseUrl+"Retete/random").toPromise() as Array<any>);
-      console.log(reteta)
-      return this.groupBy(reteta)[0]
+      console.log(reteta , "reteta")
+      return this.groupBy(reteta)[0] //nu merge incarcare modal
     }
 
+    async allRetete(){
+      var reteta = (await this.http.get(environment.baseUrl+"Retete/all").toPromise() as Array<any>);
+      console.log(reteta)
+      return reteta
+    }
     async toggleLike(model_title){
       console.log (model_title, localStorage.getItem('token'))
       var reteta = (await this.http.post(environment.baseUrl+"Retete/like",{Name:model_title, Token:localStorage.getItem('token')}).toPromise() as Array<any>);
       console.log(reteta, 'toggle');
-      return this.groupBy(reteta)[0]
+      return this.groupBy(reteta)[0] //[{...}]
     }
 
     async getRetete(page:Number, recordsPerPage:Number):Promise<any>{

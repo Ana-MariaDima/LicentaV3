@@ -101,6 +101,10 @@ namespace Licenta.Repositories.ReteteRepository
         {
             return _table.Include(x => x.RetetaIngredient).FirstOrDefault(x => x.Id.Equals(id));
         }
+        /*List<Retete> GetAll()
+        {
+            return _table.ToList(); 
+        }*/
 
         /* select reteta.Nume_reteta, tipReteta.Nume_Tip_Retete, ingredient.Nume_ingredient from dbo.Reteta reteta 
 	join dbo.TipReteta tipReteta on tipReteta.Id = reteta.IdTipReteta
