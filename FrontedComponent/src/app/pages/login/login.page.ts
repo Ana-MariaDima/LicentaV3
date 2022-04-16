@@ -65,13 +65,13 @@ export class LoginPage implements OnInit{
   }*/
   doLogin():void {
     this.error=false;
-    console.log('Login Clicked', this.user);
+    //console.log('Login Clicked', this.user);
 
     // if(this.validateEmail(this.user.username))
     // {
-      console.log('Login Clicked2');
+     // console.log('Login Clicked2');
       this.authService.login(this.user).subscribe((response: any) =>{
-        console.log(response);
+        //console.log(response);
         if(response && response.token)
         {
           localStorage.setItem('token', response.token);

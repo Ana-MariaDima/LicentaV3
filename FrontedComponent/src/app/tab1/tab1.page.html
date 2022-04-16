@@ -42,7 +42,7 @@
 <ion-accordion-group  *ngFor="let categorie of categorii  " >
     <ion-accordion >
       <ion-item slot="header">
-        <ion-label>{{ categorie.nume_categoriie_ingredient }}</ion-label>
+        <ion-label class="title2" style="font-size: 25px;">{{ categorie.nume_categoriie_ingredient }}</ion-label>
       </ion-item>
 
       <ion-list slot="content">
@@ -50,11 +50,11 @@
         <ion-card *ngFor="let subcategorie of categorie.subCategoriiIngrediente ">
           <ion-card-header>
             <ion-card-subtitle>{{categorie.nume_categoriie_ingredient }}</ion-card-subtitle>
-            <ion-card-title>{{subcategorie.nume_Subcategorie_ingredient}}</ion-card-title>
+            <ion-card-title style="font-size: 22px;">{{subcategorie.nume_Subcategorie_ingredient}}</ion-card-title>
           </ion-card-header>
-            <ion-card-content>
+            <ion-card-content class="centered">
 
-              <ion-img [src]="imagesUrl+ subcategorie.pozaSubcategorieIngredient+'.png'"></ion-img>
+              <ion-img [src]="imagesUrl+ subcategorie.pozaSubcategorieIngredient+'.png'" class="subcategorieIngrediente" ></ion-img>
               <ion-button expand="block" class="round" color="mycolor" (click)="openCardModal(subcategorie)">
               <ion-icon name="add"></ion-icon>
             </ion-button>

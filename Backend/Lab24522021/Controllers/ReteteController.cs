@@ -39,7 +39,7 @@ namespace Licenta.Controllers
         {  var retete = await _demoService.GetReteteRepository().GetAll();
             var rnd = new Random();
             var result = retete.ElementAt(rnd.Next(retete.Count-1));
-            var reteta = _demoService.GetReteteRepository().GetByNume(result.Nume_reteta);
+            var reteta = _demoService.GetReteteRepository().GetByNumeJoined(result.Nume_reteta);
             return Ok(reteta);
 
 

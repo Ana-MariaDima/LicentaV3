@@ -14,8 +14,9 @@ export class Tab3Page {
   constructor(private modalService:ModalServiceService, private reteteService: ReteteService ) {}
   async PreopenCardModal(param){
     var reteta = await this.reteteService.getRetetaRandom()
+    console.log("reteta before modal open", reteta)
     this.modalService.openRetetaModal(reteta,{canReload:true});
-    console.log(this.modalService.getCart());
+   // console.log(this.modalService.getCart());
   }
 
 

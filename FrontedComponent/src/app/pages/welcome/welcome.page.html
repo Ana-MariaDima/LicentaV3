@@ -1,23 +1,17 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>welcome</ion-title>
+  <ion-toolbar color="mycolor" class="round" >
+    <ion-title class="title" >Bine ați Venit!</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <swiper>
     <ng-template swiperSlide>
-      <img src="assets/images/logo.png" />
-      <h2>Welcome to Cocktails' Dance </h2>
+      <img src="assets/images/logo.png"  class="logo"/>
+      <h2>Drincționar</h2>
+      <h3>Aplicație de cocktail-uri</h3>
     </ng-template>
   </swiper>
-  <!-- <ion-slides pager="true">
-    <ion-slide>
-      <img src="assets/images/logo.png" />
-      <h2>Welcome to Cocktails' Dance </h2>
-    </ion-slide>
-  </ion-slides> -->
 
-
-  <ion-button expand="block" share="round" color="mycolor" (click)="navigateToLogin()">Start</ion-button>
+  <ion-button style="font-size:22px;" expand="block" share="round" color="mycolor" (click)="navigateToLogin()">Start</ion-button>
 </ion-content>

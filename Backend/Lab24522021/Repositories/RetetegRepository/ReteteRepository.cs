@@ -116,7 +116,13 @@ namespace Licenta.Repositories.ReteteRepository
         {
             return _table.FirstOrDefault(x => x.Id.Equals(id));
         }
-        public dynamic GetByNume(string nume_reteta)
+
+        public Retete GetByNume(string nume_reteta)
+        {
+            return _table.Where(x => x.Nume_reteta.ToLower().Equals(nume_reteta.ToLower())).FirstOrDefault();
+        }
+
+        public dynamic GetByNumeJoined(string nume_reteta)
         {
             return _table.Join(_context.TipReteta, r => r.IdTipReteta, tr => tr.Id,
                                  (r, tr) => new { r.Id, r.Poza_reteta, r.IdTipReteta, r.IdPahar, idReteta = r.Id, r.Nume_reteta, r.Instructiuni_reteta, r.Rating_retea, tr.Nume_Tip_Retete })
@@ -131,10 +137,10 @@ namespace Licenta.Repositories.ReteteRepository
                           
                           .ToList()
 
-                                .Where(x => x.Nume_reteta.ToLower().Equals(nume_reteta.ToLower())).FirstOrDefault();
+                                .Where(x => x.Nume_reteta.ToLower().Equals(nume_reteta.ToLower()));
         }
 
-
+         
 
         
         public IEnumerable<object> GetAllJoined(int page, int recordsPerPage)

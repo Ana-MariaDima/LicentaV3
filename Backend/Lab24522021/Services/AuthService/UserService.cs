@@ -39,7 +39,7 @@ namespace Licenta.Services.AuthService
             var UserToCreate = new User
             {
                 FirstName = model.FirstName,
-                LastName = model.LasttName,
+                LastName = model.LastName,
                 Username = model.Username,
                 Email = model.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password),

@@ -1,30 +1,29 @@
 <ion-header>
   <ion-toolbar color="mycolor" class="round" >
-    <ion-title>Login</ion-title>
+    <ion-title class="title">Autentificare</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding='true'>
     <div class="center">
-      <img src="assets/images/logo.png" class="smallLogo"/>
-      <h1>Sign In</h1>
+      <img src="assets/images/logo.png" class="smallLogo" style="padding: 2%;"/>
     </div>
   <form>
     <ion-list>
       <ion-item>
-        <ion-label position="stacked">Username</ion-label>
+        <ion-label position="stacked">Nume de utilizator</ion-label>
         <ion-input autocomplete="off" type="text" name="username" [(ngModel)]="user.username" (keydown.enter)="doLogin()"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">Password</ion-label>
+        <ion-label position="stacked">Parolă</ion-label>
         <ion-input autocomplete="off" type="password" name="password"  [(ngModel)]="user.password" (keydown.enter)="doLogin()"></ion-input>
       </ion-item>
 
       <ion-item lines='none'>
-        <a routerLink='/register'>Create Account</a>
+        <a routerLink='/register'>Nu ai cont? Crează cont!</a>
       </ion-item>
     </ion-list>
-    <ion-button expand="block" share="round" color="mycolor" (click)="doLogin()">Login</ion-button>
+    <ion-button  style="font-size:22px" expand="block" share="round" color="mycolor" (click)="doLogin()">Autentifică-te</ion-button>
   </form>
 </ion-content>

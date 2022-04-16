@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RegisterService } from 'src/app/services/Register/register.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-singup',
   templateUrl: './singup.page.html',
@@ -30,15 +31,16 @@ export class SingupPage implements OnInit {
 
   doRegister()
   {
-    console.log(this.myForm);
+    //console.log(this.myForm);
 
 
     if(this.myForm.valid)
     {
       this.registerService.register(this.myForm.value).subscribe((result: any)=>{
-        console.log(result)
+       console.log(result)
         if(result.isSuccess){
           localStorage.setItem('token', result.token);
+          console.log('token set before redirec')
           this.router.navigate(['home']);
         }else{
           alert(result.error)

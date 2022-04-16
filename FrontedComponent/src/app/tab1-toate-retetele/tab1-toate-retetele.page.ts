@@ -55,8 +55,8 @@ export class Tab1ToateRetetelePage  {
     //   reteta=this.retete[randNumber];
     // }
 
-    console.log("reteta from modal ",reteta);
-    console.log("reteta from modal +ing ",reteta.retetaIngredient);
+    //console.log("reteta from modal ",reteta);
+    //console.log("reteta from modal +ing ",reteta.retetaIngredient);
 
 
     var modal = await this.modalController.create({
@@ -77,7 +77,7 @@ export class Tab1ToateRetetelePage  {
 
     modal.present()
     const {data} = await modal.onWillDismiss();
-    console.log("modal returned data", data)
+   // console.log("modal returned data", data)
 
   }
 

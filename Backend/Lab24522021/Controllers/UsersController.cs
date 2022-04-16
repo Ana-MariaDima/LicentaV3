@@ -42,10 +42,16 @@ namespace Licenta.Controllers
         [HttpPost("create")]
         public IActionResult Create (UserRequestDTO user)
         {
-           
+
             //User.AddIdentity(UserToCreate.);
+            try { 
             var result=_userService.Create(user);
-            return Ok(result);
+            return Ok(new { token = result, isSuccess = true });
+        }
+            catch(Exception e)
+            {
+                return Ok(new { token = "", isSuccess = false });
+            }
         }
 
 
