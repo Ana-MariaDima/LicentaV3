@@ -16,6 +16,11 @@ namespace Licenta.Repositories.DatabaseRepository
         {
 
         }
+
+        public new Ingrediente GetById(string id)
+        {
+           return  _context.Ingredient.FromSqlRaw("select * from Ingredient where Id = '" + id + "'").FirstOrDefault();
+        }
         public void OrderbyName()
         {
             //Linq
@@ -72,7 +77,7 @@ namespace Licenta.Repositories.DatabaseRepository
         public List<Ingrediente> GetAllWithInclude()
         {
             //intorce toate ingredientele +toate intratile aferente din tabela ReteteIngrediente 
-            return _table.Include(x => x.RetetaIngredient).ToList();
+            return _table.Where(x=>true).ToList();
             //Ingrediente ingredient1{ RetetaIngrediente id1;
                                         // RetetaIngrediente id2;
                                         //....}
@@ -80,7 +85,7 @@ namespace Licenta.Repositories.DatabaseRepository
         }
         public async Task <List<Ingrediente> >GetAllWithIncludeAsync()
         {
-            return await _table.Include(x => x.RetetaIngredient).ToListAsync();
+            return await _table.Where(x=>true).ToListAsync();
 
             // Model1 model1-a
             //  Model2 model2-a
@@ -101,10 +106,10 @@ namespace Licenta.Repositories.DatabaseRepository
             return _table.FirstOrDefault(x => x.Id.Equals(id));
         }
 
-        public Ingrediente GetByIdIncludingRetetaIngredient(Guid id)
+       /* public Ingrediente GetByIdIncludingRetetaIngredient(Guid id)
         {
             return _table.Include(x => x.RetetaIngredient).FirstOrDefault(x => x.Id.Equals(id));
-        }
+        }*/
 
         public Ingrediente GetByNume(string nume_ingredient)
         {

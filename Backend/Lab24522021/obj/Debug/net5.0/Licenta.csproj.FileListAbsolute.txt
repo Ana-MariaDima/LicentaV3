@@ -137,7 +137,6 @@ D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Extensio
 D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 D:\ANA\FACULTATE\Licenta\Licenta\Lab24522021\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
-D:\ANA\FACULTATE\LicentaV3\Backend\Lab24522021\obj\Debug\net5.0\Licenta.csprojAssemblyReference.cache
 D:\ANA\FACULTATE\LicentaV3\Backend\Lab24522021\obj\Debug\net5.0\Licenta.GeneratedMSBuildEditorConfig.editorconfig
 D:\ANA\FACULTATE\LicentaV3\Backend\Lab24522021\obj\Debug\net5.0\Licenta.AssemblyInfoInputs.cache
 D:\ANA\FACULTATE\LicentaV3\Backend\Lab24522021\obj\Debug\net5.0\Licenta.AssemblyInfo.cs
@@ -218,3 +217,4 @@ D:\ANA\FACULTATE\LicentaV3\Backend\Lab24522021\bin\Debug\net5.0\Microsoft.Owin.S
 D:\ANA\FACULTATE\LicentaV3\Backend\Lab24522021\bin\Debug\net5.0\Microsoft.Owin.Security.Jwt.dll
 D:\ANA\FACULTATE\LicentaV3\Backend\Lab24522021\bin\Debug\net5.0\Microsoft.Owin.Security.OAuth.dll
 D:\ANA\FACULTATE\LicentaV3\Backend\Lab24522021\bin\Debug\net5.0\Owin.dll
+D:\ANA\FACULTATE\LicentaV3\Backend\Lab24522021\obj\Debug\net5.0\Licenta.csprojAssemblyReference.cache

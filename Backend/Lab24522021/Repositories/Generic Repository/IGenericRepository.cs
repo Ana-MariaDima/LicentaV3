@@ -7,6 +7,7 @@ namespace Licenta.Repositories.GenericRepository
 {
     public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {
+        TEntity GetById(string id);
         // Get all data
         Task<List<TEntity>> GetAll();
         IQueryable<TEntity> GetAllAsQueryable();

@@ -63,10 +63,10 @@ export class ReteteService {
      // console.log(reteta, 'toggle');
     }
 
-    async getRetete(page:Number, recordsPerPage:Number):Promise<any>{
-      var retete = (await this.http.post(environment.baseUrl+"Retete",{page,recordsPerPage}).toPromise() as Array<any>);
+    async getRetete(initialRequest:boolean):Promise<any>{
+      var result = (await this.http.post(environment.baseUrl+"Retete",{initialRequest}).toPromise() as Array<any>);
      // console.log(retete)
-      var result = this.groupBy(retete)
+      //var result = this.groupBy(retete)
       var likedRetete = (await this.http.post(environment.baseUrl+"Aprecieri/GetById",{token:localStorage.getItem('token')}).toPromise() as Array<any>);
      // console.log(likedRetete, result)
       likedRetete.forEach(lR =>{
@@ -77,25 +77,8 @@ export class ReteteService {
       })
       return result
 
-      // for(let index in retete){
-      //    var reteta = retete[index];
-      //    reteta.tipReteta = await this.getTipReteta(reteta.idTipReteta);
-      //    reteta.retetaIngredient=await this.getIngrediente(reteta.id);
-      //    for (let index2 in reteta.retetaIngredient )
-      //    {
-      //       var ingredient_aux= reteta.retetaIngredient[index2];
-      //       ingredient_aux.ingredient=await this.getNumeIngredient(ingredient_aux.idIngredient);
-      //       //console.log( ingredient_aux.ingredient.nume_ingredient)
-
-
-
-      //       //console.log( reteta.nume_reteta,  reteta.retetaIngredient)
-      //    }
-      //    }
-      //    reteta.retetaIngredient
-      //   console.log(retete);
-      // return retete;
     }
+
 
     getTipReteta(idTipReteta:string):Promise<any>{
       return this.http.get(environment.baseUrl+"TipuriRetete/"+idTipReteta).toPromise();
@@ -107,32 +90,19 @@ export class ReteteService {
       return this.http.get(environment.baseUrl+"Ingrediente/"+idIngredient).toPromise();
     }
 
+    getLikedRetete():Promise<any>{
+
+
+      return this.http.post(environment.baseUrl+"Aprecieri/GetById",{token:localStorage.getItem('token')}).toPromise();
+    }
+
+
+     async getReteta(idReteta:string):Promise<any>{
+      var rezultat = (await this.http.get(environment.baseUrl+"Retete/liked/"+idReteta).toPromise()) as Array<any>;
+      return this.groupBy(rezultat)
+    }
+
 
 
 }
 
-
-
-
-
-  /*
-    id: "0b7f875b-9e46-4773-8b6d-01bed26b7961"
-idIngredient: "25099c74-157a-4974-b522-2fb5f31f09cf"
-idReteta: "0b7f875b-9e46-4773-8b6d-01bed26b7961"
-idTipReteta: "6d16ee3f-76a8-4015-86f0-f4565f2215ee"
-nume_Tip_Retete: "Alcoolic"
-nume_ingredient: "Rom"
-nume_reteta: "Barracuda"
-retetaIngredient: (5) [{…}, {…}, {…}, {…}, {…}]
-tipReteta: {nume_Tip_Retete: 'Alcoolic', retete: null, id: '6d16ee3f-76a8-4015-86f0-f4565f2215ee', dateCreated: '2022-03-04T13:17:23.5057226', dateModified: null}
-*/
-
-
-/*
-id: "0b7f875b-9e46-4773-8b6d-01bed26b7961"
-idIngredient: "25099c74-157a-4974-b522-2fb5f31f09cf"
-idReteta: "0b7f875b-9e46-4773-8b6d-01bed26b7961"
-idTipReteta: "6d16ee3f-76a8-4015-86f0-f4565f2215ee"
-nume_Tip_Retete: "Alcoolic"
-nume_ingredient: "Rom"
-nume_reteta: "Barracuda"*/

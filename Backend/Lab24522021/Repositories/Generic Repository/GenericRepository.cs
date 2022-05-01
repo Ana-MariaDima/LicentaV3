@@ -24,6 +24,12 @@ namespace Licenta.Repositories.Generic_Repository
             _table = _context.Set<TEntity>();
         }
 
+        public TEntity GetById(string id)
+        {
+            return _table.FirstOrDefault(x => x.Id.ToString().Equals(id));
+
+        }
+
 
         // Get all
 

@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
-import { ModalPopupPage } from '../modal-popup-ing/modal-popup.page';
 import { ModalPopupPageRet } from '../modal-popup-ret/modal-popup-ret.page';
 import { ReteteService } from '../services/Retete/retete.service';
-
+import { StarsComponent } from '../stars/stars.component';
 @Component({
   selector: 'app-tab1-toate-retetele',
   templateUrl: './tab1-toate-retetele.page.html',
@@ -18,12 +17,12 @@ export class Tab1ToateRetetelePage  {
 
 
 
-  constructor(private ReteteService: ReteteService,private modalController: ModalController, private reteteService: ReteteService) { }
+  constructor(private ReteteService: ReteteService,private modalController: ModalController, private reteteService: ReteteService, private starsC:StarsComponent) { }
   retete:Array<any> = []
   retete_all:Array<any> = []
   tip:Array<any> = []
   currentPage:number = 1
-  recordsPerPage:number = 30;
+  recordsPerPage:number = 100;
   hasReachedEnd:boolean = false;
 
   async ngOnInit() {
@@ -31,8 +30,11 @@ export class Tab1ToateRetetelePage  {
     this.retete = [];
     this.retete_all = [];
     environment.baseUrl
-    this.retete = (await this.ReteteService.getRetete(this.currentPage, this.recordsPerPage));
-    //console.log(this.retete)
+    this.retete = (await this.ReteteService.getRetete(true));
+
+    this.ReteteService.getRetete(false).then(results=>{
+      this.retete = this.retete.concat(results);
+    })
 
     this.hasReachedEnd = this.retete.length == 0;
 
@@ -46,17 +48,7 @@ export class Tab1ToateRetetelePage  {
   }
 
   async openRetetaModal(reteta){
-
-
-    // if (reteta==null)
-    // {
-    //   var nr= this.retete.length;
-    //   var randNumber = Math.random() * nr;
-    //   reteta=this.retete[randNumber];
-    // }
-
-    //console.log("reteta from modal ",reteta);
-    //console.log("reteta from modal +ing ",reteta.retetaIngredient);
+    console.log("Reteta deschisa", reteta)
 
 
     var modal = await this.modalController.create({
@@ -70,7 +62,8 @@ export class Tab1ToateRetetelePage  {
         'poza':reteta.poza_reteta,
         'raiting': reteta.rating_retea,
         'ingrediente':reteta.retetaIngredient,
-        'liked':  reteta.liked
+        'liked':  reteta.liked,
+        'categorieReteta': reteta.nume_Categorie_Retete
       }
     })
 
@@ -81,26 +74,14 @@ export class Tab1ToateRetetelePage  {
 
   }
 
-  async lazyLoadRetete(){
-      if(this.hasReachedEnd) return;
 
-      this.currentPage+=1;
-      var noiRetete = (await this.ReteteService.getRetete(this.currentPage, this.recordsPerPage));
+  toggleLiked(reteta) {
 
-      if(noiRetete.length > 0){
-        this.retete = this.retete.concat(noiRetete)
-      }else{
-        this.hasReachedEnd = true;
-      }
-  }
-  toggleLiked() {
-    this.liked = !this.liked;
-    this.reteteService.toggleLike(this.model_title);
-    // if (liked ') {
-    //   liked = 'heart-outline';
-    // } else {
-    //   liked= 'heart';
-    // }
+
+    //console.log(this)
+    reteta.liked = !reteta.liked;
+    this.reteteService.toggleLike(reteta.nume_reteta);
+
   }
 }
 

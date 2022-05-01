@@ -21,10 +21,14 @@ export class SingupPage implements OnInit {
       email:['',[Validators.required, Validators.email]],
       lastName:['',[Validators.required]],
       username:['',[Validators.required]],
-      password:['',[Validators.required, Validators.minLength(5)]]
+      password:['',[Validators.required, Validators.minLength(8)]]
+     //, confirmPassword:['',[Validators.required]]
 
-    });
+    }
+
+    );
   }
+
 
   public error:boolean | string=false;
 

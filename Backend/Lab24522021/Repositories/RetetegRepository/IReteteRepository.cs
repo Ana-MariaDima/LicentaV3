@@ -11,7 +11,7 @@ namespace Licenta.Repositories.ReteteRepository
     {
         Retete GetByNume(string nume_ingredient);
         dynamic GetByNumeJoined(string nume_ingredient);
-
+        dynamic GetByIdJoined(string id);
         Retete GetByCategorie(Guid categorie_reteta);
         Retete GetByIdIncludingRetetaIngredient(Guid id_reteta);
         List<Retete> GetAllWithInclude();

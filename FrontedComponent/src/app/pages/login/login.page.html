@@ -11,12 +11,12 @@
   <form>
     <ion-list>
       <ion-item>
-        <ion-label position="stacked">Nume de utilizator</ion-label>
+        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Nume de utilizator</ion-label>
         <ion-input autocomplete="off" type="text" name="username" [(ngModel)]="user.username" (keydown.enter)="doLogin()"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">Parolă</ion-label>
+        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Parolă</ion-label>
         <ion-input autocomplete="off" type="password" name="password"  [(ngModel)]="user.password" (keydown.enter)="doLogin()"></ion-input>
       </ion-item>
 

@@ -11,7 +11,7 @@ namespace Licenta.Models.Relations.One_to_Many
     {
         [Required]
         public string Nume_unitate { get; set; }
-        public ICollection<RetetaIngrediente> ReteteIngrediente { get; set; }
+        //public ICollection<RetetaIngrediente> ReteteIngrediente { get; set; }
 
     }
 }

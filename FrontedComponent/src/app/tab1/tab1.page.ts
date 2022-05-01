@@ -50,16 +50,20 @@ export class Tab1Page {
   }
 
   ionViewWillEnter(){
+
     var items = JSON.parse(localStorage.getItem('cart'))
+    if(items){
     this.itemsInCart = Object.values(items).length;
+    console.log(this.itemsInCart)
+    }
   }
 
-  openCart(){
-     this.modalService.openCartModal()
+  async openCart(){
+    await this.modalService.openCartModal()
+    this.ionViewWillEnter();
   }
   async openCardModal(subcategorie){
     await this.modalService.openIngredientModal(subcategorie);
+    this.ionViewWillEnter();
   }
-
-//buttonActive: boolean = true;
 }

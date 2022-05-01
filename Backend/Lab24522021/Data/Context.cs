@@ -144,22 +144,22 @@ namespace Licenta.Data
 
 
             //Unitati-Ingrediente
-            builder.Entity<Unitati>()
-                .HasMany(m1 => m1.ReteteIngrediente)
-                .WithOne(m2 => m2.Unitate);
+            builder.Entity<Unitati>();
+                //.HasMany(m1 => m1.ReteteIngrediente);
+            //.WithOne(m2 => m2.Unitate);
 
-            builder.Entity<RetetaIngrediente>()
-                .HasOne(m2 => m2.Unitate)
-                .WithMany(m1 => m1.ReteteIngrediente);
+            builder.Entity<RetetaIngrediente>();
+                //.HasOne(m2 => m2.Unitate)
+                //.WithMany(m1 => m1.ReteteIngrediente);
 
             // Many to Many - Retete-Ingrediente 
 
             builder.Entity<RetetaIngrediente>().HasKey(mr => new { mr.IdReteta, mr.IdIngredient });
 
-            builder.Entity<RetetaIngrediente>()
-                   .HasOne<Ingrediente>(mr => mr.Ingredient)
-                   .WithMany(m3 => m3.RetetaIngredient)
-                   .HasForeignKey(mr => mr.IdIngredient);
+            builder.Entity<RetetaIngrediente>();
+                   //.HasOne<Ingrediente>(mr => mr.Ingredient);
+                   //.WithMany(m3 => m3.RetetaIngredient)
+                   //.HasForeignKey(mr => mr.IdIngredient);
 
             builder.Entity<RetetaIngrediente>()
                    .HasOne<Retete>(mr => mr.Reteta)

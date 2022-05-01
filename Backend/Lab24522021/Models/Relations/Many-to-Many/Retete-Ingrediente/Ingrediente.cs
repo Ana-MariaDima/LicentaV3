@@ -19,7 +19,7 @@ namespace Licenta.Models.Relations.Many_to_Many
         public Guid IdSubCategorieIngredient  { get; set; }
 
         //for many-to-many
-        public ICollection<RetetaIngrediente> RetetaIngredient { get; set; }
+       // public ICollection<RetetaIngrediente> RetetaIngredient { get; set; }
 
     }
 }

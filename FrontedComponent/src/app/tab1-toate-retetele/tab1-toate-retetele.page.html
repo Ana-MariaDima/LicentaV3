@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Acasă - Băuturi</ion-title>
+    <ion-title class="title"> Băuturi</ion-title>
   </ion-toolbar>
   <ion-grid>
     <ion-row>
@@ -27,7 +27,7 @@
       </ion-row>
     </ion-grid>
   </ion-header>
-  <ion-content [scrollEvents]="true" (ionScroll)="lazyLoadRetete()" >
+  <ion-content [scrollEvents]="true"  >
     <div>
     <ion-list slot="content">
 
@@ -35,13 +35,14 @@
 
           <ion-card-title style="text-align: center;">{{reteta.nume_reteta}}</ion-card-title>
           <ion-card-subtitle style="text-align: center;padding-bottom: 5%;" ng>
-            Tip: {{reteta.tipReteta.nume_Tip_Retete }}
+            Tip: {{reteta.nume_Tip_Retete }}
           </ion-card-subtitle>
           <ion-card-content  >
             <table>
+
               <tr>
               <td>
-                <ion-img [src]="reteta.poza_reteta" class="ImgRetete"  >
+                <ion-img [src]="reteta.poza_reteta" class="ImgRetete" style="border-radius: 10%;"  >
                 </ion-img>
               </td>
                    <td>
@@ -88,21 +89,38 @@
                 </ion-card-content>
 
                 <ion-footer>
-                  <ion-row>
-                    <ion-col left text-center size="6">
-                      <button class="round" color="mycolor">
-                        <ion-icon name="heart"></ion-icon>
-                        <div>1.5k Likes</div>
-                      </button>
-                    </ion-col>
-                    <ion-col  text-center size="6">
-                      <button class="round" color="mycolor">
-                        <ion-icon name="star"></ion-icon>
-                        <div>4 Comments</div>
-                      </button>
-                    </ion-col>
+                  <table>
+                    <tr>
+                      <td width="100%">
 
-                  </ion-row>
+                      <ion-button  share="round" color="mycolor"  *ngIf="!reteta.liked" (click)="toggleLiked(reteta)">
+                        <ion-icon name="heart-outline"></ion-icon>
+
+                      </ion-button>
+
+                      <ion-button share="round" color="mycolor"*ngIf="reteta.liked" (click)="toggleLiked(reteta)">
+                        <ion-icon name="heart"></ion-icon>
+                      </ion-button>
+                    </td>
+
+                    <td width="100%">
+
+                      <ion-button  share="round" color="mycolor" >
+                        <ion-icon name="thumbs-up-sharp"></ion-icon>
+                        <div>15</div>
+                      </ion-button>
+
+                    </td>
+                    <td width="100%">
+                      <ion-button share="round" color="mycolor" style="float: right;" >
+                        <!--rating-stars rating=12> </rating-stars-->
+
+                        <div>Scor</div>
+                      </ion-button>
+                    </td>
+
+                  </tr>
+                </table>
                 </ion-footer>
 
 
@@ -126,4 +144,13 @@
   --padding-start: 10px;
   --padding-end: 10px;
 }
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: inherit;
+    object-position: inherit;
+    border-radius: 10%;
+}
+
 </style>

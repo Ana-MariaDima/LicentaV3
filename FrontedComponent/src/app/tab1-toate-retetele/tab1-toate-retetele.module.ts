@@ -8,12 +8,14 @@ import { Tab1ToateRetetelePageRoutingModule } from './tab1-toate-retetele-routin
 
 import { Tab1ToateRetetelePage } from './tab1-toate-retetele.page';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { StarsComponentModule } from '../stars/stars.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    StarsComponentModule,
     Tab1ToateRetetelePageRoutingModule,
     Ng2SearchPipeModule
   ],

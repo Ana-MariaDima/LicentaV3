@@ -12,8 +12,6 @@ namespace Licenta.Repositories.DatabaseRepository
         Ingrediente GetByNume(string nume_ingredient);
      
         IEnumerable<Ingrediente> GetBySubCategorieIngrediente(Guid id);
-        Ingrediente GetByIdIncludingRetetaIngredient(Guid id);
-        List<Ingrediente> GetAllWithInclude();
     
         //List<Ingrediente> GetAllWithJoins();-- vezi lab4 pt mai multe detalii
 

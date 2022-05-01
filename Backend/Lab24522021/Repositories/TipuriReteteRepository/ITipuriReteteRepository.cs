@@ -12,6 +12,7 @@ namespace Licenta.Repositories.TipuriReteteRepository
 
         TipuriRetete GetByNume(string name);
 
+        TipuriRetete GetById(string idTip);
 
     }
 }

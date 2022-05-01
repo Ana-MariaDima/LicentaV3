@@ -38,6 +38,10 @@ const routes: Routes = [
     path: 'modal-popup-cart',
     loadChildren: () => import('./modal-popup-cart/modal-popup-cart.module').then( m => m.ModalPopupCartPageModule)
   },
+  {
+    path: 'tab-user',
+    loadChildren: () => import('./tab-user/tab-user.module').then( m => m.TabUserPageModule)
+  },
 
 
 

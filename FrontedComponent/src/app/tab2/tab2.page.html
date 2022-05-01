@@ -1,78 +1,62 @@
-<ion-header [translucent]="true">
+<ion-header >
 
   <ion-toolbar>
-    <ion-title>Profil </ion-title>
-    <ion-buttons style="text-align: right;">
-      <button ion-button icon-only>
-      </button>
-    </ion-buttons>
+    <ion-title class="title">Retete Apreciate </ion-title>
 
   </ion-toolbar>
-
-
   </ion-header>
+
+
   <ion-content [fullscreen]="true">
-    <section class="py-5 my-5">
-      <div class="container">
-        <h1 class="mb-5">Account Settings</h1>
-        <div class="bg-white shadow rounded-lg d-block d-sm-flex">
-          <div class="profile-tab-nav border-right">
-            <div class="p-4">
-              <div class="img-circle text-center mb-3">
-                <img src="img/user2.jpg" alt="Image" class="shadow">
-              </div>
-              </div>
-              </div>
-              </div>
+ <div>
+    <ion-list slot="content">
+
+        <ion-card *ngFor="let reteta of  retete" style="padding:10px;">
+
+          <ion-card-title style="text-align: center;">{{reteta.nume_reteta}}</ion-card-title>
+          <ion-card-subtitle style="text-align: center;padding-bottom: 5%;" ng>
+            Tip: {{reteta.nume_Tip_Retete }}
+          </ion-card-subtitle>
+          <ion-card-content  >
+            <table>
+              <tr>
+              <td>
+                <ion-img [src]="reteta.poza_reteta" class="ImgRetete" style="border-radius: 10%;"  >
+                </ion-img>
+              </td>
+                   <td>
+                     <table>
+                       <tr style="text-decoration:underline; color:black">
+              Ingrediente:
+            </tr>
+            <tr *ngFor="let ing of reteta.retetaIngredient" >
+              {{ing.nume_ingredient}}
+              </tr>
+              <tr>
+
+              </tr>
+              <tr>
+
+
+                  <ion-button  class="round" expand="block" share="round" color="mycolor"  (click)="openRetetaModal(reteta)" width="50%"> Vezi mai multe detalii</ion-button>
 
 
 
-  </div>
-</section>
-
-  </ion-content>
 
 
+              </tr>
+
+            </table>
+                </td>
 
 
-<style>
-  @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
-body {
-	background: #f9f9f9;
-	font-family: "Roboto", sans-serif;
-}
+            </tr>
+            </table>
 
-.shadow {
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
-}
+                </ion-card-content>
 
-.profile-tab-nav {
-	min-width: 250px;
-}
 
-.tab-content {
-	flex: 1;
-}
 
-.form-group {
-	margin-bottom: 1.5rem;
-}
 
-.nav-pills a.nav-link {
-	padding: 15px 20px;
-	border-bottom: 1px solid #ddd;
-	border-radius: 0;
-	color: #333;
-}
-.nav-pills a.nav-link i {
-	width: 20px;
-}
 
-.img-circle img {
-	height: 100px;
-	width: 100px;
-	border-radius: 100%;
-	border: 5px solid #fff;
-}
 
-  </style>

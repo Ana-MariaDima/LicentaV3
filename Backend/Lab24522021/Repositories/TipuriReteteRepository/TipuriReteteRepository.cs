@@ -18,6 +18,12 @@ namespace Licenta.Repositories.TipuriReteteRepository
 
 
         }
+
+        public TipuriRetete GetById(string idTip)
+        {
+            return _table.FirstOrDefault(x => x.Id.ToString().Equals(idTip));
+
+        }
     }
 }
 
