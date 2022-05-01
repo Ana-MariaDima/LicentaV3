@@ -1,0 +1,44 @@
+//Pt a adauga vin alb
+
+1) Modific vinul rosu in vin alb
+
+Update  [licenta3].[dbo].[Ingredient]
+set Nume_ingredient='Vin Alb', IdSubCategorieIngredient='7B34B1A4-8532-4483-BC44-6CB1C49EDA4C'
+  where Id='9B35303D-40E6-4BB7-9440-96226452615F'
+
+2) Adaug un vin rosu
+/****** Script for SelectTopNRows command from SSMS  ******/
+Insert into [licenta3].[dbo].[Ingredient]
+
+([Id]
+      ,[Nume_ingredient]
+      ,[SubCategorieIngredientId]
+      ,[IdSubCategorieIngredient]
+      ,[DateCreated]
+      ,[DateModified])
+	  values('73EC73D8-ED7C-4173-B84E-D6A9AAE8EFF9','Vin Roșu', NULL,'AB699EDC-508F-4CDE-812C-5E2349537246', CURRENT_TIMESTAMP,NULL )
+ 
+3) Pun pt retetele care aveau inainte vinul rosu la loc 
+
+/****** Script for SelectTopNRows command from SSMS  ******/
+Update [licenta3].[dbo].[RetetaIngredient]
+set IdIngredient='73EC73D8-ED7C-4173-B84E-D6A9AAE8EFF9'
+where Id in ('3F7F3EE3-F15D-4066-B65D-CCB35915ABB4', 'BEE0BEFF-A314-43E0-97E6-928F1AAC092C','CD455D9C-B942-4DAC-8D50-8B0FA48E3740','6C6364E3-39A1-4BF3-83C2-41F019E5CB2A','B9D11697-5041-4F17-9379-3B598F1DDECE','D2AB31C0-D91F-4E4C-9279-18C231D83403','B2D6AC2D-9FB3-4930-90FE-083B991295C3','7967F899-7B36-4D3C-B275-8F9ADEF5B5DD')
+
+
+
+
+
+
+////
+276, -Gluehwein-3F7F3EE3-F15D-4066-B65D-CCB35915ABB4
+386,- Mulled Wine- BEE0BEFF-A314-43E0-97E6-928F1AAC092C
+ 390, -New York Sour - CD455D9C-B942-4DAC-8D50-8B0FA48E3740
+422, -Queen Charlotte-6C6364E3-39A1-4BF3-83C2-41F019E5CB2A
+451, -Sangria #1 -B9D11697-5041-4F17-9379-3B598F1DDECE
+452, -Sangria - The World's Best -D2AB31C0-D91F-4E4C-9279-18C231D83403
+471, -Smut -B2D6AC2D-9FB3-4930-90FE-083B991295C3
+491,- Sweet Sangria -7967F899-7B36-4D3C-B275-8F9ADEF5B5DD
+
+9B35303D-40E6-4BB7-9440-96226452615F -vin rosu 
+7B34B1A4-8532-4483-BC44-6CB1C49EDA4C- subcategorie pt vin alb

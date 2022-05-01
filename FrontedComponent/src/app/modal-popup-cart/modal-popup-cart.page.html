@@ -1,0 +1,41 @@
+
+<ion-header>
+  <ion-toolbar>
+      <button style="background-color: transparent;padding: 2%;">
+        <ion-badge *ngIf="itemsInCart.length">{{itemsInCart.length}}</ion-badge>
+         <ion-icon name="wine" ></ion-icon>
+      </button>
+
+    <button
+    style="background-color: transparent;padding: 2%; float: right;" (click)="dismiss()"><ion-icon name="close"></ion-icon>
+    </button>
+    <ion-title class="title">Pahar</ion-title>
+
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-card *ngFor="let ingredient of itemsInCart" class="cartItem">
+        <ion-card-header>
+          <ion-card-title class="title2"> {{ingredient.nume_ingredient}} </ion-card-title>
+
+        </ion-card-header>
+          <ion-card-content>
+
+            <button (click)="removeFromCart(ingredient)" style="background-color: transparent; float: right;">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+
+          </ion-card-content>
+
+     </ion-card>
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-button  class="round" expand="block" share="round" color="mycolor"  (click)="genertaePerfectMatch()">Generează Rețetă</ion-button>
+</ion-footer>

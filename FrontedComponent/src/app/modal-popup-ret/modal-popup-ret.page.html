@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+
+
+
+
+
+    <button
+    style="background-color: transparent;padding: 2%; float: right;" (click)="dismiss()"><ion-icon name="close"></ion-icon>
+    </button>
+
+    <ion-title  class="title">{{model_title}}</ion-title>
+
+
+
+
+  </ion-toolbar>
+
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+
+    <ion-button *ngIf="this.canReload" (click)="dismiss()" (click)="PreopenCardModal(null)" class="button"  share="round" color="mycolor">
+      <ion-icon name='reload'></ion-icon>
+    </ion-button>
+    <ion-card-title style="text-align: center;">{{model_title}}</ion-card-title>
+    <ion-card-subtitle style="text-align: center" ng>
+      Tip: {{tipReteta }}
+    </ion-card-subtitle>
+    <ion-card-subtitle style="text-align: center;padding-bottom: 5%;" ng>
+      Categorie: {{categorieReteta}}
+    </ion-card-subtitle>
+    <ion-card-content  >
+      <table>
+        <tr>
+
+          <ion-img [src]="poza" class="ImgRetete" style="left: 0; right: 0;margin:0 auto;top:50%;"  >
+
+
+          </ion-img>
+
+
+          <ion-button  share="round" color="mycolor"  *ngIf="!liked" (click)="toggleLiked()">
+            <ion-icon name="heart-outline"></ion-icon>
+
+          </ion-button>
+
+          <ion-button share="round" color="mycolor"*ngIf="liked" (click)="toggleLiked()">
+            <ion-icon name="heart"></ion-icon>
+          </ion-button>
+
+<tr>
+
+</tr>
+
+      <tr style="text-decoration:underline; color:black">
+        Ingrediente:
+      </tr>
+      <tr *ngFor="let ing of ingrediente" >
+
+
+        <!--div ngIf = "ing.cantitate!=''; then thenBlock  else elseBlock" > </div-->
+       {{ing.nume_ingredient}} {{ing.cantitate!=''&& ing.unitate!=''?"-"+ing.cantitate +" "+ing.unitate :"" }}
+
+        </tr>
+<tr></tr>
+        <tr style="text-decoration:underline; color:black">
+          Instructiuni:
+        </tr>
+        <tr>
+          {{instructiuni}}
+        </tr>
+
+        <tr style="text-decoration:underline; color:black">
+          Pahar recomandat:
+        </tr>
+        <tr>
+          {{pahar}}
+        </tr>
+        <tr style="text-decoration:underline; color:black">
+          Scor:
+        </tr>
+
+        <!--rating [(ngModel)]="raiting"
+        readonly="false"
+size="default"
+(ngModelChange)="onRateChange($event)">
+</rating-->
+
+
+
+      </table>
+      </ion-card-content>
+      </ion-card>
+
+</ion-content>
