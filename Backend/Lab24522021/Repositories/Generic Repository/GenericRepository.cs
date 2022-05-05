@@ -85,6 +85,7 @@ namespace Licenta.Repositories.Generic_Repository
            // entity.DateCreated
             entity.DateModified= DateTime.Now;
             _table.Update(entity);
+
         }
 
         public void UpdateRange(IEnumerable<TEntity> entities)

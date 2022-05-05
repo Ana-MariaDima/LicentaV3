@@ -19,22 +19,24 @@ export class Tab2Page {
 
   async ngOnInit() {
 
+    await this.fetchReteteApreciate();
+
+  }
+
+  async fetchReteteApreciate(){
+    this.retete = [];
     this.reteteliked = (await this.ReteteService.getLikedRetete()as Array<any>);
-    console.log(this.reteteliked);
+    console.log("fetchReteteApreciate ",)
+    this.reteteliked.forEach(reteta => {
+        (this.ReteteService.getReteta(reteta.idReteta)).then(async (reteta)=>{
+          reteta[0].liked = true;
 
+          //reteta[0].user_rating = await this.ReteteService.getReviewReteta(reteta[0].nume_reteta);
+          this.retete.push(reteta[0])
+      });
+    });
 
-  this.reteteliked.forEach(reteta => {
-    (this.ReteteService.getReteta(reteta.idReteta)).then((reteta)=>{
-
-      reteta[0].liked = true;
-      this.retete.push(reteta[0])
-     // console.log("Retete", this.retete)
-
-  });
-});
-
-
-    }
+  }
 
 
     async PreopenCardModal(param){
@@ -45,19 +47,6 @@ export class Tab2Page {
     }
 
     async openRetetaModal(reteta){
-
-
-      // if (reteta==null)
-      // {
-      //   var nr= this.retete.length;
-      //   var randNumber = Math.random() * nr;
-      //   reteta=this.retete[randNumber];
-      // }
-
-      //console.log("reteta from modal ",reteta);
-      //console.log("reteta from modal +ing ",reteta.retetaIngredient);
-
-
       var modal = await this.modalController.create({
         component:ModalPopupPageRet,
         cssClass:"modalTest",
@@ -73,10 +62,12 @@ export class Tab2Page {
         }
       })
 
-//console.log(reteta.liked)
+
       modal.present()
       const {data} = await modal.onWillDismiss();
-     // console.log("modal returned data", data)
+      if(data.likedState != reteta.liked){
+        await this.fetchReteteApreciate();
+      }
 
     }
 

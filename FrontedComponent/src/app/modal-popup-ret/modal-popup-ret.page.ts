@@ -42,7 +42,7 @@ export class ModalPopupPageRet implements OnInit {
 
   async dismiss() {
     const close: string = "Modal Removed";
-    return this.modalController.dismiss({customProp:"123"});
+    return this.modalController.dismiss({likedState:this.liked});
 
 
   }

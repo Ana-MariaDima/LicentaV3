@@ -42,6 +42,8 @@ namespace Licenta.Services.AuthService
                 LastName = model.LastName,
                 Username = model.Username,
                 Email = model.Email,
+                Sex= model.Sex,
+                Varsta= model.Varsta,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password),
                 Role = Role.User
             };

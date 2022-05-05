@@ -17,7 +17,7 @@ export class Tab1ToateRetetelePage  {
 
 
 
-  constructor(private ReteteService: ReteteService,private modalController: ModalController, private reteteService: ReteteService, private starsC:StarsComponent) { }
+  constructor(private ReteteService: ReteteService,private modalController: ModalController, private reteteService: ReteteService) { }
   retete:Array<any> = []
   retete_all:Array<any> = []
   tip:Array<any> = []
@@ -60,10 +60,11 @@ export class Tab1ToateRetetelePage  {
         'instructiuni':reteta.instructiuni ,
         'pahar':reteta.nume_pahar ,
         'poza':reteta.poza_reteta,
-        'raiting': reteta.rating_retea,
+        'rating': reteta.rating_retea,
         'ingrediente':reteta.retetaIngredient,
         'liked':  reteta.liked,
         'categorieReteta': reteta.nume_Categorie_Retete
+
       }
     })
 
@@ -76,12 +77,19 @@ export class Tab1ToateRetetelePage  {
 
 
   toggleLiked(reteta) {
-
-
-    //console.log(this)
     reteta.liked = !reteta.liked;
     this.reteteService.toggleLike(reteta.nume_reteta);
+  }
 
+  onReview(reteta){
+
+    return (review)=>{
+      this.submitReview(reteta.nume_reteta, review);
+    }
+  }
+
+  submitReview(reteta, review){
+    this.reteteService.submitReview(reteta, review);
   }
 }
 

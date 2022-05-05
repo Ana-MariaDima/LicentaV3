@@ -28,7 +28,7 @@ namespace Licenta.Repositories.AprecieriRepository
 
         public List<Aprecieri> GetByReteta(Guid id_retetea)
         {
-            return _table.Include(x => x.IdReteta).Where(x => x.IdReteta.Equals(id_retetea)).ToList();
+            return _table.Where(x => x.IdReteta.Equals(id_retetea)).ToList();
         }
 
         public List<Aprecieri> GetByCompositeKey(Guid id_user, Guid id_reteta)

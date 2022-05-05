@@ -58,23 +58,36 @@ export class ReteteService {
       return reteta
     }
     async toggleLike(model_title){
-      console.log (model_title, localStorage.getItem('token'))
+
       var reteta = (await this.http.post(environment.baseUrl+"Retete/like",{Name:model_title, Token:localStorage.getItem('token')}).toPromise() as Array<any>);
      // console.log(reteta, 'toggle');
     }
 
+    async submitReview(reteta, review){
+      (await this.http.post(environment.baseUrl+"Aprecieri/SubmitReview",{Name:reteta, Token:localStorage.getItem('token'), Review:review}).toPromise() as Array<any>);
+    }
     async getRetete(initialRequest:boolean):Promise<any>{
       var result = (await this.http.post(environment.baseUrl+"Retete",{initialRequest}).toPromise() as Array<any>);
      // console.log(retete)
       //var result = this.groupBy(retete)
-      var likedRetete = (await this.http.post(environment.baseUrl+"Aprecieri/GetById",{token:localStorage.getItem('token')}).toPromise() as Array<any>);
+      var likedRetete = (await this.http.post(environment.baseUrl+"Aprecieri/GetByIdLikes",{token:localStorage.getItem('token')}).toPromise() as Array<any>);
      // console.log(likedRetete, result)
       likedRetete.forEach(lR =>{
      //   console.log(lR);
         try{
-        (result.find((x:any) =>{ console.log(x.id, lR.idReteta, x.id == lR.idReteta);  return x.id == lR.idReteta;}) as any).liked = true;
+        (result.find((x:any) =>{   return x.id == lR.idReteta;}) as any).liked = true;
         }catch(e){console.log(e)}
       })
+
+
+      var reviewRetete = (await this.http.post(environment.baseUrl+"Aprecieri/GetByIdReviews",{token:localStorage.getItem('token')}).toPromise() as Array<any>);
+      // console.log(likedRetete, result)
+      reviewRetete.forEach(rR =>{
+      //   console.log(lR);
+         try{
+          (result.find((x:any) =>{   return x.id == rR.idReteta;}) as any).user_rating = rR.review;
+         }catch(e){console.log(e)}
+       })
       return result
 
     }
@@ -93,7 +106,7 @@ export class ReteteService {
     getLikedRetete():Promise<any>{
 
 
-      return this.http.post(environment.baseUrl+"Aprecieri/GetById",{token:localStorage.getItem('token')}).toPromise();
+      return this.http.post(environment.baseUrl+"Aprecieri/GetByIdLikes",{token:localStorage.getItem('token')}).toPromise();
     }
 
 

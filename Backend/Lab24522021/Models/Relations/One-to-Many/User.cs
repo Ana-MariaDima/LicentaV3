@@ -19,6 +19,10 @@ namespace Laborator54522021.Models
         public string Email { get; set; }
 
         public string Username { get; set; }
+
+        public string Sex { get; set; }
+
+        public int Varsta { get; set; }
         //to add
         public bool IsActive { get; set; }
 

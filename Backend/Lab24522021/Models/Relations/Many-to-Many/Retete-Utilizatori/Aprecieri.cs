@@ -20,6 +20,8 @@ namespace Licenta.Models.Relations.Many_to_Many
         public Guid IdUser { get; set; }
         public  User User { get; set; }
 
+        public bool Star { get; set; }
+        public Nullable<int> Review { get; set; }
         
     }
 }

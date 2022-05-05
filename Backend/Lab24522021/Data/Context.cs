@@ -170,7 +170,7 @@ namespace Licenta.Data
 
             // Many to Many - Retete-Useri 
 
-            builder.Entity<Aprecieri>().HasKey(mr => new { mr.IdReteta, mr.IdUser });
+            builder.Entity<Aprecieri>().HasKey(mr => mr.Id);
 
             builder.Entity<Aprecieri>()
                    .HasOne<User>(mr => mr.User)

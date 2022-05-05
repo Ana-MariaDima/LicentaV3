@@ -34,6 +34,36 @@
         <ion-input autocomplete="off" type="password" name="password"  formControlName="password"></ion-input>
       </ion-item>
 
+      <ion-item>
+        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Sex</ion-label>
+        <ion-input >
+
+          <ion-select  name="Sex"  formControlName="sex">
+            <ion-select-option value="F">Feminin</ion-select-option>
+            <ion-select-option value="M">Masculin</ion-select-option>
+            <ion-select-option value="N">Nu doresc sa specific</ion-select-option>
+          </ion-select>
+         </ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Varsta</ion-label>
+        <ion-input>
+          <ion-select  name="varsta"  formControlName="varsta">
+
+            <ion-select-option value="18">Intre 18 si 25</ion-select-option>
+            <ion-select-option value="26">Intre 26 si 35 </ion-select-option>
+            <ion-select-option value="36">Intre 36 si 45</ion-select-option>
+            <ion-select-option value="46">Intre 46 si 60</ion-select-option>
+            <ion-select-option value="61">Peste 60</ion-select-option>
+
+            <ion-select-option value="-1">Nu doresc sa specific</ion-select-option>
+
+          </ion-select>
+        </ion-input>
+      </ion-item>
+
 
     </ion-list>
     <ion-button expand="block" share="round" color="mycolor" (click)="doRegister()">Register</ion-button>

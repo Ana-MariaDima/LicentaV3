@@ -21,7 +21,9 @@ export class SingupPage implements OnInit {
       email:['',[Validators.required, Validators.email]],
       lastName:['',[Validators.required]],
       username:['',[Validators.required]],
-      password:['',[Validators.required, Validators.minLength(8)]]
+      password:['',[Validators.required, Validators.minLength(8)]],
+      sex:[''],
+      varsta:['']
      //, confirmPassword:['',[Validators.required]]
 
     }
@@ -40,6 +42,7 @@ export class SingupPage implements OnInit {
 
     if(this.myForm.valid)
     {
+  console.log("Valid")
       this.registerService.register(this.myForm.value).subscribe((result: any)=>{
        console.log(result)
         if(result.isSuccess){

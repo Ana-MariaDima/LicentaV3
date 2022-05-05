@@ -4,19 +4,6 @@
   </ion-toolbar>
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-button expand="block" share="round" color="mycolor" routerLink='/home/tab1' > Ingrediente</ion-button>
-      </ion-col>
-
-      <ion-col >
-        <ion-button expand="block" share="round" color="mycolor" routerLink='/tab1-toate-retetele' >
-
-            Toate Bauturile
-
-          </ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
       <ion-searchbar
 
       animated
@@ -27,7 +14,7 @@
       </ion-row>
     </ion-grid>
   </ion-header>
-  <ion-content [scrollEvents]="true"  >
+  <ion-content  >
     <div>
     <ion-list slot="content">
 
@@ -42,9 +29,8 @@
 
               <tr>
               <td>
-                <ion-img [src]="reteta.poza_reteta" class="ImgRetete" style="border-radius: 10%;"  >
-                </ion-img>
-              </td>
+                <img [src]="reteta.poza_reteta" class="ImgRetete" style="border-radius: 10%;" />
+                </td>
                    <td>
                      <table>
                        <tr style="text-decoration:underline; color:black">
@@ -113,9 +99,9 @@
                     </td>
                     <td width="100%">
                       <ion-button share="round" color="mycolor" style="float: right;" >
-                        <!--rating-stars rating=12> </rating-stars-->
+                        <rating-stars [rating]="reteta.user_rating" [onReview] = "this.onReview(reteta)" > </rating-stars>
 
-                        <div>Scor</div>
+                        <div>Scor ({{reteta.rating}})</div>
                       </ion-button>
                     </td>
 

@@ -33,18 +33,73 @@ namespace Licenta.Controllers
         }
 
 
-        [HttpPost("GetById")]
+        [HttpPost("GetByIdLikes")]
 
-        public async Task<IActionResult> GetById(GetByIdDTO payload)
+        public async Task<IActionResult> GetByIdLikes(GetByIdDTO payload)
         {
             var handler = new JwtSecurityTokenHandler();
             var jwtSecurityToken = handler.ReadJwtToken(payload.Token);
             var id = jwtSecurityToken.Claims.Where(z => z.Type == "id").FirstOrDefault().Value;
             var result = await _demoService.GetAprecieriRepository().GetAll();
-            var toReturn = result.Where(z => { return z.IdUser == Guid.Parse(id); }).ToList();
+            var toReturn = result.Where(z => { return z.IdUser == Guid.Parse(id) && z.Star == false; }).ToList();
             return Ok(toReturn);
 
         }
+
+        [HttpPost("GetByIdReviews")]
+
+        public async Task<IActionResult> GetByIdReviews(GetByIdDTO payload)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jwtSecurityToken = handler.ReadJwtToken(payload.Token);
+            var id = jwtSecurityToken.Claims.Where(z => z.Type == "id").FirstOrDefault().Value;
+            var result = await _demoService.GetAprecieriRepository().GetAll();
+            var toReturn = result.Where(z => { return z.IdUser == Guid.Parse(id) && z.Star == true; }).ToList();
+            return Ok(toReturn);
+
+        }
+
+
+        [HttpPost("SubmitReview")]
+
+        public IActionResult SubmitReview(ReviewDTO payload)
+        {
+            var aprecieriRepo = _demoService.GetAprecieriRepository();
+            var handler = new JwtSecurityTokenHandler();
+            var jwtSecurityToken = handler.ReadJwtToken(payload.Token);
+            var id = jwtSecurityToken.Claims.Where(z => z.Type == "id").FirstOrDefault().Value;
+
+        
+
+            var retetaJoined = _demoService.GetReteteRepository().GetByNume(payload.Name);
+
+            var reteta = _demoService.GetReteteRepository().GetById(retetaJoined.Id);
+            Aprecieri ap = _demoService.GetAprecieriRepository().GetByCompositeKey(Guid.Parse(id), reteta.Id).Where(x=>x.Star == true).ToList().FirstOrDefault();
+            if (ap == null)
+            {
+                var apreciere = new Aprecieri() { Reteta = reteta, IdUser = Guid.Parse(id), Star = true, 
+                                                  Review = payload.Review > 5 ? 5 : payload.Review < 1 ? 1 : payload.Review };
+                aprecieriRepo.Create(apreciere);
+            }
+            else
+            {
+                ap.Review = payload.Review > 5 ? 5 : payload.Review < 1 ? 1 : payload.Review;
+                
+                aprecieriRepo.Update(ap);
+                aprecieriRepo.Save();
+                
+            }
+            
+            var avg = aprecieriRepo.GetByReteta(reteta.Id).Where(x => x.Star).Average(x => x.Review);
+            reteta.Rating_retea = (float) avg;
+            _demoService.GetReteteRepository().Update(reteta);
+            _demoService.GetReteteRepository().Save();
+
+            return Ok();
+
+        }
+
+
 
 
         //post =create 
@@ -97,6 +152,12 @@ namespace Licenta.Controllers
     }
 }
 
+public class ReviewDTO
+{
+    public string Token;
+    public int Review;
+    public string Name;
+}
 public class GetByIdDTO
 {
     public string Token;

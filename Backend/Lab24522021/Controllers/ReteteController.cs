@@ -94,7 +94,7 @@ namespace Licenta.Controllers
                 });
 
                 dynamic rezultat = new
-                {   id = reteta.Id.ToString(),
+                { id = reteta.Id.ToString(),
                     instructiuni = reteta.Instructiuni_reteta,
                     nume_Tip_Retete = tipR.Nume_Tip_Retete,
                     nume_Categorie_Retete = catR.Nume_Categorie_Retete,
@@ -102,6 +102,7 @@ namespace Licenta.Controllers
                     nume_reteta = reteta.Nume_reteta,
                     poza_reteta = reteta.Poza_reteta,
                     rating = reteta.Rating_retea,
+                    user_rating = 0,
                     retetaIngredient = retetaIngrediente
                   
 
@@ -191,7 +192,7 @@ namespace Licenta.Controllers
             var retetaJoined =  _demoService.GetReteteRepository().GetByNume(payload.Name);
             
             var reteta = _demoService.GetReteteRepository().GetById(retetaJoined.Id);
-            List<Aprecieri> ap = _demoService.GetAprecieriRepository().GetByCompositeKey(Guid.Parse(id), reteta.Id);
+            List<Aprecieri> ap = _demoService.GetAprecieriRepository().GetByCompositeKey(Guid.Parse(id), reteta.Id).Where(x => x.Star == false).ToList();
             if (ap.Count == 0)
             {
                 var apreciere = new Aprecieri() { Reteta = reteta, IdUser = Guid.Parse(id) };

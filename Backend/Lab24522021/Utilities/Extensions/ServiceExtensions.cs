@@ -25,16 +25,16 @@ namespace Licenta.Utilities.Extensions
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services.AddTransient<IIngredienteRepository, IngredienteRepository>();
-            services.AddTransient<ISubCategoriiIngredienteRepository, SubCategoriiIngredienteRepository>();
-            services.AddTransient<ICategoriiIngredienteRepository, CategoriiIngredienteRepository>();
-            services.AddTransient<ITipuriReteteRepository, TipuriReteteRepository>();
-            services.AddTransient<ICategoriiReteteRepository, CategoriiReteteRepository>();
-            services.AddTransient<IPahareRepository, PahareRepository>();
-            services.AddTransient<IUnitatiRepository, UnitatiRepository>();
-            services.AddTransient<IReteteIngredienteRepository, ReteteIngredienteRepository>();
-            services.AddTransient<IReteteRepository, ReteteRepository>();
-            services.AddTransient<IAprecieriRepository, AprecieriRepository>();
+            services.AddScoped<IIngredienteRepository, IngredienteRepository>();
+            services.AddScoped<ISubCategoriiIngredienteRepository, SubCategoriiIngredienteRepository>();
+            services.AddScoped<ICategoriiIngredienteRepository, CategoriiIngredienteRepository>();
+            services.AddScoped<ITipuriReteteRepository, TipuriReteteRepository>();
+            services.AddScoped<ICategoriiReteteRepository, CategoriiReteteRepository>();
+            services.AddScoped<IPahareRepository, PahareRepository>();
+            services.AddScoped<IUnitatiRepository, UnitatiRepository>();
+            services.AddScoped<IReteteIngredienteRepository, ReteteIngredienteRepository>();
+            services.AddScoped<IReteteRepository, ReteteRepository>();
+            services.AddScoped<IAprecieriRepository, AprecieriRepository>();
 
 
 
