@@ -37,5 +37,5 @@
 
 </ion-content>
 <ion-footer>
-  <ion-button  class="round" expand="block" share="round" color="mycolor"  (click)="genertaePerfectMatch()">Generează Rețetă</ion-button>
+  <ion-button  class="round" expand="block" [disabled]="buttonDisabled" share="round" color="mycolor" routerLink="/generate"  (click)="genertaePerfectMatch()">Generează Rețetă</ion-button>
 </ion-footer>

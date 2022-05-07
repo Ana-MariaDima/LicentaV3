@@ -25,6 +25,56 @@ namespace Licenta.Controllers
             _demoService = demoService;
         }
 
+        private async Task<List<Reteta>> FetchReteteData(List<Retete> retete)
+        {
+            var ingrediente = await _demoService.GetIngredienteRepository().GetAll();
+            var unitati = await _demoService.GetUnitatiRepository().GetAll();
+            List<Reteta> rezultate = new List<Reteta>();
+
+            retete.ForEach(reteta =>
+            {
+                var tipR = _demoService.GetTipuriReteteRepository().GetById(reteta.IdTipReteta.ToString());
+                var catR = _demoService.GetCategoriiReteteRepository().GetById(reteta.IdCategorieReteta.ToString());
+                var pahar = _demoService.GetPahareRepository().GetById(reteta.IdPahar.ToString());
+                var tabelaAsociativaIng = _demoService.GetReteteIngredienteRepository().GetByReteta(reteta.Id).ToList();
+                List<IngredientFolosit> retetaIngrediente = new List<IngredientFolosit>();
+                var ingredienteReteta = ingrediente.Where(x => tabelaAsociativaIng.Select(z => z.IdIngredient).Contains(x.Id)).ToList();
+
+                ingredienteReteta.ForEach(ing =>
+                {
+                    var unitate = unitati.Where(z => z.Id.Equals(tabelaAsociativaIng.Where(x => x.IdIngredient.Equals(ing.Id)).FirstOrDefault().IdUnitate));
+                    var nume_unitate = unitate.FirstOrDefault() == null ? "" : unitate.FirstOrDefault().Nume_unitate;
+                    IngredientFolosit retetaIng = new IngredientFolosit
+                    {
+                        nume_ingredient = ing.Nume_ingredient,
+                        idIngredient = ing.Id.ToString(),
+                        unitate = nume_unitate,
+                        cantitate = tabelaAsociativaIng.Where(x => x.IdIngredient.Equals(ing.Id)).FirstOrDefault().Cantitate_Ingredient
+                    };
+
+                    retetaIngrediente.Add(retetaIng);
+                });
+
+                Reteta rezultat = new Reteta
+                {
+                    id = reteta.Id.ToString(),
+                    instructiuni = reteta.Instructiuni_reteta,
+                    nume_Tip_Retete = tipR.Nume_Tip_Retete,
+                    nume_Categorie_Retete = catR.Nume_Categorie_Retete,
+                    nume_pahar = pahar.Nume_Pahar,
+                    nume_reteta = reteta.Nume_reteta,
+                    poza_reteta = reteta.Poza_reteta,
+                    rating = reteta.Rating_retea,
+                    user_rating = 0,
+                    retetaIngredient = retetaIngrediente
+                };
+
+                rezultate.Add(rezultat);
+            });
+
+            return rezultate;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Get(GetReteteDTO payload)
         {
@@ -66,54 +116,67 @@ namespace Licenta.Controllers
                 retete = retete.Take(100).ToList();
 
             }
-            var ingrediente = await _demoService.GetIngredienteRepository().GetAll();
-            var unitati = await _demoService.GetUnitatiRepository().GetAll();
-            List<dynamic> rezultate = new List<dynamic>();
 
-            retete.ForEach(reteta =>
-            {   var tipR = _demoService.GetTipuriReteteRepository().GetById(reteta.IdTipReteta.ToString());
-                var catR = _demoService.GetCategoriiReteteRepository().GetById(reteta.IdCategorieReteta.ToString());
-                var pahar = _demoService.GetPahareRepository().GetById(reteta.IdPahar.ToString());
-                var tabelaAsociativaIng = _demoService.GetReteteIngredienteRepository().GetByReteta(reteta.Id).ToList();
-                List<dynamic> retetaIngrediente = new List<dynamic>();
-                var ingredienteReteta = ingrediente.Where(x => tabelaAsociativaIng.Select(z => z.IdIngredient).Contains(x.Id)).ToList();
-
-                ingredienteReteta.ForEach(ing =>
-                {
-                    var unitate = unitati.Where(z => z.Id.Equals(tabelaAsociativaIng.Where(x => x.IdIngredient.Equals(ing.Id)).FirstOrDefault().IdUnitate));
-                    var nume_unitate = unitate.FirstOrDefault() == null ? "" : unitate.FirstOrDefault().Nume_unitate;
-                    dynamic retetaIng = new
-                    {
-                        nume_ingredient = ing.Nume_ingredient,
-                        idIngredient = ing.Id.ToString(),
-                        unitate =nume_unitate,
-                        cantitate = tabelaAsociativaIng.Where(x => x.IdIngredient.Equals(ing.Id)).FirstOrDefault().Cantitate_Ingredient
-                    };
-
-                    retetaIngrediente.Add(retetaIng);
-                });
-
-                dynamic rezultat = new
-                { id = reteta.Id.ToString(),
-                    instructiuni = reteta.Instructiuni_reteta,
-                    nume_Tip_Retete = tipR.Nume_Tip_Retete,
-                    nume_Categorie_Retete = catR.Nume_Categorie_Retete,
-                    nume_pahar = pahar.Nume_Pahar,
-                    nume_reteta = reteta.Nume_reteta,
-                    poza_reteta = reteta.Poza_reteta,
-                    rating = reteta.Rating_retea,
-                    user_rating = 0,
-                    retetaIngredient = retetaIngrediente
-                  
-
-                };
-        
-                rezultate.Add(rezultat);
-            });
+            var rezultate = await FetchReteteData(retete);
 
             return Ok(rezultate);
+        }
+
+        struct IngredientFolosit
+        {
+            public string nume_ingredient;
+            public string idIngredient;
+            public string unitate;
+            public string cantitate;
+        }
+
+        struct Reteta{
+           public string id;
+            public string instructiuni;
+            public string nume_Tip_Retete;
+            public string nume_Categorie_Retete;
+            public string nume_pahar;
+            public string nume_reteta;
+            public string poza_reteta;
+            public float rating;
+            public int user_rating;
+            public int scor;
+            public List<IngredientFolosit> retetaIngredient;
+        };
+
+        [HttpPost("Generate")]
+        public async Task<IActionResult> Generate(GenerateDTO payload)
+        {
+            
+            //payload.Ingrediente
+            var retete = await _demoService.GetReteteRepository().GetAll();
+            retete = retete.Where(x =>
+            {
+                var tabelaAsociativaIng =
+                _demoService.GetReteteIngredienteRepository().GetByReteta(x.Id).ToList();
+
+                return tabelaAsociativaIng.Select(z => z.IdIngredient.ToString()).Intersect(payload.Ingrediente).Count() > 0;
+            }).ToList();
+          
+            List<Reteta> rezultate = await FetchReteteData(retete);
+            List<dynamic> a = new List<dynamic>();
+            rezultate.ForEach(rez =>
+            {
+                List<IngredientFolosit> ingr = rez.retetaIngredient;
+                
+                IEnumerable<string> ingredienteFolositeIDS = (IEnumerable<string>) ingr.Select(x => x.idIngredient.ToString());
+                int matched = ingredienteFolositeIDS.Intersect(payload.Ingrediente).Count();
+                int diff = ingredienteFolositeIDS.Count() - matched;
+
+                // 100 - diff
+                rez.scor = 100 - diff;
+                a.Add(new { nume = rez.nume_reteta, scor = matched/ (1.0*ingr.Count) });
+            });
+
+            rezultate = rezultate.OrderBy(x => a.Find(z=>z.nume == x.nume_reteta).scor).Reverse().ToList();
 
 
+            return Ok(rezultate);
         }
 
         [HttpGet("random")]
@@ -250,6 +313,11 @@ public class GetReteteDTO
     public bool initialRequest;
 }
 
+public class GenerateDTO
+{
+    public string[] Ingrediente;
+    public string Token;
+}
 
 public class LikeDTO
 {

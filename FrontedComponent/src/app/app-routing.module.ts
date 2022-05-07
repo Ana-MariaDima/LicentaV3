@@ -43,9 +43,11 @@ const routes: Routes = [
     loadChildren: () => import('./tab-user/tab-user.module').then( m => m.TabUserPageModule)
   },
   {
-    path: 'sugestii',
+    path: 'generate',
     loadChildren: () => import('./sugestii/sugestii.module').then( m => m.SugestiiPageModule)
   },
+
+
 
 
 

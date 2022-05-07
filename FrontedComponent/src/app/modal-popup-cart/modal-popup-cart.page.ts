@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { ReteteService } from '../services/Retete/retete.service';
 
 @Component({
   selector: 'app-modal-popup-cart',
@@ -9,8 +10,8 @@ import { ModalController } from '@ionic/angular';
 export class ModalPopupCartPage implements OnInit {
   items:Array<any>
   itemsInCart: any[]=[];
-
-  constructor(private modalController:ModalController) {
+  buttonDisabled:boolean =false;
+  constructor(private modalController:ModalController, private reteteService: ReteteService) {
 
   }
 
@@ -48,7 +49,15 @@ export class ModalPopupCartPage implements OnInit {
     {
     this.itemsInCart = Object.values(JSON.parse(localStorage.getItem('cart')))
     }
-    console.log(this.itemsInCart)
+
+    this.buttonDisabled = true;
+    setTimeout(x=>{
+      this.modalController.dismiss();
+      if(window.location.href.includes("Generate")){
+        window.location.reload();
+      }
+
+    },500);
 
   }
 

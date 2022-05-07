@@ -69,7 +69,6 @@ export class ReteteService {
     async getRetete(initialRequest:boolean):Promise<any>{
       var result = (await this.http.post(environment.baseUrl+"Retete",{initialRequest}).toPromise() as Array<any>);
      // console.log(retete)
-      //var result = this.groupBy(retete)
       var likedRetete = (await this.http.post(environment.baseUrl+"Aprecieri/GetByIdLikes",{token:localStorage.getItem('token')}).toPromise() as Array<any>);
      // console.log(likedRetete, result)
       likedRetete.forEach(lR =>{
@@ -112,7 +111,12 @@ export class ReteteService {
 
      async getReteta(idReteta:string):Promise<any>{
       var rezultat = (await this.http.get(environment.baseUrl+"Retete/liked/"+idReteta).toPromise()) as Array<any>;
-      return this.groupBy(rezultat)
+      return this.groupBy(rezultat);
+    }
+
+    async getReteteSugerate(arrayIngrediente){
+      var reteta = (await this.http.post(environment.baseUrl+"Retete/Generate",{Ingrediente:arrayIngrediente, Token:localStorage.getItem('token')}).toPromise() as Array<any>);
+      return reteta;
     }
 
 

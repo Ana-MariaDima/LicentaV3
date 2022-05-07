@@ -1,6 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>sugestii</ion-title>
+
+    <ion-grid>
+      <ion-row>
+        <button  style="background-color: transparent;  padding: 2%; float: left;" (click)="openCart()">
+          <ion-badge>{{this.itemsInCart}}</ion-badge>
+           <ion-icon name="wine" style="font-size: 35px;"  ></ion-icon>
+        </button>
+
+      <ion-title class="title">Ingrediente</ion-title>
+      </ion-row>
+      </ion-grid>
+      <ion-title>Sugestii</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -42,16 +53,7 @@
 
 
             </tr>
-            <!--tr>
-              <ion-button  share="round" color="mycolor"  *ngIf="!liked" (click)="toggleLiked()">
-                <ion-icon name="heart-outline"></ion-icon>
 
-              </ion-button>
-
-              <ion-button share="round" color="mycolor"*ngIf="liked" (click)="toggleLiked()">
-                <ion-icon name="heart"></ion-icon>
-              </ion-button>
-            </tr-->
           </table>
               </td>
 

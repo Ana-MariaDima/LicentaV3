@@ -35,6 +35,18 @@
       </ion-item>
 
       <ion-item>
+        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Confirma Parola</ion-label>
+        <ion-input autocomplete="off" type="password" name="confirmpassword"  formControlName="confirmpassword"></ion-input>
+      </ion-item>
+
+
+      <div >
+        <div style="padding:2%; color:red;"  *ngIf="!myForm.get('confirmpassword').errors && myForm.hasError('passwordNotMatch') && (myForm.get('confirmpassword').dirty || myForm.get('confirmpassword').touched)">
+          Parololele nu sunt identice
+        </div>
+      </div>
+
+      <ion-item>
         <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Sex</ion-label>
         <ion-input >
 
@@ -66,6 +78,6 @@
 
 
     </ion-list>
-    <ion-button expand="block" share="round" color="mycolor" (click)="doRegister()">Register</ion-button>
+    <ion-button expand="block" share="round" color="mycolor"  [disabled]="!myForm.valid" (click)="doRegister()">Register</ion-button>
   </form>
 </ion-content>

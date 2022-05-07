@@ -12,6 +12,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class SingupPage implements OnInit {
   public myForm!: FormGroup;
+  error_messages : any;
 
   constructor(private fromBuilder:FormBuilder,private registerService: RegisterService, private router: Router) { }
 
@@ -22,14 +23,25 @@ export class SingupPage implements OnInit {
       lastName:['',[Validators.required]],
       username:['',[Validators.required]],
       password:['',[Validators.required, Validators.minLength(8)]],
-      sex:[''],
-      varsta:['']
-     //, confirmPassword:['',[Validators.required]]
+      sex:['', Validators.required],
+      varsta:['', Validators.required],
+      confirmpassword:['',[Validators.required, Validators.minLength(8)]]
 
+    },
+    {
+      validators: this.password.bind(this)
     }
+
 
     );
   }
+  password(formGroup: FormGroup) {
+    const { value: password } = formGroup.get('password');
+    const { value: confirmPassword } = formGroup.get('confirmpassword');
+    return password === confirmPassword ? null : { passwordNotMatch: true };
+
+  }
+
 
 
   public error:boolean | string=false;
