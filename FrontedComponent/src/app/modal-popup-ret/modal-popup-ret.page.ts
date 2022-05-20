@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalServiceService } from '../modal-service.service';
 import { ReteteService } from '../services/Retete/retete.service';
+
+
 @Component({
   selector: 'app-modal-popup',
   templateUrl: './modal-popup-ret.page.html',
@@ -15,11 +17,12 @@ export class ModalPopupPageRet implements OnInit {
   @Input() instructiuni: any;
   @Input() pahar: any;
   @Input() poza:any;
-  @Input() raiting: any;
+  @Input() rating: any;
   @Input() liked: any;
   @Input() canReload: boolean;
 
   itemsInCart: Object[]=[];
+   instructiuniSplit:any[];
 
 
   constructor(private modalController: ModalController, private  modalService: ModalServiceService, private reteteService: ReteteService) {}
@@ -33,7 +36,8 @@ export class ModalPopupPageRet implements OnInit {
 
 
   ngOnInit() {
-
+     this.instructiuniSplit= this.instructiuni.split(".").filter (i=> i!="");
+    //console.log(instructiuniSplit)
 
   }
   onRateChange(event) {
@@ -48,6 +52,8 @@ export class ModalPopupPageRet implements OnInit {
   }
   toggleLiked() {
     this.liked = !this.liked;
+
+
     this.reteteService.toggleLike(this.model_title);
 
   }

@@ -1,4 +1,5 @@
 ﻿using Licenta.Models.Relations.Many_to_Many;
+using Licenta.Models.Relations.One_to_Many;
 using Licenta.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -69,38 +70,44 @@ namespace Licenta.Controllers
             var jwtSecurityToken = handler.ReadJwtToken(payload.Token);
             var id = jwtSecurityToken.Claims.Where(z => z.Type == "id").FirstOrDefault().Value;
 
-        
+
 
             var retetaJoined = _demoService.GetReteteRepository().GetByNume(payload.Name);
 
             var reteta = _demoService.GetReteteRepository().GetById(retetaJoined.Id);
-            Aprecieri ap = _demoService.GetAprecieriRepository().GetByCompositeKey(Guid.Parse(id), reteta.Id).Where(x=>x.Star == true).ToList().FirstOrDefault();
+            Aprecieri ap = _demoService.GetAprecieriRepository().GetByCompositeKey(Guid.Parse(id), reteta.Id).Where(x => x.Star == true).ToList().FirstOrDefault();
             if (ap == null)
             {
-                var apreciere = new Aprecieri() { Reteta = reteta, IdUser = Guid.Parse(id), Star = true, 
-                                                  Review = payload.Review > 5 ? 5 : payload.Review < 1 ? 1 : payload.Review };
+                var apreciere = new Aprecieri() { Reteta = reteta, IdUser = Guid.Parse(id), Star = true,
+                    Review = payload.Review > 5 ? 5 : payload.Review < 1 ? 1 : payload.Review };
                 aprecieriRepo.Create(apreciere);
             }
             else
             {
                 ap.Review = payload.Review > 5 ? 5 : payload.Review < 1 ? 1 : payload.Review;
-                
+
                 aprecieriRepo.Update(ap);
                 aprecieriRepo.Save();
-                
+
             }
-            
+
             var avg = aprecieriRepo.GetByReteta(reteta.Id).Where(x => x.Star).Average(x => x.Review);
-            reteta.Rating_retea = (float) avg;
+
+            reteta.Rating_retea = (float)avg;
             _demoService.GetReteteRepository().Update(reteta);
             _demoService.GetReteteRepository().Save();
 
             return Ok();
 
         }
+        [HttpGet("NrLikes")]
+        public IActionResult NrLikes(Guid idReteta)
+        {
+            var aprecieriRepo = _demoService.GetAprecieriRepository();
+            var nrLikes = aprecieriRepo.GetByReteta(idReteta).Where(x => !x.Star).Count();
 
-
-
+            return Ok(nrLikes);
+        }
 
         //post =create 
 

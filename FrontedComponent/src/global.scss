@@ -47,7 +47,8 @@ ion-icon {
 
   margin: 20px auto 20px;
   display: block;
-    width:250px;
+    width:35%;
+    height: auto;
 
 }
 
@@ -57,13 +58,159 @@ ion-icon {
 
 }
 .ImgRetete{
-  display: block;
+ display: block;
   width: 75%;
  height: 100%;
  border-radius:10%;
-  object-fit: inherit;
-  object-position: inherit;
+  //object-fit: inherit;
+  //object-position: inherit;
  border: solid 1px #EFEFEF;
   padding: 2%;
   margin:1%;
+  display: block;
+  //object-fit: inherit;
+  //object-position: inherit;
+    //border-radius: 10%;
+    box-shadow: 5px 5px 15px 5px grey;
+}
+.ImgRetetePopUp{
+  width: 70%;
+  height: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+
+}
+
+
+.elementTitle {
+
+  color: black;
+  font-size: large;
+  text-decoration: underline solid;
+  padding: 10%;
+  text-align: center;
+
+  font-family: “Comic Sans MS”, “Comic Sans”, cursive;
+
+}
+
+
+.retetaTitle {
+
+  color: black;
+  font-size: x-large;
+  text-decoration: solid;
+  padding: 2%;
+  text-align: center;
+
+  font-family: “Comic Sans MS”, “Comic Sans”, cursive;
+
+}
+.round {
+  --width: 60px;
+  --height: 60px;
+  --border-radius: 50%;
+  --vertical-align: middle;
+  --padding-start: 10px;
+  --padding-end: 10px;
+}
+
+
+.buttonDetails {
+ // display: inline-block;
+  padding: 8px;
+  font-size: medium;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: black;
+  background-color:  #dfa5fa;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 1px 1px 3px 1px grey;
+  border-radius: 10%;
+}
+
+.buttonDetails:hover {background-color: #dc5ffc}
+
+.buttonDetails:active {
+  background-color: #340447;
+  box-shadow: 1px 1px 3px 1px grey;
+    transform: translateY(4px);
+}
+/* Container needed to position the button. Adjust the width as needed */
+.container {
+  position: relative;
+}
+
+/* Make the image responsive */
+
+
+/* Style the button and place it in the middle of the container/image */
+.container .btn {
+  position: absolute;
+  top: 7%;
+  left: 70%;
+ // transform: translate(-50%, -50%);
+  //-ms-transform: translate(-50%, -50%);
+  background-color: transparent;
+  color: #dfa5fa;
+ // font-size: 16px;
+  //padding: 10px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.container .btn:hover {
+  background-color: black;
+}
+
+
+.check-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.check-list li {
+  position: relative;
+  list-style-type: none;
+  padding-left: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.checked:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 5px;
+    height: 11px;
+    border-width: 0 2px 2px 0;
+    border-style: solid;
+    border-color: #00a8a8;
+    transform-origin: bottom left;
+    transform: rotate(45deg);
+
+}
+.unchecked:before{
+
+
+  content: 'X';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 5px;
+    height: 11px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+
+    color: red;
+    //transform-origin: bottom left;
+    //transform: rotate(45deg);
+
 }

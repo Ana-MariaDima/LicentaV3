@@ -45,6 +45,14 @@ export class Tab2Page {
       this.modalService.openRetetaModal(param,{canReload:false});
      // console.log(this.modalService.getCart());
     }
+    // toggleLiked(reteta){
+    //   reteta.liked = !reteta.liked;
+    // this.ReteteService.toggleLike(reteta.nume_reteta);
+    // }
+
+
+
+
 
     async openRetetaModal(reteta){
       var modal = await this.modalController.create({
@@ -61,6 +69,7 @@ export class Tab2Page {
           'liked':  reteta.liked
         }
       })
+
 
 
       modal.present()

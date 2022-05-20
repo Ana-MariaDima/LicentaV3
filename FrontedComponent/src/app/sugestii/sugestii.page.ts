@@ -12,15 +12,22 @@ import { ReteteService } from '../services/Retete/retete.service';
 export class SugestiiPage implements OnInit {
   retete:any[];
   itemsInCart;
+  theItems;
   searchTerm:any;
   constructor(private modalController: ModalController, private reteteService: ReteteService, private modalService:ModalServiceService) { }
 
   async ngOnInit() {
       var arrayIngrediente = localStorage.getItem('cart');
+
+      console.log ('ingrediente',arrayIngrediente)
       if(arrayIngrediente){
         arrayIngrediente = JSON.parse(arrayIngrediente);
         this.retete = await this.reteteService.getReteteSugerate(Object.keys(arrayIngrediente));
       }
+  }
+
+  isInCart(ing){
+    return !!this.theItems.find(ingInCart => ingInCart.nume_ingredient == ing.nume_ingredient);
   }
 
   ionViewWillEnter(){
@@ -28,17 +35,23 @@ export class SugestiiPage implements OnInit {
     var items = JSON.parse(localStorage.getItem('cart'))
     if(items){
     this.itemsInCart = Object.values(items).length;
-    console.log(this.itemsInCart)
+    this.theItems =Object.values(items)
+    //console.log(items)
     }
   }
 
   async openCart(){
     console.log("open Cart")
+
     await this.modalService.openCartModal()
+    this.modalController.dismiss()
     this.ionViewWillEnter();
   }
 
-
+  async dismiss() {
+    //const close: string = "Modal Removed";
+     this.modalController.dismiss();
+  }
 
   async openRetetaModal(reteta){
     console.log("Reteta deschisa", reteta)
@@ -66,9 +79,23 @@ export class SugestiiPage implements OnInit {
 
   }
 
+  onReview(reteta){
+
+    return (review)=>{
+      this.submitReview(reteta.nume_reteta, review);
+    }
+  }
+  submitReview(reteta, review){
+    this.reteteService.submitReview(reteta, review);
+  }
 
   toggleLiked(reteta) {
     reteta.liked = !reteta.liked;
+    if(reteta.liked ==true)
+    reteta.nr_likes=reteta.nr_likes+1;
+    else
+    reteta.nr_likes=reteta.nr_likes-1;
+
     this.reteteService.toggleLike(reteta.nume_reteta);
   }
 

@@ -81,7 +81,9 @@ export class ModalPopupPage implements OnInit {
   }
 
   async openCart(){
+    this.modalController.dismiss();
     await this.modalService.openCartModal()
     this.refreshCart();
+
  }
 }

@@ -59,7 +59,7 @@ export class Tab1Page {
   }
 
   async openCart(){
-    console.log("open Cart")
+   // console.log("open Cart")
     await this.modalService.openCartModal()
     this.ionViewWillEnter();
   }

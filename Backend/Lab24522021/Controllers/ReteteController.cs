@@ -36,7 +36,9 @@ namespace Licenta.Controllers
                 var tipR = _demoService.GetTipuriReteteRepository().GetById(reteta.IdTipReteta.ToString());
                 var catR = _demoService.GetCategoriiReteteRepository().GetById(reteta.IdCategorieReteta.ToString());
                 var pahar = _demoService.GetPahareRepository().GetById(reteta.IdPahar.ToString());
+                var nrLikes = _demoService.GetAprecieriRepository().GetByReteta(reteta.Id).Where(x => !x.Star).Count();
                 var tabelaAsociativaIng = _demoService.GetReteteIngredienteRepository().GetByReteta(reteta.Id).ToList();
+               
                 List<IngredientFolosit> retetaIngrediente = new List<IngredientFolosit>();
                 var ingredienteReteta = ingrediente.Where(x => tabelaAsociativaIng.Select(z => z.IdIngredient).Contains(x.Id)).ToList();
 
@@ -65,6 +67,7 @@ namespace Licenta.Controllers
                     nume_reteta = reteta.Nume_reteta,
                     poza_reteta = reteta.Poza_reteta,
                     rating = reteta.Rating_retea,
+                    nr_likes= nrLikes,
                     user_rating = 0,
                     retetaIngredient = retetaIngrediente
                 };
@@ -141,6 +144,7 @@ namespace Licenta.Controllers
             public float rating;
             public int user_rating;
             public int scor;
+            public int nr_likes;
             public List<IngredientFolosit> retetaIngredient;
         };
 
@@ -258,7 +262,7 @@ namespace Licenta.Controllers
             List<Aprecieri> ap = _demoService.GetAprecieriRepository().GetByCompositeKey(Guid.Parse(id), reteta.Id).Where(x => x.Star == false).ToList();
             if (ap.Count == 0)
             {
-                var apreciere = new Aprecieri() { Reteta = reteta, IdUser = Guid.Parse(id) };
+                var apreciere = new Aprecieri() { Reteta = reteta, IdUser = Guid.Parse(id), DateCreated = DateTime.Now, DateModified = DateTime.Now};
                 _demoService.GetAprecieriRepository().Create(apreciere);
             }
             else

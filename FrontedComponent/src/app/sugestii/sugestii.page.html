@@ -1,115 +1,126 @@
 <ion-header>
   <ion-toolbar>
 
-    <ion-grid>
-      <ion-row>
-        <button  style="background-color: transparent;  padding: 2%; float: left;" (click)="openCart()">
+
+        <button
+        style="background-color: transparent;padding: 2%; float: right;" routerLink="/home/tab4"><ion-icon name='arrow-back'></ion-icon>
+        </button>
+        <button style="background-color: transparent;  padding: 2%; float: left;" (click)="openCart()">
           <ion-badge>{{this.itemsInCart}}</ion-badge>
-           <ion-icon name="wine" style="font-size: 35px;"  ></ion-icon>
+          <ion-icon name="wine" style="font-size: 35px;"></ion-icon>
         </button>
 
-      <ion-title class="title">Ingrediente</ion-title>
-      </ion-row>
-      </ion-grid>
-      <ion-title>Sugestii</ion-title>
+        <ion-title class="title">Sugestii</ion-title>
+
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content  >
+<ion-content>
   <div>
-  <ion-list slot="content">
+    <ion-list slot="content">
 
       <ion-card *ngFor="let reteta of retete | filter: searchTerm" style="padding:10px;">
 
-        <ion-card-title style="text-align: center;">{{reteta.nume_reteta}}</ion-card-title>
+        <ion-card-title class="retetaTitle" style="text-align: center;">{{reteta.nume_reteta}}</ion-card-title>
         <ion-card-subtitle style="text-align: center;padding-bottom: 5%;" ng>
           Tip: {{reteta.nume_Tip_Retete }}
         </ion-card-subtitle>
-        <ion-card-content  >
+        <ion-card-content>
           <table>
 
             <tr>
-            <td>
-              <img [src]="reteta.poza_reteta" class="ImgRetete" style="border-radius: 10%;" />
+              <td>
+                <img [src]="reteta.poza_reteta" class="ImgRetete" />
               </td>
-                 <td>
-                   <table>
-                     <tr style="text-decoration:underline; color:black">
-            Ingrediente:
-          </tr>
-          <tr *ngFor="let ing of reteta.retetaIngredient" >
-            {{ing.nume_ingredient}}
-            </tr>
-            <tr>
-
-            </tr>
-            <tr>
-
-
-                <ion-button  class="round" expand="block" share="round" color="mycolor"  (click)="openRetetaModal(reteta)" width="50%"> Vezi mai multe detalii</ion-button>
-
-
-
-
-
-            </tr>
-
-          </table>
-              </td>
-
-
-          </tr>
-          </table>
-
-
-
-
-              </ion-card-content>
-
-              <ion-footer>
+              <td>
                 <table>
+                  <tr class="elementTitle">
+                    Ingrediente:
+                  </tr>
+                  <ul class="check-list">
+                  <li *ngFor="let ing of reteta.retetaIngredient"  >
+
+
+                    <div *ngIf="isInCart(ing)">
+                      <div  class="checked">
+                      {{ing.nume_ingredient}}
+
+                    </div>
+                    </div>
+                    <div *ngIf="!isInCart(ing)">
+                      <div  class="unchecked">
+                      {{ing.nume_ingredient}}
+
+                    </div>
+                    </div>
+
+
+
+                  </li>
+                </ul>
+                  <br>
+
                   <tr>
-                    <td width="100%">
 
-                    <ion-button  share="round" color="mycolor"  *ngIf="!reteta.liked" (click)="toggleLiked(reteta)">
-                      <ion-icon name="heart-outline"></ion-icon>
 
-                    </ion-button>
-
-                    <ion-button share="round" color="mycolor"*ngIf="reteta.liked" (click)="toggleLiked(reteta)">
-                      <ion-icon name="heart"></ion-icon>
-                    </ion-button>
-                  </td>
-
-                  <td width="100%">
-
-                    <ion-button  share="round" color="mycolor" >
-                      <ion-icon name="thumbs-up-sharp"></ion-icon>
-                      <div>15</div>
-                    </ion-button>
-
-                  </td>
-                  <td width="100%">
-                    <ion-button share="round" color="mycolor" style="float: right;" >
-                      <!--rating-stars rating=12> </rating-stars-->
-
-                      <div>Scor</div>
-                    </ion-button>
-                  </td>
-
-                </tr>
-              </table>
-              </ion-footer>
+                    <button class="buttonDetails" (click)="openRetetaModal(reteta)" width="50%"> Vezi mai multe
+                      detalii</button>
 
 
 
 
 
+                  </tr>
+
+                </table>
+              </td>
 
 
-        </ion-card>
+            </tr>
+          </table>
 
-</ion-list>
-</div>
+
+
+
+        </ion-card-content>
+
+        <ion-footer>
+          <table>
+            <tr>
+              <td width="100%">
+
+                <ion-button share="round" color="mycolor" *ngIf="!reteta.liked" (click)="toggleLiked(reteta)">
+                  <ion-icon name="heart-outline"></ion-icon>
+                  <div>{{reteta.nr_likes}}</div>
+                </ion-button>
+
+                <ion-button share="round" color="mycolor" *ngIf="reteta.liked" (click)="toggleLiked(reteta)">
+                  <ion-icon name="heart"></ion-icon>
+                  <div>{{reteta.nr_likes}}</div>
+                </ion-button>
+              </td>
+
+
+              <td width="100%">
+                <ion-button share="round" color="mycolor" style="float: right;">
+                  <rating-stars [rating]="reteta.user_rating" [onReview]="this.onReview(reteta)"> </rating-stars>
+
+                  <!--div>Scor ({{reteta.rating}})</div-->
+                </ion-button>
+              </td>
+
+            </tr>
+          </table>
+        </ion-footer>
+
+
+
+
+
+
+      </ion-card>
+
+    </ion-list>
+  </div>
 </ion-content>
-

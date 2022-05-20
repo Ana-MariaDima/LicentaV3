@@ -48,12 +48,13 @@ export class ModalPopupCartPage implements OnInit {
     if(localStorage.getItem("cart") != undefined)
     {
     this.itemsInCart = Object.values(JSON.parse(localStorage.getItem('cart')))
+    console.log('items in cart now', this.itemsInCart)
     }
 
     this.buttonDisabled = true;
     setTimeout(x=>{
       this.modalController.dismiss();
-      if(window.location.href.includes("Generate")){
+      if(window.location.href.includes("generate")){
         window.location.reload();
       }
 

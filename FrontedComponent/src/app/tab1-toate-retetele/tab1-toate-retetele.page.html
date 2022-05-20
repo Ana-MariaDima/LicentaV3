@@ -4,98 +4,82 @@
   </ion-toolbar>
   <ion-grid>
     <ion-row>
-      <ion-searchbar
-
-      animated
-      [(ngModel)]="searchTerm"
-      showCancelButton="focus"
-
-      ></ion-searchbar>
-      </ion-row>
-    </ion-grid>
-  </ion-header>
-  <ion-content  >
-    <div>
+      <ion-searchbar animated [(ngModel)]="searchTerm" showCancelButton="focus"></ion-searchbar>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content>
+  <div>
     <ion-list slot="content">
 
-        <ion-card *ngFor="let reteta of retete | filter: searchTerm" style="padding:10px;">
+      <ion-card *ngFor="let reteta of retete | filter: searchTerm" style="padding:10px;">
 
-          <ion-card-title style="text-align: center;">{{reteta.nume_reteta}}</ion-card-title>
-          <ion-card-subtitle style="text-align: center;padding-bottom: 5%;" ng>
-            Tip: {{reteta.nume_Tip_Retete }}
-          </ion-card-subtitle>
-          <ion-card-content  >
-            <table>
+        <ion-card-title class="retetaTitle" style="text-align: center;">{{reteta.nume_reteta}}</ion-card-title>
+        <ion-card-subtitle style="text-align: center;padding-bottom: 5%;" ng>
+          Tip: {{reteta.nume_Tip_Retete }}
+        </ion-card-subtitle>
+        <ion-card-content>
+          <table>
 
-              <tr>
+            <tr>
               <td>
-                <img [src]="reteta.poza_reteta" class="ImgRetete" style="border-radius: 10%;" />
-                </td>
-                   <td>
-                     <table>
-                       <tr style="text-decoration:underline; color:black">
-              Ingrediente:
-            </tr>
-            <tr *ngFor="let ing of reteta.retetaIngredient" >
-              {{ing.nume_ingredient}}
-              </tr>
-              <tr>
-
-              </tr>
-              <tr>
-                  <ion-button  class="round" expand="block" share="round" color="mycolor"  (click)="openRetetaModal(reteta)" width="50%"> Vezi mai multe detalii</ion-button>
-              </tr>
-              <!--tr>
-                <ion-button  share="round" color="mycolor"  *ngIf="!liked" (click)="toggleLiked()">
-                  <ion-icon name="heart-outline"></ion-icon>
-
-                </ion-button>
-
-                <ion-button share="round" color="mycolor"*ngIf="liked" (click)="toggleLiked()">
-                  <ion-icon name="heart"></ion-icon>
-                </ion-button>
-              </tr-->
-            </table>
-                </td>
-
-
-            </tr>
-            </table>
-                </ion-card-content>
-                <ion-footer>
-                  <table>
-                    <tr>
-                      <td width="100%">
-
-                      <ion-button  share="round" color="mycolor"  *ngIf="!reteta.liked" (click)="toggleLiked(reteta)">
-                        <ion-icon name="heart-outline"></ion-icon>
-
-                      </ion-button>
-
-                      <ion-button share="round" color="mycolor"*ngIf="reteta.liked" (click)="toggleLiked(reteta)">
-                        <ion-icon name="heart"></ion-icon>
-                      </ion-button>
-                    </td>
-
-                    <td width="100%">
-
-                      <ion-button  share="round" color="mycolor" >
-                        <ion-icon name="thumbs-up-sharp"></ion-icon>
-                        <div>15</div>
-                      </ion-button>
-
-                    </td>
-                    <td width="100%">
-                      <ion-button share="round" color="mycolor" style="float: right;" >
-                        <rating-stars [rating]="reteta.user_rating" [onReview] = "this.onReview(reteta)" > </rating-stars>
-
-                        <div>Scor ({{reteta.rating}})</div>
-                      </ion-button>
-                    </td>
+                <img [src]="reteta.poza_reteta" class="ImgRetete" />
+              </td>
+              <td>
+                <table>
+                  <tr class="elementTitle">
+                    Ingrediente
+                    <br>
 
                   </tr>
+                  <ul>
+                    <li *ngFor="let ing of reteta.retetaIngredient">
+                      {{ing.nume_ingredient}}</li>
+                  </ul>
+
+                  <br>
+
+
+                  <tr>
+                    <button class="buttonDetails" (click)="openRetetaModal(reteta)" width="50%"> Vezi mai multe
+                      detalii</button>
+                  </tr>
+
                 </table>
-                </ion-footer>
+              </td>
+
+
+            </tr>
+          </table>
+        </ion-card-content>
+        <ion-footer>
+          <table>
+            <tr>
+              <td width="100%">
+
+                <ion-button share="round" color="mycolor" *ngIf="!reteta.liked" (click)="toggleLiked(reteta)">
+                  <ion-icon name="heart-outline"></ion-icon>
+                  <div>{{reteta.nr_likes}}</div>
+                 </ion-button>
+
+                <ion-button share="round" color="mycolor" *ngIf="reteta.liked" (click)="toggleLiked(reteta)">
+                  <ion-icon name="heart"></ion-icon>
+                  <div>{{reteta.nr_likes}}</div>
+                </ion-button>
+              </td>
+
+
+              <td width="100%">
+                <ion-button share="round" color="mycolor" style="float: right;">
+                  <rating-stars [rating]="reteta.user_rating" [onReview]="this.onReview(reteta)"> </rating-stars>
+
+                  <!--div>Scor ({{reteta.rating}})</div-->
+                </ion-button>
+              </td>
+
+            </tr>
+          </table>
+        </ion-footer>
 
 
 
@@ -103,28 +87,10 @@
 
 
 
-          </ion-card>
+      </ion-card>
 
-  </ion-list>
-</div>
+    </ion-list>
+  </div>
 </ion-content>
 
-<style>
-    .round {
-  --width: 60px;
-  --height: 60px;
-  --border-radius: 50%;
-  --vertical-align: middle;
-  --padding-start: 10px;
-  --padding-end: 10px;
-}
-img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: inherit;
-    object-position: inherit;
-    border-radius: 10%;
-}
 
-</style>

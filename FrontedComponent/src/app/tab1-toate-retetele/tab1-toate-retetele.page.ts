@@ -60,7 +60,7 @@ export class Tab1ToateRetetelePage  {
         'instructiuni':reteta.instructiuni ,
         'pahar':reteta.nume_pahar ,
         'poza':reteta.poza_reteta,
-        'rating': reteta.rating_retea,
+        'rating': reteta.rating,
         'ingrediente':reteta.retetaIngredient,
         'liked':  reteta.liked,
         'categorieReteta': reteta.nume_Categorie_Retete
@@ -71,6 +71,7 @@ export class Tab1ToateRetetelePage  {
 
     modal.present()
     const {data} = await modal.onWillDismiss();
+
    // console.log("modal returned data", data)
 
   }
@@ -78,6 +79,11 @@ export class Tab1ToateRetetelePage  {
 
   toggleLiked(reteta) {
     reteta.liked = !reteta.liked;
+    if(reteta.liked ==true)
+    reteta.nr_likes=reteta.nr_likes+1;
+    else
+    reteta.nr_likes=reteta.nr_likes-1;
+
     this.reteteService.toggleLike(reteta.nume_reteta);
   }
 

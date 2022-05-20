@@ -8,6 +8,9 @@ import { SugestiiPageRoutingModule } from './sugestii-routing.module';
 
 import { SugestiiPage } from './sugestii.page';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { StarsComponentModule } from '../stars/stars.module';
+
+
 
 @NgModule({
   imports: [
@@ -15,7 +18,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FormsModule,
     IonicModule,
     SugestiiPageRoutingModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    StarsComponentModule,
+
   ],
   declarations: [SugestiiPage]
 })

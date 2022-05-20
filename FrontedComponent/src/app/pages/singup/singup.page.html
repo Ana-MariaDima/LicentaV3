@@ -12,6 +12,9 @@
   <form [formGroup]="myForm">
 
     <ion-list>
+      <ion-item lines='none'>
+        <a routerLink='/login'>Ai deja cont? Autentifică-te!</a>
+      </ion-item>
       <ion-item>
         <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">E-mail</ion-label>
         <ion-input autocomplete="off" type="text" name="email" formControlName="email" ></ion-input>

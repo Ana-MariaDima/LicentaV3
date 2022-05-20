@@ -15,6 +15,7 @@ using Licenta.Repositories.TipuriReteteRepository;
 using Licenta.Repositories.PahareRepository;
 using Licenta.Repositories.ReteteIngredienteRepository;
 using Licenta.Repositories.AprecieriRepository;
+using Licenta.Services.AuthService;
 
 namespace Licenta.Utilities.Extensions
 {
@@ -44,6 +45,8 @@ namespace Licenta.Utilities.Extensions
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddTransient<IDemoService, DemoService>();
+            services.AddTransient<IUserService, UserService>();
+
             return services;
         }
         public static IServiceCollection AddSeeders(this IServiceCollection services)
