@@ -31,15 +31,22 @@ ion-icon {
 
 .title{
   text-align: center;
-  font-size: 25px;
-  padding-top: 4%;
+  font-size: 30px;
+  padding-top: 2%;
   padding-bottom: 4%;
+
+  font-family: “Comic Sans MS”, “Comic Sans”, cursive;
+
 }
 
 .title2{
   text-align: center;
   font-size: 20px;
-  padding: 2%;
+  //padding: 2%;
+ // margin-left:40%;
+
+  font-family: “Comic Sans MS”, “Comic Sans”, cursive;
+
 
 }
 .subcategorieIngrediente{
@@ -50,7 +57,24 @@ ion-icon {
     width:35%;
     height: auto;
 
-}
+  font-family: “Comic Sans MS”, “Comic Sans”, cursive;}
+
+
+
+  .subcategorieIngredienteSmall{
+
+
+    //margin-left: 20px auto 20px;
+    display: block;
+      width:7em ;
+      height: auto;
+
+    //font-family: “Comic Sans MS”, “Comic Sans”, cursive;
+
+
+  }
+
+
 
 
 .buttonClose{
@@ -214,3 +238,11 @@ ion-icon {
     //transform: rotate(45deg);
 
 }
+
+.card-footer {
+  position: absolute;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+

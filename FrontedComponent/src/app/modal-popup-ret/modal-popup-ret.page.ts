@@ -20,6 +20,10 @@ export class ModalPopupPageRet implements OnInit {
   @Input() rating: any;
   @Input() liked: any;
   @Input() canReload: boolean;
+  @Input() nr_likes: any;
+  @Input() user_rating: any;
+
+
 
   itemsInCart: Object[]=[];
    instructiuniSplit:any[];
@@ -46,15 +50,36 @@ export class ModalPopupPageRet implements OnInit {
 
   async dismiss() {
     const close: string = "Modal Removed";
-    return this.modalController.dismiss({likedState:this.liked});
-
-
+    console.log("Modal dismissed", this.nr_likes)
+    var payload = JSON.stringify({likedState:this.liked, nr_likes:this.nr_likes, user_rating:this.user_rating, rating:this.rating});
+    return this.modalController.dismiss({payload: payload}); //{likedState:this.liked, nr_likes:this.nr_likes, user_rating:this.user_rating, rating:this.rating}
   }
   toggleLiked() {
     this.liked = !this.liked;
 
 
+    if(this.liked ==true)
+    this.nr_likes=this.nr_likes+1;
+    else
+    this.nr_likes=this.nr_likes-1;
+
     this.reteteService.toggleLike(this.model_title);
 
   }
+
+  // onReview(){
+
+  //   return async (review)=>{
+  //     var rezultat =  await this.submitReview(this.model_title, review);
+  //     this.rating = rezultat.medie;
+  //     this.user_rating = review;
+  //   }
+  // }
+
+  // async submitReview(reteta, review){
+  //   var nouaMedie = await this.reteteService.submitReview(reteta, review);
+
+  //   return nouaMedie
+  // }
+
 }

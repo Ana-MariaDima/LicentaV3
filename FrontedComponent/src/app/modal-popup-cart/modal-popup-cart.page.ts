@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { environment } from 'src/environments/environment';
 import { ReteteService } from '../services/Retete/retete.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class ModalPopupCartPage implements OnInit {
   items:Array<any>
   itemsInCart: any[]=[];
   buttonDisabled:boolean =false;
+  imagesUrl = environment.imagesUrl;
   constructor(private modalController:ModalController, private reteteService: ReteteService) {
 
   }
@@ -19,6 +21,11 @@ export class ModalPopupCartPage implements OnInit {
     if(localStorage.getItem("cart") != undefined)
     {
     this.itemsInCart = Object.values(JSON.parse(localStorage.getItem('cart')))
+    this.itemsInCart.forEach(async ing  => {
+      ing.subCategorieIngredient= await this.reteteService.getSubcategIngredient(ing.idSubCategorieIngredient);
+      console.log("Subcateg in cart", ing.subCategorieIngredient);
+
+    });
     console.log("Items in cart", this.itemsInCart);
     }
   }

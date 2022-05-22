@@ -97,7 +97,7 @@ namespace Licenta.Controllers
             _demoService.GetReteteRepository().Update(reteta);
             _demoService.GetReteteRepository().Save();
 
-            return Ok();
+            return Ok(new { medie = reteta.Rating_retea });
 
         }
         [HttpGet("NrLikes")]

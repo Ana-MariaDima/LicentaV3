@@ -23,7 +23,7 @@ namespace Licenta.Repositories.AprecieriRepository
 
         public List<Aprecieri> GetByUser(Guid id_user)
         {
-            return _table.Include(x => x.IdUser).Where(x => x.IdUser.Equals(id_user)).ToList();
+            return _table.Where(x => x.IdUser.Equals(id_user)).ToList();
         }
 
         public List<Aprecieri> GetByReteta(Guid id_retetea)

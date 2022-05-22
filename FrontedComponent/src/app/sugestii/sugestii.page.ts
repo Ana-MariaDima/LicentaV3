@@ -23,6 +23,7 @@ export class SugestiiPage implements OnInit {
       if(arrayIngrediente){
         arrayIngrediente = JSON.parse(arrayIngrediente);
         this.retete = await this.reteteService.getReteteSugerate(Object.keys(arrayIngrediente));
+        console.log("retete sugerate", this.retete)
       }
   }
 
@@ -66,27 +67,48 @@ export class SugestiiPage implements OnInit {
         'instructiuni':reteta.instructiuni ,
         'pahar':reteta.nume_pahar ,
         'poza':reteta.poza_reteta,
-        'raiting': reteta.rating_retea,
+        'rating': reteta.rating,
         'ingrediente':reteta.retetaIngredient,
         'liked':  reteta.liked,
-        'categorieReteta': reteta.nume_Categorie_Retete
+        'categorieReteta': reteta.nume_Categorie_Retete,
+        'nr_likes': reteta.nr_likes,
+        'user_rating':reteta.user_rating
       }
     })
 
 
     modal.present()
-    const {data} = await modal.onWillDismiss();
+    var {data} = await modal.onWillDismiss();
+    data = JSON.parse(data.payload);
+    if(data.nr_likes!= reteta.nr_likes ){
+      this.toggleLiked(reteta);
+    }
+
+    console.log("Modal closed !", data);
+    //if(data.user_rating != reteta.user_rating)
+    reteta.user_rating = data.user_rating;
+    reteta.rating = data.rating;
+
+    var idx = this.retete.findIndex(x=>{
+      x.nume_reteta == reteta.nume_reteta
+    });
+
 
   }
 
   onReview(reteta){
 
-    return (review)=>{
-      this.submitReview(reteta.nume_reteta, review);
+    return async (review)=>{
+      var rezultat =  await this.submitReview(reteta.nume_reteta, review);
+      reteta.user_rating = review;
+      reteta.rating = rezultat.medie;
     }
   }
-  submitReview(reteta, review){
-    this.reteteService.submitReview(reteta, review);
+
+  async submitReview(reteta, review){
+    var nouaMedie = await this.reteteService.submitReview(reteta, review);
+
+    return nouaMedie
   }
 
   toggleLiked(reteta) {

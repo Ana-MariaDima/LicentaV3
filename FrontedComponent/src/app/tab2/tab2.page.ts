@@ -19,7 +19,7 @@ export class Tab2Page {
 
   async ngOnInit() {
 
-    await this.fetchReteteApreciate();
+    //await this.fetchReteteApreciate();
 
   }
 
@@ -36,6 +36,13 @@ export class Tab2Page {
       });
     });
 
+    //console.log(this.retete)
+
+  }
+  async ionViewWillEnter(){
+    await this.fetchReteteApreciate();
+
+
   }
 
 
@@ -45,10 +52,14 @@ export class Tab2Page {
       this.modalService.openRetetaModal(param,{canReload:false});
      // console.log(this.modalService.getCart());
     }
-    // toggleLiked(reteta){
-    //   reteta.liked = !reteta.liked;
-    // this.ReteteService.toggleLike(reteta.nume_reteta);
-    // }
+    toggleLiked(reteta){
+      reteta.liked = !reteta.liked;
+      if(reteta.liked ==true)
+      reteta.nr_likes=reteta.nr_likes+1;
+      else
+      reteta.nr_likes=reteta.nr_likes-1;
+    this.ReteteService.toggleLike(reteta.nume_reteta);
+    }
 
 
 
@@ -64,20 +75,49 @@ export class Tab2Page {
           'instructiuni':reteta.instructiuni ,
           'pahar':reteta.nume_pahar ,
           'poza':reteta.poza_reteta,
-          'raiting': reteta.rating_retea,
+          'rating': reteta.rating,
           'ingrediente':reteta.retetaIngredient,
-          'liked':  reteta.liked
+          'liked':  reteta.liked,
+          'categorieReteta': reteta.nume_Categorie_Retete,
+          'nr_likes': reteta.nr_likes,
+          'user_rating':reteta.user_rating
         }
       })
 
 
 
       modal.present()
-      const {data} = await modal.onWillDismiss();
-      if(data.likedState != reteta.liked){
+      var {data} = await modal.onWillDismiss();
+      data = JSON.parse(data.payload);
+      if(data.likedState != reteta.liked ){
         await this.fetchReteteApreciate();
+        this.toggleLiked(reteta);
+        (window as any).EventSystem.trigger("retetaUnliked", reteta);
       }
 
+      reteta.user_rating = data.user_rating;
+      reteta.rating = data.rating;
+
+      var idx = this.retete.findIndex(x=>{
+        x.nume_reteta == reteta.nume_reteta
+      });
+
     }
+
+    onReview(reteta){
+
+      return async (review)=>{
+        var rezultat =  await this.submitReview(reteta.nume_reteta, review);
+        reteta.user_rating = review;
+        reteta.rating = rezultat.medie;
+      }
+    }
+
+    async submitReview(reteta, review){
+      var nouaMedie = await this.ReteteService.submitReview(reteta, review);
+
+      return nouaMedie
+    }
+
 
 }

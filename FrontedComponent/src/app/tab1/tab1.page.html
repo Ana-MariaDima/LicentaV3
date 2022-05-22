@@ -1,19 +1,21 @@
 
 <ion-header >
+
   <ion-toolbar>
-<ion-grid>
-    <ion-row>
-      <button  style="background-color: transparent;  padding: 2%; float: left;" (click)="openCart()">
-        <ion-badge>{{this.itemsInCart}}</ion-badge>
-         <ion-icon name="wine" style="font-size: 35px;"  ></ion-icon>
-      </button>
+    <button style="background-color: transparent;padding: 2%;" (click)="openCart()">
+      <ion-badge *ngIf="this.itemsInCart!=0" color="mycolor" >{{this.itemsInCart}}</ion-badge>
+       <ion-icon name="wine" ></ion-icon>
+    </button>
 
-    <ion-title class="title">Ingrediente</ion-title>
-    </ion-row>
-    </ion-grid>
-
+  <!-- <button
+  style="background-color: transparent;padding: 2%; float: right;" (click)="dismiss()"><ion-icon name="close"></ion-icon>
+  </button> -->
+  <ion-title class="title">Ingrediente</ion-title>
 
 </ion-toolbar>
+
+
+
 
 
 
@@ -36,7 +38,7 @@
             <ion-card-content class="centered">
 
               <ion-img [src]="imagesUrl+ subcategorie.pozaSubcategorieIngredient+'.png'" class="subcategorieIngrediente"  ></ion-img>
-              <ion-button expand="block" class="round" color="mycolor" (click)="openCardModal(subcategorie)">
+              <ion-button  class="buttonDetails" expand="block"  color="mycolor" (click)="openCardModal(subcategorie)">
               <ion-icon name="add"></ion-icon>
             </ion-button>
             </ion-card-content>

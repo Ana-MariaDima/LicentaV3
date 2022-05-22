@@ -62,9 +62,23 @@ export class ReteteService {
       var reteta = (await this.http.post(environment.baseUrl+"Retete/like",{Name:model_title, Token:localStorage.getItem('token')}).toPromise() as Array<any>);
      // console.log(reteta, 'toggle');
     }
+    async fetchReteteApreciate(){
+      var retete = [];
+       var reteteliked = (await this.getLikedRetete()as Array<any>);
+      //console.log("fetchReteteApreciate ",)
+      reteteliked.forEach(reteta => {
+          (this.getReteta(reteta.idReteta)).then(async (reteta)=>{
+            reteta[0].liked = true;
+
+            //reteta[0].user_rating = await this.ReteteService.getReviewReteta(reteta[0].nume_reteta);
+            retete.push(reteta[0])
+        });
+      });
+      return retete;
+    }
 
     async submitReview(reteta, review){
-      (await this.http.post(environment.baseUrl+"Aprecieri/SubmitReview",{Name:reteta, Token:localStorage.getItem('token'), Review:review}).toPromise() as Array<any>);
+      return (await this.http.post(environment.baseUrl+"Aprecieri/SubmitReview",{Name:reteta, Token:localStorage.getItem('token'), Review:review}).toPromise() as any);
     }
     async getRetete(initialRequest:boolean):Promise<any>{
       var result = (await this.http.post(environment.baseUrl+"Retete",{initialRequest}).toPromise() as Array<any>);
@@ -100,6 +114,11 @@ export class ReteteService {
     }
     getNumeIngredient(idIngredient:string):Promise<any>{
       return this.http.get(environment.baseUrl+"Ingrediente/"+idIngredient).toPromise();
+    }
+
+    async getSubcategIngredient(idSubcateg:string):Promise<any>{
+      var result = await this.http.get(environment.baseUrl+"SubCategoriiIngrediente/"+idSubcateg).toPromise() as Array<any> ;
+      return result
     }
 
     getLikedRetete():Promise<any>{

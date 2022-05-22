@@ -36,7 +36,7 @@ namespace Licenta.Controllers
         {
 
             var response = _userService.Authentificate(user);
-            if(response== null)
+            if (response == null)
             {
                 return BadRequest(new { Message = "Username or Password is invalid" });
             }
@@ -46,15 +46,15 @@ namespace Licenta.Controllers
         //create -http post
         [AllowAnonymous]
         [HttpPost("create")]
-        public IActionResult Create (UserRequestDTO user)
+        public IActionResult Create(UserRequestDTO user)
         {
 
             //User.AddIdentity(UserToCreate.);
-            try { 
-            var result=_userService.Create(user);
-            return Ok(new { token = result, isSuccess = true });
-        }
-            catch(Exception e)
+            try {
+                var result = _userService.Create(user);
+                return Ok(new { token = result, isSuccess = true });
+            }
+            catch (Exception e)
             {
                 return Ok(new { token = "", isSuccess = false });
             }
@@ -63,8 +63,8 @@ namespace Licenta.Controllers
 
         //Trebuie facut si un CREATE admin (vezi lab 5 min 59
 
-       // [Authorize(Roles ="Admin")] // doar cei care au  drepturi de admin, pot accesa acest end point
-       // [Authorization(Role.Admin)]
+        // [Authorize(Roles ="Admin")] // doar cei care au  drepturi de admin, pot accesa acest end point
+        // [Authorization(Role.Admin)]
         [HttpGet]
         public IActionResult GetAllUsers()
         {
@@ -76,17 +76,22 @@ namespace Licenta.Controllers
         {
 
             var user = _userService.GetById(id);
-            var result =  _userService.Delete(user.Id);// nu merge delete 
+            var result = _userService.Delete(user.Id);// nu merge delete 
 
-           
-            
+
+
             return Ok();
         }
 
+        public class UserInfoDTO{
+            public string Token;
+        }
 
-        [HttpPost("Get/")]
-        public IActionResult GetById(string Token)
+
+        [HttpPost("GetUserInfo/")]
+        public IActionResult GetUserInfo(UserInfoDTO payload)
         {
+            string Token = payload.Token;
             var handler = new JwtSecurityTokenHandler();
             var jwtSecurityToken = handler.ReadJwtToken(Token);
             var id = jwtSecurityToken.Claims.Where(z => z.Type == "id").FirstOrDefault().Value;

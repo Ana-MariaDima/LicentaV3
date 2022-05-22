@@ -37,15 +37,23 @@ export class Tab1ToateRetetelePage  {
     })
 
     this.hasReachedEnd = this.retete.length == 0;
+    console.log("retete all", this.retete)
 
     this.retete_all=(await this.ReteteService.allRetete());
 
+    (window as any).EventSystem.listen('retetaUnliked', (retetaUnliked)=>{
+        var idx = this.retete.findIndex(r=>
+          r.nume_reteta == retetaUnliked.nume_reteta
+        );
+
+        this.retete[idx].liked = false;
+    });
     //console.log(this.retete_all)
   }
 
-  async openCardModal(reteta){
-     //await Tab1ToateRetetelePage.openRetetaModal(reteta);
-  }
+  // async openCardModal(reteta){
+  //    //await Tab1ToateRetetelePage.openRetetaModal(reteta);
+  // }
 
   async openRetetaModal(reteta){
     console.log("Reteta deschisa", reteta)
@@ -63,18 +71,42 @@ export class Tab1ToateRetetelePage  {
         'rating': reteta.rating,
         'ingrediente':reteta.retetaIngredient,
         'liked':  reteta.liked,
-        'categorieReteta': reteta.nume_Categorie_Retete
+        'categorieReteta': reteta.nume_Categorie_Retete,
+        'nr_likes':reteta.nr_likes,
+        'user_rating':reteta.user_rating,
 
       }
     })
 
-
     modal.present()
-    const {data} = await modal.onWillDismiss();
+    var {data} = await modal.onWillDismiss();
+    console.log(data, "data all")
 
+    data = JSON.parse(data.payload);
+    if(data.nr_likes!= reteta.nr_likes ){
+      this.toggleLiked(reteta);
+    }
+
+    console.log("Modal closed !", data);
+    //if(data.user_rating != reteta.user_rating)
+    reteta.user_rating = data.user_rating;
+    reteta.rating = data.rating;
+
+    var idx = this.retete.findIndex(x=>{
+      x.nume_reteta == reteta.nume_reteta
+    });
+
+    //this.retete[idx]  // = fetch()
+    // var reteteTmp = this.retete;
+    // this.retete= []
+    // setTimeout(()=>{
+    //   this.retete = reteteTmp
+    // },100)
+    //this.retete = reteteTmp;
    // console.log("modal returned data", data)
 
-  }
+
+}
 
 
   toggleLiked(reteta) {
@@ -85,17 +117,23 @@ export class Tab1ToateRetetelePage  {
     reteta.nr_likes=reteta.nr_likes-1;
 
     this.reteteService.toggleLike(reteta.nume_reteta);
+    console.log("before fetched");
+    this.reteteService.fetchReteteApreciate();
   }
 
   onReview(reteta){
 
-    return (review)=>{
-      this.submitReview(reteta.nume_reteta, review);
+    return async (review)=>{
+      var rezultat =  await this.submitReview(reteta.nume_reteta, review);
+      reteta.user_rating = review;
+      reteta.rating = rezultat.medie;
     }
   }
 
-  submitReview(reteta, review){
-    this.reteteService.submitReview(reteta, review);
+  async submitReview(reteta, review){
+    var nouaMedie = await this.reteteService.submitReview(reteta, review);
+
+    return nouaMedie
   }
 }
 

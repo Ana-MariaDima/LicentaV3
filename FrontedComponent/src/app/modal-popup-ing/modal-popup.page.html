@@ -1,9 +1,10 @@
 <ion-header>
   <ion-toolbar>
       <button  style="background-color: transparent;padding: 2%;"  (click)="openCart()">
-        <ion-badge *ngIf="itemsInCart.length">{{itemsInCart.length}}</ion-badge>
+        <ion-badge *ngIf="itemsInCart.length" color="mycolor">{{itemsInCart.length}}</ion-badge>
          <ion-icon name="wine" ></ion-icon>
       </button>
+
 
     <button
     style="background-color: transparent;padding: 2%; float: right;" (click)="dismiss()"><ion-icon name="close"></ion-icon>

@@ -13,32 +13,33 @@
 
     <ion-list>
       <ion-item lines='none'>
-        <a routerLink='/login'>Ai deja cont? Autentifică-te!</a>
+        <br>
+        <a routerLink='/login' style="padding: 2%; color: #dfa5fa; font-size: medium;font-family: “Comic Sans MS”, “Comic Sans”, cursive;" >Ai deja cont? Autentifică-te!</a>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">E-mail</ion-label>
+        <ion-label position="stacked" style="padding: 2%;">E-mail</ion-label>
         <ion-input autocomplete="off" type="text" name="email" formControlName="email" ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Nume</ion-label>
+        <ion-label position="stacked" style="padding: 2%;">Nume</ion-label>
         <ion-input autocomplete="off" type="text" name="LastName" formControlName="lastName" ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked"style="padding-bottom: 2%; padding-top: 2%;">Prenume</ion-label>
+        <ion-label position="stacked"style="padding: 2%;">Prenume</ion-label>
         <ion-input autocomplete="off" type="text" name="firstName" formControlName="firstName" ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Nume de utilizator</ion-label>
+        <ion-label position="stacked" style="padding: 2%;">Nume de utilizator</ion-label>
         <ion-input autocomplete="off" type="text" name="username" formControlName="username" ></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Parola</ion-label>
+        <ion-label position="stacked" style="padding: 2%;">Parolă</ion-label>
         <ion-input autocomplete="off" type="password" name="password"  formControlName="password"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Confirma Parola</ion-label>
+        <ion-label position="stacked" style="padding: 2%;">Confirmă Parola</ion-label>
         <ion-input autocomplete="off" type="password" name="confirmpassword"  formControlName="confirmpassword"></ion-input>
       </ion-item>
 
@@ -50,30 +51,30 @@
       </div>
 
       <ion-item>
-        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Sex</ion-label>
+        <ion-label position="stacked" style="padding: 2%;">Sex</ion-label>
         <ion-input >
 
           <ion-select  name="Sex"  formControlName="sex">
             <ion-select-option value="F">Feminin</ion-select-option>
             <ion-select-option value="M">Masculin</ion-select-option>
-            <ion-select-option value="N">Nu doresc sa specific</ion-select-option>
+            <ion-select-option value="N">Nu doresc să specific</ion-select-option>
           </ion-select>
          </ion-input>
       </ion-item>
 
 
       <ion-item>
-        <ion-label position="stacked" style="padding-bottom: 2%; padding-top: 2%;">Varsta</ion-label>
+        <ion-label position="stacked" style="padding:2%;">Vârstă</ion-label>
         <ion-input>
           <ion-select  name="varsta"  formControlName="varsta">
 
-            <ion-select-option value="18">Intre 18 si 25</ion-select-option>
-            <ion-select-option value="26">Intre 26 si 35 </ion-select-option>
-            <ion-select-option value="36">Intre 36 si 45</ion-select-option>
-            <ion-select-option value="46">Intre 46 si 60</ion-select-option>
+            <ion-select-option value="18">Între 18 si 25</ion-select-option>
+            <ion-select-option value="26">Între 26 si 35 </ion-select-option>
+            <ion-select-option value="36">Între 36 si 45</ion-select-option>
+            <ion-select-option value="46">Între 46 si 60</ion-select-option>
             <ion-select-option value="61">Peste 60</ion-select-option>
 
-            <ion-select-option value="-1">Nu doresc sa specific</ion-select-option>
+            <ion-select-option value="-1">Nu doresc să specific</ion-select-option>
 
           </ion-select>
         </ion-input>
@@ -81,6 +82,6 @@
 
 
     </ion-list>
-    <ion-button expand="block" share="round" color="mycolor"  [disabled]="!myForm.valid" (click)="doRegister()">Register</ion-button>
+    <ion-button style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"  expand="block"  share="round" color="mycolor"  [disabled]="!myForm.valid" (click)="doRegister()">Crează</ion-button>
   </form>
 </ion-content>

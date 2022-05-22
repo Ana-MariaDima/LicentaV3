@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 export class StarsComponent implements OnInit {
   @Input() rating: number;
   @Input() onReview: (review)=>void
+  @Input() disabled: boolean;
   priorityVector: boolean[] = new Array<boolean>(5);
 
   constructor() { }
@@ -17,6 +18,8 @@ export class StarsComponent implements OnInit {
   }
 
   reval(index, triggeredAutomatically = false) {
+    if(this.disabled && !triggeredAutomatically) return;
+
     this.rating = index > 0 ? index : -index;
 
     for (let i = 0; i < 5; i++) {
@@ -26,4 +29,6 @@ export class StarsComponent implements OnInit {
     if(!triggeredAutomatically)
       this.onReview(this.rating);
   }
+
+
 }

@@ -89,11 +89,12 @@
           </li>
         </ul>
         <tr class="elementTitle">
-          Scor:
+          Scor Mediu
         </tr>
-        <ul>
-          <rating-stars [rating]="rating"> </rating-stars>
+        <ul style="display: inline-flex; align-items: center;">
+          <rating-stars [rating]="rating" [disabled]="true"> </rating-stars>
 
+          <span style="margin-left: 10px;">({{rating}})</span>
 
 
         </ul>

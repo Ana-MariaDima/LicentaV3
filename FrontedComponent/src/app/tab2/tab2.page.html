@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-toolbar>
-    <ion-title class="title">Retete Apreciate </ion-title>
+    <ion-title class="title">Retete Favorite</ion-title>
 
   </ion-toolbar>
 </ion-header>
@@ -10,12 +10,52 @@
 <ion-content >
   <div>
     <ion-list slot="content">
+      <div *ngIf="retete.length==0">
+        <ion-card  style="padding:10px;">
+
+          <ion-card-title class="retetaTitle" style="text-align: center;">Nicio retetea favorit</ion-card-title>
+
+          <ion-card-content>
+
+        <table>
+          <tr>
+            <div class="container">
+
+                <img src="assets/images/logo.png" class="ImgRetete ImgRetetePopUp" />
+                <br>
+                <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;" routerLink='/home/tab1' >
+                   Descoperă ceva nou
+                </ion-button>
+
+
+            </div>
+          </tr>
+          <br>
+
+
+
+
+
+
+
+          <!--button class="buttonDetails">
+            Descopera ceva nou aici!
+          </button-->
+        </table>
+        </ion-card-content>
+        </ion-card>
+
+      </div>
 
       <ion-card *ngFor="let reteta of  retete" style="padding:10px;">
 
         <ion-card-title class="retetaTitle" style="text-align: center;">{{reteta.nume_reteta}}</ion-card-title>
-        <ion-card-subtitle style="text-align: center;padding-bottom: 5%;" ng>
-          Tip: {{reteta.nume_Tip_Retete }}
+        <ion-card-subtitle  ng>
+
+          <span style="       margin-left: 20%;padding-bottom: 5%;padding-bottom: 5%;">Tip: {{reteta.nume_Tip_Retete }} </span>
+
+
+          <span style="       position: absolute;padding-bottom: 5%; right: 20%;padding-bottom: 5%;">Scor: {{reteta.rating}}</span>
         </ion-card-subtitle>
         <ion-card-content>
           <table>
@@ -40,7 +80,7 @@
               <td>
                 <table>
                   <tr class="elementTitle">
-                    Ingrediente:
+                    Ingrediente
                     <br>
 
                   </tr>
@@ -64,19 +104,19 @@
           </table>
 
         </ion-card-content>
-        <!-- <ion-footer>
+        <ion-footer>
           <table>
             <tr>
               <td width="100%">
 
                 <ion-button share="round" color="mycolor" *ngIf="!reteta.liked" (click)="toggleLiked(reteta)">
                   <ion-icon name="heart-outline"></ion-icon>
-                  <div>15</div>
-                </ion-button>
+                  <div>{{reteta.nr_likes}}</div>
+                 </ion-button>
 
                 <ion-button share="round" color="mycolor" *ngIf="reteta.liked" (click)="toggleLiked(reteta)">
                   <ion-icon name="heart"></ion-icon>
-                  <div>15</div>
+                  <div>{{reteta.nr_likes}}</div>
                 </ion-button>
               </td>
 
@@ -84,15 +124,14 @@
               <td width="100%">
                 <ion-button share="round" color="mycolor" style="float: right;">
                   <rating-stars [rating]="reteta.user_rating" [onReview]="this.onReview(reteta)"> </rating-stars>
-
-
+<!--
+                  <span style="margin-left: 10px;">({{reteta.rating}})</span> -->
                 </ion-button>
               </td>
 
             </tr>
           </table>
-        </ion-footer> -->
-
+        </ion-footer>
 
 
 
