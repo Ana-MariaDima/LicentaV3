@@ -130,7 +130,16 @@ export class ReteteService {
 
      async getReteta(idReteta:string):Promise<any>{
       var rezultat = (await this.http.get(environment.baseUrl+"Retete/liked/"+idReteta).toPromise()) as Array<any>;
-      return this.groupBy(rezultat);
+
+      var reviewRetete = (await this.http.post(environment.baseUrl+"Aprecieri/GetByIdReviews",{token:localStorage.getItem('token')}).toPromise() as Array<any>);
+      // console.log(likedRetete, result)
+      reviewRetete.forEach(rR =>{
+      //   console.log(lR);
+         try{
+          (rezultat.find((x:any) =>{   return x.id == rR.idReteta;}) as any).user_rating = rR.review;
+         }catch(e){console.log(e)}
+       })
+      return rezultat; //this.groupBy(rezultat);
     }
 
     async getReteteSugerate(arrayIngrediente){

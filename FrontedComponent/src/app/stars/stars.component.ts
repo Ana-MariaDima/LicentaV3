@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
   styleUrls: ['./stars.component.scss'],
 })
 export class StarsComponent implements OnInit {
+  @Input() id:string;
   @Input() rating: number;
   @Input() onReview: (review)=>void
   @Input() disabled: boolean;
@@ -15,6 +16,10 @@ export class StarsComponent implements OnInit {
 
   ngOnInit() {
     this.reval(this.rating, true);
+
+    (window as any).EventSystem.listen('retetaReviewed>>reteta='+this.id, (ret)=>{
+        this.reval(ret.user_rating, true);
+    });
   }
 
   reval(index, triggeredAutomatically = false) {

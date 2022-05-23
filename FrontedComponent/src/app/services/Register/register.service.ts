@@ -22,6 +22,6 @@ export class RegisterService {
     console.log("creating user", data);
     return this.http.post(this.baseUrl+"Users/create",
                           data,
-                          this.publicHeaders)
+                          this.publicHeaders).toPromise()
   }
 }

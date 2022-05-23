@@ -12,18 +12,18 @@
     <ion-list>
       <ion-item>
         <ion-label position="stacked" style="padding: 2%;">Nume de utilizator</ion-label>
-        <ion-input  autocomplete="doNotAutoComplete"  type="text" name="username" [(ngModel)]="user.username" (keydown.enter)="doLogin()"></ion-input>
+        <ion-textarea   autocomplete="doNotAutoComplete"  type="text" name="username" [(ngModel)]="user.username" (keydown.enter)="doLogin()"></ion-textarea >
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked" style="padding: 2%;">Parolă</ion-label>
-        <ion-input autocomplete="off" type="password" name="password"  [(ngModel)]="user.password" (keydown.enter)="doLogin()"></ion-input>
+        <ion-input  autocomplete="doNotAutoComplete" type="password" name="password"  [(ngModel)]="user.password" (keydown.enter)="doLogin()"></ion-input >
       </ion-item>
 
       <ion-item lines='none'>
         <a routerLink='/register' style="padding: 2%; color: #dfa5fa; font-size: medium;font-family: “Comic Sans MS”, “Comic Sans”, cursive;">Nu ai cont? Crează cont!</a>
       </ion-item>
     </ion-list>
-    <ion-button  style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"  expand="block"  share="round" color="mycolor" (click)="doLogin()">Autentifică-te</ion-button>
+    <ion-button  style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"  expand="block"  share="round" color="mycolor"   (click)="doLogin()">Autentifică-te</ion-button>
   </form>
 </ion-content>

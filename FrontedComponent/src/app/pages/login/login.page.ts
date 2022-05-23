@@ -12,7 +12,7 @@ import { User } from 'src/app/interfaces/user';
 })
 export class LoginPage implements OnInit{
 
-
+ validation:any ;
   public user: User ={
     username:'',
     password:''
@@ -30,75 +30,62 @@ export class LoginPage implements OnInit{
     //console.log(this.postData);
     let username = this.user.username.trim();
     let password = this.user.password.trim();
+
+
     return (
       this.user.username &&
-      this.user.password &&
-      username.length > 0 &&
-      password.length > 0
+                    this.user.password &&
+                    username.length > 0 &&
+                    password.length > 0
     );
   }
 
- /* loginAction() {
-    if (this.validateInputs()) {
-      this.authService.login(this.user).subscribe(
-        (res: any) => {
-          if (res.userData) {
-            // Storing the User data.
-            this.storageService
-              .store(AuthConstants.AUTH, res.userData)
-              .then(res => {
-                this.router.navigate(['home']);
-              });
-          } else {
-            this.toastService.presentToast('Incorrect username and password.');
-          }
-        },
-        (error: any) => {
-          this.toastService.presentToast('Network Issue.');
-        }
-      );
-    } else {
-      this.toastService.presentToast(
-        'Please enter email/username or password.'
-      );
-    }
-  }*/
-  doLogin():void {
-    this.error=false;
-    //console.log('Login Clicked', this.user);
 
-    // if(this.validateEmail(this.user.username))
-    // {
-     // console.log('Login Clicked2');
-      this.authService.login(this.user).subscribe((response: any) =>{
-        //console.log(response);
+  doLogin():void {
+
+    this.error=false;
+
+      this.authService.login(this.user).then((response: any) =>{
+
         if(response && response.token)
         {
           localStorage.setItem('token', response.token);
-          //this.router.navigate(['/home'],{replaceUrl:true});
+
           this.router.navigateByUrl("/home")
+        }else{
+          console.log();
         }
-      })
-    // }
-    // else{
-    //   this.error="Email is not valid";
+      }).catch((failure)=>{
+         if(!failure.error.message){
+           console.warn(failure);
+           return;
+         }
 
-    // }
+           alert(failure.error.message)
+      });
 
   }
 
-  validateEmail(email:string) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
+  // validateEmail(email:string) {
+  //   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   return re.test(String(email).toLowerCase());
+  // }
 
 
+  // validateInput(){
 
+  //   console.log(this.validation)
+  //   this.validation=this.user.username.length > 0 &&
+  //   this.user.password.length > 0
+
+  // }
 
 
 
 
 
   ngOnDestroy() {}
-  ngOnChanges (){ }
+  ngOnChanges (){
+
+  }
 }

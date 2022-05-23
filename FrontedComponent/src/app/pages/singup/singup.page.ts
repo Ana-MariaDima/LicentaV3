@@ -55,16 +55,29 @@ export class SingupPage implements OnInit {
     if(this.myForm.valid)
     {
   console.log("Valid")
-      this.registerService.register(this.myForm.value).subscribe((result: any)=>{
+      this.registerService.register(this.myForm.value).then((result: any)=>{
        console.log(result)
         if(result.isSuccess){
           localStorage.setItem('token', result.token);
           console.log('token set before redirec')
           this.router.navigate(['home']);
         }else{
-          alert(result.error)
+          console.log();
         }
-      });
+      }).catch((failure)=>{
+        if(!failure.error.message){
+          console.warn(failure);
+          return;
+        }
+
+          alert(failure.error.message)
+     });
+
+
+
+
+
+
     }
   }
 

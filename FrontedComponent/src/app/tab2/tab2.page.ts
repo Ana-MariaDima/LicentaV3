@@ -30,7 +30,7 @@ export class Tab2Page {
     this.reteteliked.forEach(reteta => {
         (this.ReteteService.getReteta(reteta.idReteta)).then(async (reteta)=>{
           reteta[0].liked = true;
-
+          console.log(reteta);
           //reteta[0].user_rating = await this.ReteteService.getReviewReteta(reteta[0].nume_reteta);
           this.retete.push(reteta[0])
       });
@@ -52,13 +52,18 @@ export class Tab2Page {
       this.modalService.openRetetaModal(param,{canReload:false});
      // console.log(this.modalService.getCart());
     }
-    toggleLiked(reteta){
+   async toggleLiked(reteta){
       reteta.liked = !reteta.liked;
+      await this.ReteteService.toggleLike(reteta.nume_reteta);
+
       if(reteta.liked ==true)
       reteta.nr_likes=reteta.nr_likes+1;
-      else
-      reteta.nr_likes=reteta.nr_likes-1;
-    this.ReteteService.toggleLike(reteta.nume_reteta);
+      else{
+        await this.fetchReteteApreciate();
+        (window as any).EventSystem.trigger("retetaUnliked", reteta);
+
+        reteta.nr_likes=reteta.nr_likes-1;
+      }
     }
 
 
@@ -91,7 +96,8 @@ export class Tab2Page {
       data = JSON.parse(data.payload);
       if(data.likedState != reteta.liked ){
         await this.fetchReteteApreciate();
-        this.toggleLiked(reteta);
+        //this.toggleLiked(reteta);
+        console.log("Emitting Event");
         (window as any).EventSystem.trigger("retetaUnliked", reteta);
       }
 
@@ -110,6 +116,8 @@ export class Tab2Page {
         var rezultat =  await this.submitReview(reteta.nume_reteta, review);
         reteta.user_rating = review;
         reteta.rating = rezultat.medie;
+        (window as any).EventSystem.trigger("retetaReviewed>>reteta="+reteta.nume_reteta, reteta);
+
       }
     }
 

@@ -47,7 +47,20 @@ export class Tab1ToateRetetelePage  {
         );
 
         this.retete[idx].liked = false;
+        this.retete[idx].nr_likes = this.retete[idx].nr_likes - 1 < 0 ? 0: this.retete[idx].nr_likes-1;
+        console.log("Reteta unliked ", retetaUnliked)
     });
+
+    (window as any).EventSystem.listen('retetaReviewed', (ret)=>{
+      var idx = this.retete.findIndex(r=>
+        r.nume_reteta == ret.nume_reteta
+      );
+
+
+      this.retete[idx].rating = ret.rating;
+      this.retete[idx].user_rating = ret.user_rating;
+    });
+
     //console.log(this.retete_all)
   }
 

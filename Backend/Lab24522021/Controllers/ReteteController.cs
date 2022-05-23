@@ -216,10 +216,11 @@ namespace Licenta.Controllers
         }
         [HttpGet("liked/{id}")]
 
-        public IActionResult GetById(Guid id)
+        public async Task<IActionResult> GetById(Guid id)
         {
            //var result = await _demoService.GetReteteRepository().FindByIdAsync(id);
-           var reteta =   _demoService.GetReteteRepository().GetByIdJoined(id.ToString());
+           var reteta_simplificata =   _demoService.GetReteteRepository().GetById(id.ToString());
+           var reteta = await FetchReteteData(new List<Retete>() { reteta_simplificata });
             return Ok(reteta);
 
 

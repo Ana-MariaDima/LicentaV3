@@ -17,10 +17,10 @@
         <ion-card-title class="retetaTitle" style="text-align: center;">{{reteta.nume_reteta}}</ion-card-title>
         <ion-card-subtitle  ng>
 
-          <span style="       margin-left: 20%;padding-bottom: 5%;padding-bottom: 5%;">Tip: {{reteta.nume_Tip_Retete }} </span>
+          <span style="margin-left: 20%;padding-bottom: 5%;padding-bottom: 5%;">Tip: {{reteta.nume_Tip_Retete }} </span>
 
 
-          <span style="       position: absolute;padding-bottom: 5%; right: 20%;padding-bottom: 5%;">Scor: {{reteta.rating}}</span>
+          <span style="position: absolute;padding-bottom: 5%; right: 20%;padding-bottom: 5%;">Scor: {{reteta.rating}}</span>
         </ion-card-subtitle>
 
 
@@ -78,7 +78,7 @@
 
               <td width="100%">
                 <ion-button share="round" color="mycolor" style="float: right;">
-                  <rating-stars [rating]="reteta.user_rating" [onReview]="this.onReview(reteta)"> </rating-stars>
+                  <rating-stars [id]="reteta.nume_reteta" [rating]="reteta.user_rating" [onReview]="this.onReview(reteta)"> </rating-stars>
 <!--
                   <span style="margin-left: 10px;">({{reteta.rating}})</span> -->
                 </ion-button>
