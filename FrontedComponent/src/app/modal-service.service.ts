@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPopupCartPage } from './modal-popup-cart/modal-popup-cart.page';
+import { ModalPopupIngAll } from './modal-popup-ing-toate/modal-popup-all.page';
 import { ModalPopupPage } from './modal-popup-ing/modal-popup.page';
 import { ModalPopupPageRet } from './modal-popup-ret/modal-popup-ret.page';
 
@@ -32,6 +33,20 @@ export class ModalServiceService {
     const {data} = await modal.onWillDismiss();
     console.log("popup inchis dupa await!")
   }
+
+ async openIngredienteAllModal()
+{
+  var modal = await this.modalController.create({
+    component:ModalPopupIngAll,
+    cssClass:"modalTest",
+    componentProps: {
+    }
+  })
+ // console.log(modal)
+  modal.present();
+  const {data} = await modal.onWillDismiss();
+ // console.log("popup inchis dupa await!")
+}
 
   async openRetetaModal(reteta, options){
 

@@ -14,6 +14,9 @@ export class Tab1ToateRetetelePage  {
   @Input() model_title: string;
   searchTerm: string;
 
+ typeFilterArr:any = [];
+ nameFilterArr:any = [];
+
 
 
 
@@ -24,16 +27,24 @@ export class Tab1ToateRetetelePage  {
   currentPage:number = 1
   recordsPerPage:number = 100;
   hasReachedEnd:boolean = false;
+  tipuriRetete:Array<any> = []
+  categoriiRetete: Array<any> = []
+  initialOrder:any = [];
 
   async ngOnInit() {
     this.currentPage = 1;
     this.retete = [];
     this.retete_all = [];
+    this.categoriiRetete= await this.ReteteService.getCategoriiRetete();
+
+    this.tipuriRetete= await this.ReteteService.getTipuriRetete();
+   console.log("categorii",this.categoriiRetete)
     environment.baseUrl
     this.retete = (await this.ReteteService.getRetete(true));
 
     this.ReteteService.getRetete(false).then(results=>{
       this.retete = this.retete.concat(results);
+      this.initialOrder = this.retete.map(x=>x.id)
     })
 
     this.hasReachedEnd = this.retete.length == 0;
@@ -64,9 +75,92 @@ export class Tab1ToateRetetelePage  {
     //console.log(this.retete_all)
   }
 
-  // async openCardModal(reteta){
-  //    //await Tab1ToateRetetelePage.openRetetaModal(reteta);
-  // }
+  async sort(ev){
+    var criteriu = ev.detail.value;
+    const criteriiSelectie = {
+      'nrLikesAsc': function(a,b){
+        return a.nr_likes - b.nr_likes //sorteaza crescator dupa likeuri
+      },
+      'nrLikesDesc':function(a,b){
+        return  b.nr_likes - a.nr_likes //sorteaza desc dupa likeuri
+      },
+      'default':(a,b) => {
+        return this.initialOrder.indexOf( a.id ) - this.initialOrder.indexOf( b.id );
+
+      },
+      'ScorAsc':function(a,b){
+        return  a.rating - b.rating //sorteaza asc dupa scor
+      },
+      'ScorDesc':function(a,b){
+        return  b.rating - a.rating //sorteaza desc dupa scor
+      }
+    }
+    var functieDeCriteriu = criteriiSelectie[criteriu]
+    console.log(ev, criteriu, functieDeCriteriu)
+
+    this.retete.sort(functieDeCriteriu);
+  }
+
+  async typeFilter(ev){
+    console.log(ev);
+    this.typeFilterArr = ev.detail.value;
+    console.log(this.retete, this.typeFilterArr);
+    this.retete.forEach(x=>x.hidden = true);
+
+    if(this.nameFilterArr.length ==0){
+    this.retete.filter(x=> this.typeFilterArr.length == 0
+                           || this.typeFilterArr.indexOf(x.nume_Tip_Retete) != -1
+
+                )
+                .forEach(x=>x.hidden = false);//&& this.nameFilterArr.indexOf(x.nume_Categorie_Retete) == -1)
+    }else{
+      var reteteFiltrateTip = this.retete.filter(x=> this.typeFilterArr.length == 0
+        || this.typeFilterArr.indexOf(x.nume_Tip_Retete) != -1).map(x=>x.id);
+      var reteteFiltrateCategorie = this.retete.filter(x=> this.nameFilterArr.length == 0
+        || this.nameFilterArr.indexOf(x.nume_Categorie_Retete) != -1).map(x=>x.id);
+
+      var idsDeAfisat = reteteFiltrateTip.filter(id=> reteteFiltrateCategorie.indexOf(id) !== -1);
+
+      this.retete.forEach(x=>{
+         if(idsDeAfisat.indexOf(x.id) !== -1){
+            x.hidden = false;
+         }else{
+           x.hidden = true;
+         }
+      });
+    }
+
+
+  }
+
+  async nameFilter(ev){
+    this.nameFilterArr = ev.detail.value;
+
+    this.retete.forEach(x=>x.hidden = true);
+
+    if(this.typeFilterArr.length ==0){
+    this.retete.filter(x=> this.nameFilterArr.length == 0
+                           || this.nameFilterArr.indexOf(x.nume_Tip_Retete) != -1
+
+                )
+                .forEach(x=>x.hidden = false);
+    }else{
+      var reteteFiltrateCategorie = this.retete.filter(x=> this.nameFilterArr.length == 0
+        || this.nameFilterArr.indexOf(x.nume_Categorie_Retete) != -1).map(x=>x.id);
+      var reteteFiltrateTip = this.retete.filter(x=> this.typeFilterArr.length == 0
+        || this.typeFilterArr.indexOf(x.nume_Tip_Retete) != -1).map(x=>x.id);
+
+      var idsDeAfisat = reteteFiltrateTip.filter(id=> reteteFiltrateCategorie.indexOf(id) !== -1);
+
+      this.retete.forEach(x=>{
+         if(idsDeAfisat.indexOf(x.id) !== -1){
+            x.hidden = false;
+         }else{
+           x.hidden = true;
+         }
+      });
+    }
+  }
 
   async openRetetaModal(reteta){
     console.log("Reteta deschisa", reteta)

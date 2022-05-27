@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+      <button  style="background-color: transparent;padding: 2%;"  (click)="openCart()">
+        <ion-badge *ngIf="itemsInCart.length" color="mycolor">{{itemsInCart.length}}</ion-badge>
+         <ion-icon name="wine" ></ion-icon>
+      </button>
+
+
+    <button
+    style="background-color: transparent;padding: 2%; float: right;" (click)="dismiss()"><ion-icon name="close"></ion-icon>
+    </button>
+    <ion-title class="title">Toate Ingredientele</ion-title>
+  </ion-toolbar>
+
+
+    <ion-searchbar
+
+    animated
+    [(ngModel)]="searchTerm"
+    showCancelButton="focus"
+
+    ></ion-searchbar>
+
+</ion-header>
+<ion-content>
+    <ion-card *ngFor="let ingredient of ingredienteAll | filter: searchTerm">
+      <ion-card-header>
+
+
+        <ion-card-title class="title2"> {{ingredient.nume_ingredient}} </ion-card-title>
+        <!-- <ion-card-subtitle class="title2"> {{ingredient.subCategorieIngredient.nume_Subcategorie_ingredient}}  </ion-card-subtitle> -->
+
+
+      </ion-card-header>
+         <ion-card-content>
+
+          <button *ngIf="!selected[ingredient.id]" (click)="addtoCart(ingredient)" style="background-color: transparent; float: right;">
+
+            <ion-icon name="add-circle-outline" style="font-size:35px"></ion-icon>
+
+          </button>
+          <button *ngIf="selected[ingredient.id]" (click)="removeFromCart(ingredient)" style="background-color: transparent; float: right;">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+
+
+
+
+        </ion-card-content>
+
+   </ion-card>
+
+</ion-content>

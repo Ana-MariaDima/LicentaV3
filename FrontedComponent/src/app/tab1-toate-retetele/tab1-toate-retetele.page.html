@@ -2,17 +2,50 @@
   <ion-toolbar>
     <ion-title class="title"> Băuturi</ion-title>
   </ion-toolbar>
-  <ion-grid>
-    <ion-row>
+
       <ion-searchbar animated [(ngModel)]="searchTerm" showCancelButton="focus"></ion-searchbar>
+
+
+<ion-grid>
+  <ion-row>
+
+    <ion-col>
+      <ion-item >
+        <ion-label>Tip</ion-label>
+        <ion-select multiple={true} (ionChange)="typeFilter($event)"  interface="popover">
+          <ion-select-option  *ngFor="let tip of tipuriRetete" value="{{tip.nume_Tip_Retete}}">{{tip.nume_Tip_Retete}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label>Categorie</ion-label>
+        <ion-select multiple={true} (ionChange)="nameFilter($event)" interface="popover">
+          <ion-select-option  *ngFor="let categ of categoriiRetete" value="{{categ.nume_Categorie_Retete}}">{{categ.nume_Categorie_Retete}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label>Sortare</ion-label>
+        <ion-select (ionChange)="sort($event)" interface="popover" value="default">
+          <ion-select-option  value="nrLikesAsc">Numar likeuri (asc)</ion-select-option>
+          <ion-select-option  value="nrLikesDesc">Numar likeuri (desc)</ion-select-option>
+          <ion-select-option  value="ScorAsc">Scor (asc)</ion-select-option>
+          <ion-select-option  value="ScorDesc">Scor (desc)</ion-select-option>
+          <ion-select-option selected={true} value="default">Relevanță</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+    </ion-col>
     </ion-row>
-  </ion-grid>
+</ion-grid>
 </ion-header>
 <ion-content>
   <div>
     <ion-list slot="content">
-
-      <ion-card *ngFor="let reteta of retete | filter: searchTerm" style="padding:10px;">
+      <div  *ngFor="let reteta of retete | filter: searchTerm">
+      <ion-card  style="padding:10px;" [ngClass]="reteta.hidden?'hidden' : ''" >
 
         <ion-card-title class="retetaTitle" style="text-align: center;">{{reteta.nume_reteta}}</ion-card-title>
         <ion-card-subtitle  ng>
@@ -93,8 +126,9 @@
 
 
 
-
       </ion-card>
+
+    </div>
 
     </ion-list>
   </div>

@@ -17,15 +17,25 @@ export class ModalPopupCartPage implements OnInit {
 
   }
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
     if(localStorage.getItem("cart") != undefined)
     {
-    this.itemsInCart = Object.values(JSON.parse(localStorage.getItem('cart')))
-    this.itemsInCart.forEach(async ing  => {
+    var temp= Object.values(JSON.parse(localStorage.getItem('cart')));
+    for (let i in temp){
+      var ing:any =temp[i];
       ing.subCategorieIngredient= await this.reteteService.getSubcategIngredient(ing.idSubCategorieIngredient);
-      console.log("Subcateg in cart", ing.subCategorieIngredient);
+      console.log("Poza Subcateg in cart", ing.subCategorieIngredient.pozaSubcategorieIngredient);
+    }
+    this.itemsInCart=temp;
+    //for( var ing in this.itemsInCart)
 
-    });
+
+    //  this.itemsInCart.forEach(async ing  => {
+    //   ing.subCategorieIngredient= await this.reteteService.getSubcategIngredient(ing.idSubCategorieIngredient);
+    //   console.log("Poza Subcateg in cart", ing.subCategorieIngredient.pozaSubcategorieIngredient);
+
+
+    // });
     console.log("Items in cart", this.itemsInCart);
     }
   }
@@ -38,10 +48,10 @@ export class ModalPopupCartPage implements OnInit {
         newCart[x.id] = x
       }
     });
-    console.log("before delete ", this.itemsInCart.length);
+   // console.log("before delete ", this.itemsInCart.length);
     this.itemsInCart = Object.values(newCart);
 
-    console.log("deleted ", this.itemsInCart.length)
+   // console.log("deleted ", this.itemsInCart.length)
 
     localStorage.setItem('cart', JSON.stringify(newCart))
   }

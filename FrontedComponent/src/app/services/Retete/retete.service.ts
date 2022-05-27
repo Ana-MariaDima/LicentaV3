@@ -101,8 +101,18 @@ export class ReteteService {
           (result.find((x:any) =>{   return x.id == rR.idReteta;}) as any).user_rating = rR.review;
          }catch(e){console.log(e)}
        })
+
+      result.forEach(r=>r.hidden = false);
       return result
 
+    }
+
+    async getTipuriRetete():Promise<any>{
+      return this.http.get(environment.baseUrl+"TipuriRetete/").toPromise();
+    }
+
+    async getCategoriiRetete():Promise<any>{
+      return this.http.get(environment.baseUrl+"CategoriiRetete/").toPromise() ;
     }
 
 
@@ -117,7 +127,7 @@ export class ReteteService {
     }
 
     async getSubcategIngredient(idSubcateg:string):Promise<any>{
-      var result = await this.http.get(environment.baseUrl+"SubCategoriiIngrediente/"+idSubcateg).toPromise() as Array<any> ;
+      var result = (await this.http.get(environment.baseUrl+"SubCategoriiIngrediente/"+idSubcateg).toPromise() )as Array<any> ;
       return result
     }
 
@@ -146,6 +156,13 @@ export class ReteteService {
       var reteta = (await this.http.post(environment.baseUrl+"Retete/Generate",{Ingrediente:arrayIngrediente, Token:localStorage.getItem('token')}).toPromise() as Array<any>);
       return reteta;
     }
+
+    //get all ingrediente
+    async getIngredienteAll():Promise<any>{
+      var result = await this.http.get(environment.baseUrl+"Ingrediente/").toPromise() as Array<any> ;
+      return result
+    }
+
 
 
 

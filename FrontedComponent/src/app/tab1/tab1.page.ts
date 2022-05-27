@@ -63,6 +63,13 @@ export class Tab1Page {
     await this.modalService.openCartModal()
     this.ionViewWillEnter();
   }
+
+
+  async opneIng()
+  {
+    await this.modalService.openIngredienteAllModal()
+    this.ionViewWillEnter();
+  }
   async openCardModal(subcategorie){
     console.log("open Cart Modal")
 

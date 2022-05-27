@@ -5,6 +5,12 @@
     <button style="background-color: transparent;padding: 2%;" (click)="openCart()">
       <ion-badge *ngIf="this.itemsInCart!=0" color="mycolor" >{{this.itemsInCart}}</ion-badge>
        <ion-icon name="wine" ></ion-icon>
+
+    </button>
+
+
+    <button style="background-color: transparent;padding: 2%; float:right" (click)="opneIng()">
+      <ion-icon name="search"></ion-icon>
     </button>
 
   <!-- <button
@@ -13,11 +19,6 @@
   <ion-title class="title">Ingrediente</ion-title>
 
 </ion-toolbar>
-
-
-
-
-
 
   </ion-header>
   <ion-content [fullscreen]="true">
@@ -46,17 +47,16 @@
               {{ing.nume_ingredient}}
               </ion-card>
 
-
-
-
         </ion-card>
       </ion-list>
-
-
     </ion-accordion>
 
   </ion-accordion-group>
-
+  <!-- <ion-accordion-group >
+    <ion-accordion >
+       <ion-label class="title2" style="font-size: 25px;">Toate Ingredientele</ion-label>
+     </ion-accordion >
+   </ion-accordion-group> -->
         <!--ion-accordion-group *ngFor="let subcategorie of categorie.subCategoriiIngrediente">
           <ion-accordion >
         <ion-card  >

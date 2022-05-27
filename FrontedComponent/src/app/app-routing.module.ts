@@ -31,6 +31,10 @@ const routes: Routes = [
     loadChildren: () => import('./modal-popup-ing/modal-popup.module').then( m => m.ModalPopupPageModule)
   },
   {
+    path: 'modal-popup-ing-all',
+    loadChildren: () => import('./modal-popup-ing-toate/modal-popup-all.module').then( m => m.ModalPopupIngAllModule)
+  },
+  {
     path: 'modal-popup-ret',
     loadChildren: () => import('./modal-popup-ret/modal-popup-ret.module').then( m => m.ModalPopupPageRetModule)
   },
