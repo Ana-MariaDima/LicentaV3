@@ -23,6 +23,9 @@ namespace Licenta.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Aprecieri> Apreciere { get; set; }
         public DbSet<Pahare> Pahar { get; set; }
+        public DbSet<SugestionResult> SugestionResult { get; set; }
+        public DbSet<RetetaZileiResult> RetetaZileiResult { get; set; }
+
         public bool Ingrediente { get; internal set; }
 
         public Context(DbContextOptions<Context> options) : base(options)

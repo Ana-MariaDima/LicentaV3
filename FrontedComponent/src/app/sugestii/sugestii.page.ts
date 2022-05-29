@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ModalPopupPageRet } from '../modal-popup-ret/modal-popup-ret.page';
 import { ModalServiceService } from '../modal-service.service';
@@ -14,17 +15,49 @@ export class SugestiiPage implements OnInit {
   itemsInCart;
   theItems;
   searchTerm:any;
-  constructor(private modalController: ModalController, private reteteService: ReteteService, private modalService:ModalServiceService) { }
+  perfectMatch:any = undefined;
+  showChecks = true;
+
+  constructor(private route: ActivatedRoute, private modalController: ModalController, private reteteService: ReteteService, private modalService:ModalServiceService) {
+      //[queryParams]="{property:value}"
+      this.route.queryParams.subscribe(async params=>{
+        this.setDataSource(params);
+      });
+
+
+   }
+
+  async setDataSource(params){
+    switch(params['dataSource']){
+      case 'Pahar':{
+        this.perfectMatch = params['perfectMatch'];
+        var arrayIngrediente = localStorage.getItem('cart');
+
+        if(arrayIngrediente){
+          arrayIngrediente = JSON.parse(arrayIngrediente);
+          this.retete = await this.reteteService.getReteteSugerate(Object.keys(arrayIngrediente), this.perfectMatch == 'false'?false: true);
+          console.log("retete sugerate", this.retete)
+        }
+      }break;
+
+      case 'AltoraLePlace':{
+        this.showChecks = false;
+        var reteteId = await this.reteteService.getRecommandations();
+        console.log(reteteId);
+        this.retete = [];
+        for(let index in reteteId){
+          var reteta = await this.reteteService.getReteta(reteteId[index]);
+          this.retete.push(reteta[0]);
+        }
+
+
+
+      }break;
+    }
+  }
 
   async ngOnInit() {
-      var arrayIngrediente = localStorage.getItem('cart');
 
-      console.log ('ingrediente',arrayIngrediente)
-      if(arrayIngrediente){
-        arrayIngrediente = JSON.parse(arrayIngrediente);
-        this.retete = await this.reteteService.getReteteSugerate(Object.keys(arrayIngrediente));
-        console.log("retete sugerate", this.retete)
-      }
   }
 
   isInCart(ing){

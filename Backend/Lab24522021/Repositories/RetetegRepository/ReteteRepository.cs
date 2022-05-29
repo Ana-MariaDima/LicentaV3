@@ -15,6 +15,17 @@ namespace Licenta.Repositories.ReteteRepository
         {
 
         }
+
+        public List<RetetaZileiResult> GetRetetaZilei()
+        {
+            //_context.Database.Query<MyStoredProcResultType>()
+
+            //DbSet <GenerateSugestionModel>
+            DbSet<RetetaZileiResult> retetaZileiResult;
+            retetaZileiResult = _context.Set<RetetaZileiResult>();
+
+            return retetaZileiResult.FromSqlRaw("exec RetetaZilei").AsEnumerable().ToList();
+        }
         public void OrderbyName()
         {
             //Linq

@@ -82,24 +82,27 @@ export class ReteteService {
     }
     async getRetete(initialRequest:boolean):Promise<any>{
       var result = (await this.http.post(environment.baseUrl+"Retete",{initialRequest}).toPromise() as Array<any>);
-     // console.log(retete)
+
       var likedRetete = (await this.http.post(environment.baseUrl+"Aprecieri/GetByIdLikes",{token:localStorage.getItem('token')}).toPromise() as Array<any>);
-     // console.log(likedRetete, result)
+
       likedRetete.forEach(lR =>{
-     //   console.log(lR);
         try{
-        (result.find((x:any) =>{   return x.id == lR.idReteta;}) as any).liked = true;
-        }catch(e){console.log(e)}
-      })
+          let reteta = (result.find((x:any) =>{   return x.id == lR.idReteta;}) as any);
+          if(reteta){
+            reteta.liked = true;
+          }
+        }catch(e){}
+      });
 
 
       var reviewRetete = (await this.http.post(environment.baseUrl+"Aprecieri/GetByIdReviews",{token:localStorage.getItem('token')}).toPromise() as Array<any>);
-      // console.log(likedRetete, result)
+
       reviewRetete.forEach(rR =>{
-      //   console.log(lR);
          try{
-          (result.find((x:any) =>{   return x.id == rR.idReteta;}) as any).user_rating = rR.review;
-         }catch(e){console.log(e)}
+          let reteta = (result.find((x:any) =>{   return x.id == rR.idReteta;}) as any);
+          if(reteta)
+            reteta.user_rating = rR.review;
+         }catch(e){}
        })
 
       result.forEach(r=>r.hidden = false);
@@ -139,24 +142,33 @@ export class ReteteService {
 
 
      async getReteta(idReteta:string):Promise<any>{
-      var rezultat = (await this.http.get(environment.baseUrl+"Retete/liked/"+idReteta).toPromise()) as Array<any>;
+      var rezultat = (await this.http.get(environment.baseUrl+"Retete/GetById/"+idReteta).toPromise()) as Array<any>;
 
       var reviewRetete = (await this.http.post(environment.baseUrl+"Aprecieri/GetByIdReviews",{token:localStorage.getItem('token')}).toPromise() as Array<any>);
-      // console.log(likedRetete, result)
       reviewRetete.forEach(rR =>{
-      //   console.log(lR);
          try{
           (rezultat.find((x:any) =>{   return x.id == rR.idReteta;}) as any).user_rating = rR.review;
-         }catch(e){console.log(e)}
+         }catch(e){}
        })
       return rezultat; //this.groupBy(rezultat);
     }
 
-    async getReteteSugerate(arrayIngrediente){
-      var reteta = (await this.http.post(environment.baseUrl+"Retete/Generate",{Ingrediente:arrayIngrediente, Token:localStorage.getItem('token')}).toPromise() as Array<any>);
+    async getReteteSugerate(arrayIngrediente, perfectMatch = false){
+      var reteta = (await this.http.post(environment.baseUrl+"Retete/Generate",{Ingrediente:arrayIngrediente, Token:localStorage.getItem('token'), PerfectMatch: perfectMatch}).toPromise() as Array<any>);
       return reteta;
     }
 
+    async getRecommandations(){
+      var retete = (await this.http.post(environment.baseUrl+"Aprecieri/GeneratePersonalSugestions",{Token:localStorage.getItem('token')}).toPromise() as Array<any>);
+
+      return retete;
+    }
+
+    async getRetetaZilei(){
+      var reteta = (await this.http.post(environment.baseUrl+"Retete/RetetaZilei",{}).toPromise() as Array<any>);
+
+      return reteta;
+    }
     //get all ingrediente
     async getIngredienteAll():Promise<any>{
       var result = await this.http.get(environment.baseUrl+"Ingrediente/").toPromise() as Array<any> ;

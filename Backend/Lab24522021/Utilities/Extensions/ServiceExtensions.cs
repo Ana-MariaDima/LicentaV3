@@ -26,6 +26,7 @@ namespace Licenta.Utilities.Extensions
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
+
             services.AddScoped<IIngredienteRepository, IngredienteRepository>();
             services.AddScoped<ISubCategoriiIngredienteRepository, SubCategoriiIngredienteRepository>();
             services.AddScoped<ICategoriiIngredienteRepository, CategoriiIngredienteRepository>();

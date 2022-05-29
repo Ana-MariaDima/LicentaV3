@@ -4,6 +4,7 @@ using Licenta.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -44,6 +45,173 @@ namespace Licenta.Controllers
             var result = await _demoService.GetAprecieriRepository().GetAll();
             var toReturn = result.Where(z => { return z.IdUser == Guid.Parse(id) && z.Star == false; }).ToList();
             return Ok(toReturn);
+
+        }
+
+
+
+        private static bool NextCombination(IList<int> num, int n, int k)
+        {
+            bool finished;
+
+            var changed = finished = false;
+
+            if (k <= 0) return false;
+
+            for (var i = k - 1; !finished && !changed; i--)
+            {
+                if (num[i] < n - 1 - (k - 1) + i)
+                {
+                    num[i]++;
+
+                    if (i < k - 1)
+                        for (var j = i + 1; j < k; j++)
+                            num[j] = num[j - 1] + 1;
+                    changed = true;
+                }
+                finished = i == 0;
+            }
+
+            return changed;
+        }
+
+        private static List<IEnumerable<string>> Combinations(IEnumerable<string> elements, int k)
+        {
+            var grupari = new List<IEnumerable<string>>();
+            var elem = elements.ToArray();
+            var size = elem.Length;
+
+            if (k > size) throw new Exception("K > size");
+
+            var numbers = new int[k];
+
+            for (var i = 0; i < k; i++)
+                numbers[i] = i;
+
+            do
+            {
+                var listToAdd = numbers.Select(n => elem[n]).ToList();
+                var clonedList = new List<string>(listToAdd.Count());
+                listToAdd.ForEach(el =>
+                {
+                    clonedList.Add(el.Clone().ToString());
+                });
+                //(ICloneable)item.Clone()
+               grupari.Add(clonedList);
+            } while (NextCombination(numbers, size, k));
+
+            return grupari;
+        }
+
+        /*
+             *  -- matching mediu
+             *  toti userii care au apreciat (1,2) (diff 1 = 3 - 2)
+             *  toti userii care au apreciat (1,3)
+             *  toti userii care au apreciat (2,3)
+             */
+        static List<Guid> GetUsersByAprecieri(List<IEnumerable<string>> grupariDeAprecieri, IDemoService _demoService, Guid idUserExcepted)
+        {
+            var usersToReturn = new List<Guid>();
+                
+            var aprecieriRepo = _demoService.GetAprecieriRepository();
+            grupariDeAprecieri.ForEach(grupare =>
+            {
+
+                //usersi care au apreciat gruparea in cazua (in totalitate)
+                var users = aprecieriRepo.GetUsersWhichLiked(grupare.ToList(), idUserExcepted).Take(10);
+                usersToReturn.AddRange(users);
+            });
+
+      
+            return usersToReturn;
+        }
+
+
+        public struct rezFinal
+        {
+            public int scor_matching;
+            public List<Guid> retete_recomandate;
+        };
+
+        [HttpPost("GeneratePersonalSugestions")]
+
+        public async Task<IActionResult> GeneratePersonalSugestions(GetByIdDTO payload)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jwtSecurityToken = handler.ReadJwtToken(payload.Token);
+            var id = jwtSecurityToken.Claims.Where(z => z.Type == "id").FirstOrDefault().Value;
+
+            var aprecieriUserTarget = _demoService.GetAprecieriRepository().GetByUser(Guid.Parse(id)).Select(x=>x.IdReteta.ToString()).ToList(); // o lista cu id-uri de RETETE
+            var colectieAprecieri = await _demoService.GetAprecieriRepository().GetAll(); // o lista cu toate aprecierile din baza
+
+            /*
+             * userTarget : (1,2,3)
+             * (1) (2) (3)
+             * (1,2) (1,3) (2,3)
+             * (1,2,3)
+             * 
+             * (2^n) - 1
+             * 
+             * cautam useri in db
+             *  -- cele mai slabe matchinguri
+             *  toti userii care au apreciat (1) (diff 2 = 3 - 1)
+             *  toti userii care au apreciat (2)
+             *  toti userii care au apreciat (3)
+             *  
+             *  -- matching mediu
+             *  toti userii care au apreciat (1,2) (diff 1 = 3 - 2)
+             *  toti userii care au apreciat (1,3)
+             *  toti userii care au apreciat (2,3)
+             *  
+             *  -- perfect matching 
+             *  toti userii care au apreciat (1,2,3) (diff 0 = 3 - 3)
+             *  
+             * */
+
+
+            var rezultateFinale = new List<Guid>();
+
+            var threshold = 20;
+            var thresholdNumarRetete = 100;
+            var added = 0;
+            threshold = threshold > aprecieriUserTarget.Count? aprecieriUserTarget.Count: threshold;
+            for (int diff = 0; diff <= threshold - 1; diff++)
+            {
+                if (added == thresholdNumarRetete) break;
+
+                int k = aprecieriUserTarget.Count - diff;
+
+                List<IEnumerable<string>> rezultatComb = Combinations(aprecieriUserTarget, k);
+
+                var relatedUsers = GetUsersByAprecieri(rezultatComb, _demoService, Guid.Parse(id));
+
+                var otherLiked = new List<Guid>();
+                relatedUsers.ForEach(user =>
+                {
+                    otherLiked.AddRange(colectieAprecieri.Where(x => relatedUsers.Contains(x.IdUser) && x.Star == false).Where(apreciere => !aprecieriUserTarget.Contains(apreciere.IdReteta.ToString()))
+                                .Select(x=>x.IdReteta).Take(15));
+                });
+
+                if (otherLiked.Count > 0)
+                {
+                    var tmp = new List<Guid>();
+                    if(otherLiked.Count + added > thresholdNumarRetete){
+                        tmp.AddRange(otherLiked.Take(thresholdNumarRetete - added));
+                    }
+                    else{
+                        tmp = otherLiked;
+                    }
+
+                    //tmp = tmp.Where(x => !rezultateFinale.Select(x=>x.ToString()).Contains(x.ToString())).ToList();
+                    rezultateFinale.AddRange(tmp);
+                    rezultateFinale = rezultateFinale.Distinct().ToList();
+
+                    added += tmp.Count;
+                }
+                
+            }
+
+            return Ok(rezultateFinale);
 
         }
 

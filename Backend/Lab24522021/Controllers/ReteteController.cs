@@ -148,6 +148,20 @@ namespace Licenta.Controllers
             public List<IngredientFolosit> retetaIngredient;
         };
 
+        [HttpPost("RetetaZilei")]
+        public  async Task<IActionResult> RetetaZilei()
+        {
+            var retetaZileiResults = _demoService.GetReteteRepository().GetRetetaZilei();
+            int max = 0;
+            retetaZileiResults.ForEach(r => { max = max < r.nrAprecieri ? r.nrAprecieri : max; });
+            var idRetetaZilei =  retetaZileiResults.First(r => r.nrAprecieri == max).Id;
+
+            var r_incomplete = _demoService.GetReteteRepository().GetById(idRetetaZilei);
+            var r_complete = await FetchReteteData(new List<Retete>() { r_incomplete });
+            return Ok(r_complete.FirstOrDefault());
+        }
+
+
         [HttpPost("Generate")]
         public async Task<IActionResult> Generate(GenerateDTO payload)
         {
@@ -158,8 +172,16 @@ namespace Licenta.Controllers
             {
                 var tabelaAsociativaIng =
                 _demoService.GetReteteIngredienteRepository().GetByReteta(x.Id).ToList();
-
-                return tabelaAsociativaIng.Select(z => z.IdIngredient.ToString()).Intersect(payload.Ingrediente).Count() > 0;
+                if (payload.PerfectMatch)
+                {
+                    var ingComune = tabelaAsociativaIng.Select(z => z.IdIngredient.ToString()).Intersect(payload.Ingrediente).Count();
+        
+                    return ingComune > 0 && ingComune == tabelaAsociativaIng.Select(z => z.IdIngredient.ToString()).Count();
+                }
+                else
+                {
+                  return  tabelaAsociativaIng.Select(z => z.IdIngredient.ToString()).Intersect(payload.Ingrediente).Count() > 0;
+                }
             }).ToList();
           
             List<Reteta> rezultate = await FetchReteteData(retete);
@@ -178,7 +200,7 @@ namespace Licenta.Controllers
             });
 
             rezultate = rezultate.OrderBy(x => a.Find(z=>z.nume == x.nume_reteta).scor).Reverse().ToList();
-
+            //rezultate
 
             return Ok(rezultate);
         }
@@ -214,7 +236,7 @@ namespace Licenta.Controllers
 
 
         }
-        [HttpGet("liked/{id}")]
+        [HttpGet("GetById/{id}")]
 
         public async Task<IActionResult> GetById(Guid id)
         {
@@ -322,6 +344,7 @@ public class GenerateDTO
 {
     public string[] Ingrediente;
     public string Token;
+    public bool PerfectMatch;
 }
 
 public class LikeDTO

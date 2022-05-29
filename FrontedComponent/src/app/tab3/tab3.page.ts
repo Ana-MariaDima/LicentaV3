@@ -12,12 +12,18 @@ import { Tab1ToateRetetelePage } from '../tab1-toate-retetele/tab1-toate-retetel
 export class Tab3Page {
 
   constructor(private modalService:ModalServiceService, private reteteService: ReteteService ) {}
-  async PreopenCardModal(param){
+  async PreopenCardModal(){
     var reteta = await this.reteteService.getRetetaRandom()
     console.log("reteta before modal open", reteta)
     this.modalService.openRetetaModal(reteta,{canReload:true});
    // console.log(this.modalService.getCart());
   }
 
+  async PreopenCardModal_RetetaZilei(){
+    var reteta = await this.reteteService.getRetetaZilei()
+    console.log("reteta before modal open", reteta)
+    this.modalService.openRetetaModal(reteta,{canReload:false});
+   // console.log(this.modalService.getCart());
+  }
 
 }

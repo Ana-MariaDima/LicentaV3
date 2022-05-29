@@ -15,7 +15,7 @@ namespace Licenta.Repositories.AprecieriRepository
 
         List<Aprecieri> GetByCompositeKey(Guid id_user, Guid id_reteta);
 
-
+        List<Guid> GetUsersWhichLiked(List<string> retete, Guid idUserExcepted);
 
     }
 }

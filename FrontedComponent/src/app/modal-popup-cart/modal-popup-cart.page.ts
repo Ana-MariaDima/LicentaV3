@@ -13,6 +13,9 @@ export class ModalPopupCartPage implements OnInit {
   itemsInCart: any[]=[];
   buttonDisabled:boolean =false;
   imagesUrl = environment.imagesUrl;
+
+  perfectMatch = false;
+
   constructor(private modalController:ModalController, private reteteService: ReteteService) {
 
   }
@@ -27,15 +30,7 @@ export class ModalPopupCartPage implements OnInit {
       console.log("Poza Subcateg in cart", ing.subCategorieIngredient.pozaSubcategorieIngredient);
     }
     this.itemsInCart=temp;
-    //for( var ing in this.itemsInCart)
 
-
-    //  this.itemsInCart.forEach(async ing  => {
-    //   ing.subCategorieIngredient= await this.reteteService.getSubcategIngredient(ing.idSubCategorieIngredient);
-    //   console.log("Poza Subcateg in cart", ing.subCategorieIngredient.pozaSubcategorieIngredient);
-
-
-    // });
     console.log("Items in cart", this.itemsInCart);
     }
   }
@@ -64,8 +59,8 @@ export class ModalPopupCartPage implements OnInit {
   genertaePerfectMatch(){
     if(localStorage.getItem("cart") != undefined)
     {
-    this.itemsInCart = Object.values(JSON.parse(localStorage.getItem('cart')))
-    console.log('items in cart now', this.itemsInCart)
+      this.itemsInCart = Object.values(JSON.parse(localStorage.getItem('cart')))
+      //console.log('items in cart now', this.itemsInCart);
     }
 
     this.buttonDisabled = true;

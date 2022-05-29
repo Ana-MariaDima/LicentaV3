@@ -16,6 +16,8 @@ namespace Licenta.Repositories.ReteteRepository
         Retete GetByIdIncludingRetetaIngredient(Guid id_reteta);
         List<Retete> GetAllWithInclude();
 
+        List<RetetaZileiResult> GetRetetaZilei();
+
 
 
         Retete GetById(Guid id);

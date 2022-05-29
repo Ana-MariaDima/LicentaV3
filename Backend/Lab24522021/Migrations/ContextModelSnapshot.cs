@@ -18,6 +18,13 @@ namespace Licenta.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+           /* modelBuilder.Entity("Licenta.Models.Relations.One_to_Many.SugestionResult", b =>
+            {
+                b.Property<Guid>("IdUser").ValueGeneratedOnAdd().HasColumnType("uniqueidentifier");
+                b.HasKey("IdUser");
+            });*/
+
+     
 
             modelBuilder.Entity("Laborator54522021.Models.User", b =>
                 {
@@ -532,6 +539,8 @@ namespace Licenta.Migrations
                 {
                     b.Navigation("ReteteIngrediente");
                 });
+
+    
 #pragma warning restore 612, 618
         }
     }

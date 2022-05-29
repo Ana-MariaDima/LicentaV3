@@ -6,20 +6,40 @@
 
 </ion-header>
 <ion-content >
-  <ion-button  class="button"  share="round" color="mycolor"  (click)="PreopenCardModal(null)"> Incearca ceva nou </ion-button>
+  <ion-grid style="height: 80vh;  display: flex;  flex-direction: column;  justify-content: center;">
+    <ion-row>
+   <ion-col>
+    <div class="container2">
+      <img  style="opacity: .6;" src="assets/images/FrameBis.png" />
+      <button  class="sugestionBtn"   (click)="PreopenCardModal()">Rețetă Random</button>
+  </div>
+</ion-col>
+
+<ion-col>
+  <div class="container2">
+    <img   style="opacity: .6;" src="assets/images/FrameBis.png" />
+    <button class="sugestionBtn" routerLink="/generate" [queryParams]="{dataSource:'AltoraLePlace'}"  share="round" color="mycolor">Altora le place</button>
+  </div>
+</ion-col>
+</ion-row>
+<ion-row>
+
+  <ion-col>
+    <div class="container2">
+      <img  style="opacity: .4;" src="assets/images/FrameBis.png" />
+      <button class="sugestionBtn"  (click)="PreopenCardModal_RetetaZilei()">Rețeta zilei</button>
+    </div>
+  </ion-col>
+
+<ion-col>
+  <div class="container2">
+  <img  style="opacity: .4;" src="assets/images/FrameBis.png" />
+
+ <button  class="sugestionBtn" routerLink="/generate" [queryParams]="{dataSource:'AltoraLePlace'}"  share="round" color="mycolor"> Pe gustul tau </button>
+</div>
+</ion-col>
+</ion-row>
+</ion-grid>
 </ion-content>
-<style>
-
-
-.button {
-  width:50%;
-    margin-left:25%;
-    margin-right:25%;
-    height: 15%;
-    margin-top: 65%;
-    margin-bottom: 40%;
-}
-</style>
-
 
 

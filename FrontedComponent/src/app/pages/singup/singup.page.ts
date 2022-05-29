@@ -62,7 +62,7 @@ export class SingupPage implements OnInit {
           console.log('token set before redirec')
           this.router.navigate(['home']);
         }else{
-          console.log();
+          alert("Sign up failed!\nUsername or email maight already exist. Try to login instead!");
         }
       }).catch((failure)=>{
         if(!failure.error.message){

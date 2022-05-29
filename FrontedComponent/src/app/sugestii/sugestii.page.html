@@ -28,7 +28,7 @@
           <span style="       margin-left: 20%;padding-bottom: 5%;padding-bottom: 5%;">Tip: {{reteta.nume_Tip_Retete }} </span>
 
 
-          <span style="       position: absolute;padding-bottom: 5%; right: 20%;padding-bottom: 5%;">Scor: {{reteta.rating}}</span>
+          <span style="       position: absolute;padding-bottom: 5%; right: 20%;padding-bottom: 5%;">Scor: {{reteta.rating | number:'1.2-2'}}</span>
 
         </ion-card-subtitle>
         <ion-card-content>
@@ -44,10 +44,11 @@
                     Ingrediente
                   </tr>
                   <br>
-                  <ul class="check-list">
+                  <ul class="check-list" *ngIf="showChecks">
+
                   <li *ngFor="let ing of reteta.retetaIngredient"  >
 
-
+                   <div>
                     <div *ngIf="isInCart(ing)">
                       <div  class="checked">
                       {{ing.nume_ingredient}}
@@ -60,10 +61,13 @@
 
                     </div>
                     </div>
+                    </div>
+                    </li>
 
 
-
-                  </li>
+                </ul>
+                <ul *ngIf="!showChecks">
+                  <li *ngFor="let ing of reteta.retetaIngredient"> {{ing.nume_ingredient}}</li>
                 </ul>
                   <br>
 

@@ -38,7 +38,6 @@ export class Tab1ToateRetetelePage  {
     this.categoriiRetete= await this.ReteteService.getCategoriiRetete();
 
     this.tipuriRetete= await this.ReteteService.getTipuriRetete();
-   console.log("categorii",this.categoriiRetete)
     environment.baseUrl
     this.retete = (await this.ReteteService.getRetete(true));
 
@@ -48,7 +47,6 @@ export class Tab1ToateRetetelePage  {
     })
 
     this.hasReachedEnd = this.retete.length == 0;
-    console.log("retete all", this.retete)
 
     this.retete_all=(await this.ReteteService.allRetete());
 
@@ -102,9 +100,7 @@ export class Tab1ToateRetetelePage  {
   }
 
   async typeFilter(ev){
-    console.log(ev);
     this.typeFilterArr = ev.detail.value;
-    console.log(this.retete, this.typeFilterArr);
     this.retete.forEach(x=>x.hidden = true);
 
     if(this.nameFilterArr.length ==0){

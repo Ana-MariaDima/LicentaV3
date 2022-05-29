@@ -10,7 +10,10 @@
     style="background-color: transparent;padding: 2%; float: right;" (click)="dismiss()"><ion-icon name="close"></ion-icon>
     </button>
     <ion-title class="title">Pahar</ion-title>
-
+    <div style="display: inline-flex;float: right; align-items: center;">
+      <ion-label>Perfect Match</ion-label>
+      <ion-toggle [(ngModel)]="perfectMatch"></ion-toggle>
+    </div>
   </ion-toolbar>
 
 
@@ -78,5 +81,5 @@
 
 </ion-content >
 <ion-footer >
-  <ion-button  *ngIf="itemsInCart.length!=0" style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"  expand="block" [disabled]="buttonDisabled" share="round" color="mycolor" routerLink="/generate"  (click)="genertaePerfectMatch()">Generează Rețetă</ion-button>
+  <ion-button  *ngIf="itemsInCart.length!=0" style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"  expand="block" [disabled]="buttonDisabled" share="round" color="mycolor" routerLink="/generate" [queryParams]="{perfectMatch:perfectMatch, dataSource:'Pahar'}" (click)="genertaePerfectMatch()">Generează Rețetă</ion-button>
 </ion-footer>

@@ -50,5 +50,6 @@ export class TabUserPage implements OnInit {
   logOut(){
     //var token =localStorage.getItem('token');
     localStorage.removeItem("token");
+    window.location.reload();
   }
 }

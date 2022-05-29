@@ -48,7 +48,7 @@ namespace Licenta.Controllers
         /* [HttpPost("add")]
          public async Task<IActionResult> Add(CategoriiRetete CatRet)
          {
-             CatRet.Id = Guid.NewGuid();
+             CatRet.I d = Guid.NewGuid();
              var repo = _demoService.GetCategoriiReteteRepository();
              await repo.CreateAsync(CatRet);
              await repo.SaveAsync();

@@ -25,6 +25,8 @@
         </ion-select>
       </ion-item>
     </ion-col>
+       </ion-row>
+      <ion-row>
     <ion-col>
       <ion-item>
         <ion-label>Sortare</ion-label>
@@ -53,7 +55,7 @@
           <span style="margin-left: 20%;padding-bottom: 5%;padding-bottom: 5%;">Tip: {{reteta.nume_Tip_Retete }} </span>
 
 
-          <span style="position: absolute;padding-bottom: 5%; right: 20%;padding-bottom: 5%;">Scor: {{reteta.rating}}</span>
+          <span style="position: absolute;padding-bottom: 5%; right: 20%;padding-bottom: 5%;">Scor: {{reteta.rating | number:'1.2-2'}}</span>
         </ion-card-subtitle>
 
 
