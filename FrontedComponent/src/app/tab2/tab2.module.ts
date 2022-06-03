@@ -8,6 +8,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { StarsComponentModule } from '../stars/stars.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -16,7 +17,9 @@ import { StarsComponentModule } from '../stars/stars.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    StarsComponentModule
+    StarsComponentModule,
+    Ng2SearchPipeModule
+
   ],
   declarations: [Tab2Page]
 })

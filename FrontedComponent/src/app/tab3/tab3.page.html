@@ -1,6 +1,7 @@
+
 <ion-header>
 
-  <ion-toolbar>
+  <ion-toolbar class="toolBar">
     <ion-title class="title">Sugestii </ion-title>
   </ion-toolbar>
 
@@ -10,15 +11,15 @@
     <ion-row>
    <ion-col>
     <div class="container2">
-      <img  style="opacity: .6;" src="assets/images/FrameBis.png" />
-      <button  class="sugestionBtn"   (click)="PreopenCardModal()">Rețetă Random</button>
+      <img  style="opacity: .1;" src="assets/images/zar.svg" />
+      <button   fill="outline" class="sugestionBtn"   (click)="PreopenCardModal()" >Rețetă Random</button>
   </div>
 </ion-col>
 
 <ion-col>
   <div class="container2">
-    <img   style="opacity: .6;" src="assets/images/FrameBis.png" />
-    <button class="sugestionBtn" routerLink="/generate" [queryParams]="{dataSource:'AltoraLePlace'}"  share="round" color="mycolor">Altora le place</button>
+    <img   style="opacity: .1;" src="assets/images/altii.svg" />
+    <button class="sugestionBtn" routerLink="/generate" [queryParams]="{dataSource:'AltoraLePlace'}" >Altora le place</button>
   </div>
 </ion-col>
 </ion-row>
@@ -26,20 +27,21 @@
 
   <ion-col>
     <div class="container2">
-      <img  style="opacity: .4;" src="assets/images/FrameBis.png" />
-      <button class="sugestionBtn"  (click)="PreopenCardModal_RetetaZilei()">Rețeta zilei</button>
+      <img  style="opacity: .1;" src="assets/images/day.svg" />
+      <button class="sugestionBtn"  (click)="PreopenCardModal_RetetaZilei()"><span style= "text-decoration:solid;">
+
+      Rețeta zilei
+    </span></button>
     </div>
   </ion-col>
 
 <ion-col>
   <div class="container2">
-  <img  style="opacity: .4;" src="assets/images/FrameBis.png" />
+  <img  style="opacity: .1;" src="assets/images/you.svg" />
 
- <button  class="sugestionBtn" routerLink="/generate" [queryParams]="{dataSource:'AltoraLePlace'}"  share="round" color="mycolor"> Pe gustul tau </button>
+ <button  class="sugestionBtn" routerLink="/generate" [queryParams]="{dataSource:'PentruTine'}"  share="round" color="mycolor">Pentru tine</button>
 </div>
 </ion-col>
 </ion-row>
 </ion-grid>
 </ion-content>
-
-

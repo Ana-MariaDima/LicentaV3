@@ -1,29 +1,42 @@
 <ion-header>
-  <ion-toolbar color="mycolor" class="round" >
-    <ion-title class="title">Autentificare</ion-title>
+  <ion-toolbar color="mycolor" class="toolBar">
+    <ion-title class="title">Log in</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding='true'>
-    <div class="center">
-      <img src="assets/images/logo.png" class="smallLogo" style="padding: 2%;"/>
-    </div>
+<ion-content>
+  <br>
+  <br>
+  <div class="center">
+    <img src="assets/images/logo.png" class="smallLogo" />
+  </div>
+  <br>
+  <br>
+
+  <ion-item lines='none'>
+    <a routerLink='/register'
+      style="padding-bottom: 5%; color: #dfa5fa; font-size: large;font-family: “Comic Sans MS”, “Comic Sans”, cursive;">
+      Nu ai cont? Crează cont!
+    </a>
+  </ion-item>
+
   <form>
     <ion-list>
       <ion-item>
         <ion-label position="stacked" style="padding: 2%;">Nume de utilizator</ion-label>
-        <ion-textarea   autocomplete="doNotAutoComplete"  type="text" name="username" [(ngModel)]="user.username" (keydown.enter)="doLogin()"></ion-textarea >
+        <ion-input autocomplete="doNotAutoComplete" type="text" name="username" [(ngModel)]="user.username"
+          (keydown.enter)="doLogin()"></ion-input>
       </ion-item>
-
       <ion-item>
         <ion-label position="stacked" style="padding: 2%;">Parolă</ion-label>
-        <ion-input  autocomplete="doNotAutoComplete" type="password" name="password"  [(ngModel)]="user.password" (keydown.enter)="doLogin()"></ion-input >
+        <ion-input autocomplete="doNotAutoComplete" type="password" name="password" [(ngModel)]="user.password"
+          (keydown.enter)="doLogin()"></ion-input>
       </ion-item>
-
-      <ion-item lines='none'>
-        <a routerLink='/register' style="padding: 2%; color: #dfa5fa; font-size: medium;font-family: “Comic Sans MS”, “Comic Sans”, cursive;">Nu ai cont? Crează cont!</a>
-      </ion-item>
+      <br>
+      <br>
     </ion-list>
-    <ion-button  style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"  expand="block"  share="round" color="mycolor"   (click)="doLogin()">Autentifică-te</ion-button>
+    <ion-button style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"
+      expand="block" share="round" color="mycolor" (click)="doLogin()">Autentifică-te</ion-button>
   </form>
+
 </ion-content>

@@ -14,6 +14,7 @@ export class Tab2Page {
   constructor(private modalService:ModalServiceService,private ReteteService: ReteteService,private modalController: ModalController) { }
   retete:Array<any> = [];
   reteteliked:Array<any> = [];
+  searchTerm: string;
 
 
 

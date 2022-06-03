@@ -1,6 +1,6 @@
 
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar style="background-color: transparent;padding: 2%;">
       <button style="background-color: transparent;padding: 2%;">
         <ion-badge *ngIf="itemsInCart.length!=0" color="mycolor">{{itemsInCart.length}}</ion-badge>
          <ion-icon name="wine" ></ion-icon>
@@ -10,13 +10,14 @@
     style="background-color: transparent;padding: 2%; float: right;" (click)="dismiss()"><ion-icon name="close"></ion-icon>
     </button>
     <ion-title class="title">Pahar</ion-title>
-    <div style="display: inline-flex;float: right; align-items: center;">
-      <ion-label>Perfect Match</ion-label>
-      <ion-toggle [(ngModel)]="perfectMatch"></ion-toggle>
-    </div>
+
   </ion-toolbar>
 
 
+  <div  *ngIf="itemsInCart.length!=0" style="display: inline-flex;float: left; align-items: center; text-align: center; padding-left: 7%; padding-top: 5%; font-size: large; ">
+    <ion-label class="title2" style="padding-right: 10px;">Potrivire perfectă</ion-label>
+    <ion-toggle  [(ngModel)]="perfectMatch"></ion-toggle>
+  </div>
 </ion-header>
 
 <ion-content>
@@ -26,8 +27,8 @@
 
       <ion-card  style="padding:10px;">
 
-        <ion-card-title class="retetaTitle" style="text-align: center;">Niciun ingredient adaugat in pahar.<br>
-        Pentru a face un cocktail interesant este nevoie sa adaugi cateva ingrediente.</ion-card-title>
+        <ion-card-title class="retetaTitle" style="text-align: center;">Niciun ingredient adăugat în pahar.<br>
+        Pentru a face un cocktail interesant este nevoie să adaugi câteva ingrediente.</ion-card-title>
 
         <ion-card-content>
 
@@ -48,27 +49,26 @@
         </ion-card-content>
       </ion-card>
     </div>
-<!--
-    <ion-content [style.background-image]="'url('+ fromFlag +')'"
-    [style.background-size]="'100% 50%, 100% 50%'" [style.background-repeat]="'no-repeat, repeat'"> -->
 
-          <ion-list>
-    <ion-card *ngFor="let ingredient of itemsInCart" class="cartItem">
+          <ion-list *ngIf="itemsInCart.length!=0">
+    <ion-card   *ngFor="let ingredient of itemsInCart" class="cartItem">
         <ion-card-header>
+
           <button (click)="removeFromCart(ingredient)" style="background-color: transparent; float: right;">
             <ion-icon name="trash"></ion-icon>
           </button>
+          <br>
 
 
         </ion-card-header>
           <ion-card-content >
 
 
-            <ion-img  style="float: left;"  [src]="imagesUrl+ ingredient.subCategorieIngredient.pozaSubcategorieIngredient+'.png'" class="subcategorieIngredienteSmall"  ></ion-img>
+            <ion-img  style="float: left; margin-bottom: 5%;"  [src]="imagesUrl+ ingredient.subCategorieIngredient.pozaSubcategorieIngredient+'.png'" class="subcategorieIngredienteSmall"  ></ion-img>
 
 
 
-          <div style="    top: 45%; left: 45%;  position: absolute;">
+          <div style="left: 45%;  position: absolute;">
             <ion-card-title class="title2"> {{ingredient.nume_ingredient}} </ion-card-title>
 
             <ion-card-subtitle class="title2"> {{ingredient.subCategorieIngredient.nume_Subcategorie_ingredient}}  </ion-card-subtitle>

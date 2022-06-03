@@ -1,7 +1,7 @@
 <ion-header>
 
-  <ion-toolbar>
-    <ion-title class="title">Retete Favorite</ion-title>
+  <ion-toolbar class="toolBar">
+    <ion-title class="title">Rețete favorite</ion-title>
 
   </ion-toolbar>
 </ion-header>
@@ -31,23 +31,14 @@
             </div>
           </tr>
           <br>
-
-
-
-
-
-
-
-          <!--button class="buttonDetails">
-            Descopera ceva nou aici!
-          </button-->
         </table>
         </ion-card-content>
         </ion-card>
 
       </div>
+      <ion-searchbar  *ngIf="retete.length!=0" animated [(ngModel)]="searchTerm" showCancelButton="focus"></ion-searchbar>
 
-      <ion-card *ngFor="let reteta of  retete" style="padding:10px;">
+      <ion-card *ngFor="let reteta of  retete  | filter: searchTerm" style="padding:10px;">
 
         <ion-card-title class="retetaTitle" style="text-align: center;">{{reteta.nume_reteta}}</ion-card-title>
         <ion-card-subtitle  ng>
@@ -59,18 +50,6 @@
         </ion-card-subtitle>
         <ion-card-content>
           <table>
-            <!-- <div class="container">
-              <img [src]="reteta.poza_reteta" class="ImgRetete ImgRetetePopUp" />
-              <button class="btn" *ngIf="!reteta.liked" (click)="toggleLiked(reteta)">
-                <ion-icon name="heart-outline"></ion-icon>
-
-              </button>
-
-              <button class="btn" *ngIf="reteta.liked" (click)="toggleLiked(reteta)">
-                <ion-icon name="heart"></ion-icon>
-              </button>
-
-            </div> -->
 
             <tr>
               <td>
@@ -81,9 +60,8 @@
                 <table>
                   <tr class="elementTitle">
                     Ingrediente
-                    <br>
-
                   </tr>
+                  <br>
                   <ul>
                   <li *ngFor="let ing of reteta.retetaIngredient">
                     {{ing.nume_ingredient}}</li>
@@ -98,8 +76,6 @@
 
                 </table>
               </td>
-
-
             </tr>
           </table>
 
@@ -124,8 +100,7 @@
               <td width="100%">
                 <ion-button share="round" color="mycolor" style="float: right;">
                   <rating-stars [rating]="reteta.user_rating" [onReview]="this.onReview(reteta)"> </rating-stars>
-<!--
-                  <span style="margin-left: 10px;">({{reteta.rating}})</span> -->
+
                 </ion-button>
               </td>
 

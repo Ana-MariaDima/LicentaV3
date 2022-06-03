@@ -57,20 +57,10 @@ export class ModalPopupCartPage implements OnInit {
   }
 
   genertaePerfectMatch(){
-    if(localStorage.getItem("cart") != undefined)
-    {
-      this.itemsInCart = Object.values(JSON.parse(localStorage.getItem('cart')))
-      //console.log('items in cart now', this.itemsInCart);
-    }
+    setTimeout(()=>{
+      this.dismiss();
+    }, 500)
 
-    this.buttonDisabled = true;
-    setTimeout(x=>{
-      this.modalController.dismiss();
-      if(window.location.href.includes("generate")){
-        window.location.reload();
-      }
-
-    },500);
 
   }
 

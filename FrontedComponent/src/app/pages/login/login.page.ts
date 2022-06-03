@@ -20,17 +20,13 @@ export class LoginPage implements OnInit{
   };
   public error:boolean | string=false;
 
-
-
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {}
 
   validateInputs() {
-    //console.log(this.postData);
     let username = this.user.username.trim();
     let password = this.user.password.trim();
-
 
     return (
       this.user.username &&
@@ -39,7 +35,6 @@ export class LoginPage implements OnInit{
                     password.length > 0
     );
   }
-
 
   doLogin():void {
 
@@ -65,25 +60,6 @@ export class LoginPage implements OnInit{
       });
 
   }
-
-  // validateEmail(email:string) {
-  //   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  //   return re.test(String(email).toLowerCase());
-  // }
-
-
-  // validateInput(){
-
-  //   console.log(this.validation)
-  //   this.validation=this.user.username.length > 0 &&
-  //   this.user.password.length > 0
-
-  // }
-
-
-
-
-
   ngOnDestroy() {}
   ngOnChanges (){
 

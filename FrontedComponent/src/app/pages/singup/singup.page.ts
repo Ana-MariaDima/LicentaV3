@@ -12,25 +12,25 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class SingupPage implements OnInit {
   public myForm!: FormGroup;
-  error_messages : any;
+  error_messages: any;
 
-  constructor(private fromBuilder:FormBuilder,private registerService: RegisterService, private router: Router) { }
+  constructor(private fromBuilder: FormBuilder, private registerService: RegisterService, private router: Router) { }
 
   ngOnInit(): void {
-    this.myForm=this.fromBuilder.group({
-      firstName: ['',[Validators.required]],
-      email:['',[Validators.required, Validators.email]],
-      lastName:['',[Validators.required]],
-      username:['',[Validators.required]],
-      password:['',[Validators.required, Validators.minLength(8)]],
-      sex:['', Validators.required],
-      varsta:['', Validators.required],
-      confirmpassword:['',[Validators.required, Validators.minLength(8)]]
+    this.myForm = this.fromBuilder.group({
+      firstName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      lastName: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      sex: ['', Validators.required],
+      varsta: ['', Validators.required],
+      confirmpassword: ['', [Validators.required, Validators.minLength(8)]]
 
     },
-    {
-      validators: this.password.bind(this)
-    }
+      {
+        validators: this.password.bind(this)
+      }
 
 
     );
@@ -42,77 +42,30 @@ export class SingupPage implements OnInit {
 
   }
 
+  public error: boolean | string = false;
 
 
-  public error:boolean | string=false;
+  doRegister() {
 
 
-  doRegister()
-  {
-    //console.log(this.myForm);
-
-
-    if(this.myForm.valid)
-    {
-  console.log("Valid")
-      this.registerService.register(this.myForm.value).then((result: any)=>{
-       console.log(result)
-        if(result.isSuccess){
+    if (this.myForm.valid) {
+      //console.log("Valid")
+      this.registerService.register(this.myForm.value).then((result: any) => {
+        if (result.isSuccess) {
           localStorage.setItem('token', result.token);
-          console.log('token set before redirec')
           this.router.navigate(['home']);
-        }else{
-          alert("Sign up failed!\nUsername or email maight already exist. Try to login instead!");
+        } else {
+          alert("Inregistrare eșuată!\Nume de utilizator sau e-mail deja existent.  Încercați să vă logați!");
         }
-      }).catch((failure)=>{
-        if(!failure.error.message){
+      }).catch((failure) => {
+        if (!failure.error.message) {
           console.warn(failure);
           return;
         }
 
-          alert(failure.error.message)
-     });
-
-
-
-
-
+        alert(failure.error.message)
+      });
 
     }
   }
-
-  /*doRegister():void {
-    this.error=false;
-    console.log('SingUp Clicked', this.user);
-
-    if(this.validateEmail(this.user.username))
-    {
-      this.registerService.register(this.user).subscribe((response: any) =>{
-       // console.log(response);
-        if(response )
-        {
-          console.log("yesss");
-          //localStorage.setItem('token', response.token);
-          this.router.navigate(['/tabs/tab1']);
-        }
-      })
-    }
-    else{
-      this.error="Email is not valid";
-
-    }*/
-
-  }
-/*
-  validateEmail(email:string) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }*/
-
-
-
-
-
-
-
-
+}

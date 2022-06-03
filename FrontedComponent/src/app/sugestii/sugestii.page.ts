@@ -32,7 +32,7 @@ export class SugestiiPage implements OnInit {
       case 'Pahar':{
         this.perfectMatch = params['perfectMatch'];
         var arrayIngrediente = localStorage.getItem('cart');
-
+        console.log(arrayIngrediente);
         if(arrayIngrediente){
           arrayIngrediente = JSON.parse(arrayIngrediente);
           this.retete = await this.reteteService.getReteteSugerate(Object.keys(arrayIngrediente), this.perfectMatch == 'false'?false: true);
@@ -43,15 +43,43 @@ export class SugestiiPage implements OnInit {
       case 'AltoraLePlace':{
         this.showChecks = false;
         var reteteId = await this.reteteService.getRecommandations();
-        console.log(reteteId);
+        console.log("Reteteid",reteteId);
         this.retete = [];
         for(let index in reteteId){
           var reteta = await this.reteteService.getReteta(reteteId[index]);
           this.retete.push(reteta[0]);
         }
+      }break;
 
+      case 'PentruTine':{
+        this.showChecks = false;
+        var arrayIngrediente = '';
+        var reteteApreciate = await this.reteteService.getLikedRetete();
+        console.log(reteteApreciate);
+        var frecventaIngrediente = {};
 
+        for(let x in reteteApreciate){
+          var retetaFull = (await this.reteteService.getReteta(reteteApreciate[x].idReteta))[0];
+          console.log(retetaFull);
+          retetaFull.retetaIngredient.forEach(ing=>{
+            frecventaIngrediente[ing.idIngredient] = (frecventaIngrediente[ing.idIngredient]?frecventaIngrediente[ing.idIngredient]:0)+1;
+          });
+        }
 
+        var ingrediente = Object.keys(frecventaIngrediente);
+        ingrediente.sort((a,b)=>{
+            return frecventaIngrediente[b] - frecventaIngrediente[a];
+        });
+
+        ingrediente = ingrediente.slice(0, 3)
+        console.log(ingrediente, frecventaIngrediente);
+
+        if(ingrediente.length > 0){
+          this.retete = await this.reteteService.getReteteSugerate(ingrediente, false);
+          console.log("retete sugerate", this.retete)
+        }else{
+          this.retete = []
+        }
       }break;
     }
   }

@@ -19,6 +19,7 @@ import { StarsComponentModule } from '../stars/stars.module';
     Tab1ToateRetetelePageRoutingModule,
     Ng2SearchPipeModule
   ],
+
   declarations: [Tab1ToateRetetelePage]
 })
 export class Tab1ToateRetetelePageModule {}

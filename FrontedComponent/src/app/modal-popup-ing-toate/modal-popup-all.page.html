@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="toolBar">
       <button  style="background-color: transparent;padding: 2%;"  (click)="openCart()">
         <ion-badge *ngIf="itemsInCart.length" color="mycolor">{{itemsInCart.length}}</ion-badge>
          <ion-icon name="wine" ></ion-icon>
@@ -9,7 +9,7 @@
     <button
     style="background-color: transparent;padding: 2%; float: right;" (click)="dismiss()"><ion-icon name="close"></ion-icon>
     </button>
-    <ion-title class="title">Toate Ingredientele</ion-title>
+    <ion-title class="title2" style="padding: 2%;">Toate<br>ingredientele</ion-title>
   </ion-toolbar>
 
 

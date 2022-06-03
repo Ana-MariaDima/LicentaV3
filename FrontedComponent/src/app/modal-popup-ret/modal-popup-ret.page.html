@@ -1,22 +1,13 @@
 <ion-header>
   <ion-toolbar>
 
-
-
-
-
     <button style="background-color: transparent;padding: 2%; float: right;" (click)="dismiss()">
       <ion-icon name="close"></ion-icon>
     </button>
 
     <ion-title class="title">{{model_title}}</ion-title>
 
-
-
-
   </ion-toolbar>
-
-
 </ion-header>
 
 
@@ -51,30 +42,18 @@
           </div>
         </tr>
         <br>
-
-
-
-
-
-
-
         <tr class="elementTitle">
           Ingrediente
         </tr>
-
+        <br>
         <ul *ngFor="let ing of ingrediente">
-
-
-
-          <!--div ngIf = "ing.cantitate!=''; then thenBlock  else elseBlock" > </div-->
           <li>{{ing.nume_ingredient}} {{ing.cantitate!=''&& ing.unitate!=''?" - "+ing.cantitate +" "+ing.unitate :"" }}
-
           </li>
         </ul>
-
         <tr class="elementTitle">
-          Instructiuni
+          Instrucțiuni
         </tr>
+        <br>
         <ul *ngFor="let instruc of  instructiuniSplit">
           <li>
             {{instruc}}
@@ -83,24 +62,20 @@
         <tr class="elementTitle">
           Pahar recomandat
         </tr>
+        <br>
         <ul>
           <li>
             {{pahar}}
           </li>
         </ul>
         <tr class="elementTitle">
-          Scor Mediu
+          Rating
         </tr>
+        <br>
         <ul style="display: inline-flex; align-items: center;">
           <rating-stars [rating]="rating" [disabled]="true"> </rating-stars>
-
           <span style="margin-left: 10px;">({{rating}})</span>
-
-
         </ul>
-
-
-
       </table>
     </ion-card-content>
   </ion-card>

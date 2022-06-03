@@ -1,87 +1,88 @@
 <ion-header>
-  <ion-toolbar color="mycolor" class="round" >
+  <ion-toolbar color="mycolor" class="toolBar">
     <ion-title class="title">Crează Cont</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding='true'>
-    <div class="center">
-      <img src="assets/images/logo.png" class="smallLogo"/>
+  <br>
+  <br>
+  <div class="center">
+    <img src="assets/images/logo.png" class="smallLogo" />
+  </div>
+  <br>
+  <br>
 
-    </div>
   <form [formGroup]="myForm">
-
     <ion-list>
       <ion-item lines='none'>
         <br>
-        <a routerLink='/login' style="padding: 2%; color: #dfa5fa; font-size: medium;font-family: “Comic Sans MS”, “Comic Sans”, cursive;" >Ai deja cont? Autentifică-te!</a>
+        <a routerLink='/login'
+          style="padding-bottom: 5%; color: #dfa5fa; font-size: large;font-family: “Comic Sans MS”, “Comic Sans”, cursive;">
+          Ai deja cont? Autentifică-te!
+        </a>
       </ion-item>
       <ion-item>
         <ion-label position="stacked" style="padding: 2%;">E-mail</ion-label>
-        <ion-textarea  autocomplete="off" type="text" name="email" placeholder="The email must be valid" formControlName="email" ></ion-textarea >
+        <ion-input autocomplete="off" type="text" name="email" placeholder="Introduceți un e-mail valid"
+          formControlName="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked" style="padding: 2%;">Nume</ion-label>
-        <ion-textarea  autocomplete="off" type="text" name="LastName" formControlName="lastName" ></ion-textarea >
+        <ion-input autocomplete="off" type="text" name="LastName" formControlName="lastName"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked"style="padding: 2%;">Prenume</ion-label>
-        <ion-textarea  autocomplete="off" type="text" name="firstName" formControlName="firstName" ></ion-textarea >
+        <ion-label position="stacked" style="padding: 2%;">Prenume</ion-label>
+        <ion-input autocomplete="off" type="text" name="firstName" formControlName="firstName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked" style="padding: 2%;">Nume de utilizator</ion-label>
-        <ion-textarea  autocomplete="off" type="text" name="username" formControlName="username" ></ion-textarea >
+        <ion-input autocomplete="off" type="text" name="username" formControlName="username"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked" style="padding: 2%;">Parolă</ion-label>
-        <ion-input  autocomplete="off" type="password" name="password" placeholder="The password must be at least 8 chars long"  formControlName="password"></ion-input >
+        <ion-input autocomplete="off" type="password" name="password" placeholder="Maximum 8 caractere"
+          formControlName="password"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked" style="padding: 2%;">Confirmă Parola</ion-label>
-        <ion-input  autocomplete="off" type="password" name="confirmpassword" placeholder="The password must be at least 8 chars long"   formControlName="confirmpassword"></ion-input >
+        <ion-input autocomplete="off" type="password" name="confirmpassword" placeholder="Maximum 8 caractere"
+          formControlName="confirmpassword"></ion-input>
       </ion-item>
 
-
-      <div >
-        <div style="padding:2%; color:red;"  *ngIf="!myForm.get('confirmpassword').errors && myForm.hasError('passwordNotMatch') && (myForm.get('confirmpassword').dirty || myForm.get('confirmpassword').touched)">
-          Parololele nu sunt identice
+      <div>
+        <div style="padding:2%; color:red;"
+          *ngIf="!myForm.get('confirmpassword').errors && myForm.hasError('passwordNotMatch') && (myForm.get('confirmpassword').dirty || myForm.get('confirmpassword').touched)">
+          Parololele nu sunt identice!
         </div>
       </div>
 
       <ion-item>
         <ion-label position="stacked" style="padding: 2%;">Sex</ion-label>
-        <ion-input >
-
-          <ion-select  name="Sex"  formControlName="sex">
-            <ion-select-option value="F">Feminin</ion-select-option>
-            <ion-select-option value="M">Masculin</ion-select-option>
-            <ion-select-option value="N">Nu doresc să specific</ion-select-option>
-          </ion-select>
-         </ion-input>
+        <ion-select name="Sex" formControlName="sex">
+          <ion-select-option value="F">Feminin</ion-select-option>
+          <ion-select-option value="M">Masculin</ion-select-option>
+          <ion-select-option value="N">Nu doresc să specific</ion-select-option>
+        </ion-select>
       </ion-item>
-
 
       <ion-item>
         <ion-label position="stacked" style="padding:2%;">Vârstă</ion-label>
-        <ion-input>
-          <ion-select  name="varsta"  formControlName="varsta">
-
-            <ion-select-option value="18">Între 18 si 25</ion-select-option>
-            <ion-select-option value="26">Între 26 si 35 </ion-select-option>
-            <ion-select-option value="36">Între 36 si 45</ion-select-option>
-            <ion-select-option value="46">Între 46 si 60</ion-select-option>
-            <ion-select-option value="61">Peste 60</ion-select-option>
-
-            <ion-select-option value="-1">Nu doresc să specific</ion-select-option>
-
-          </ion-select>
-        </ion-input>
+        <ion-select name="varsta" formControlName="varsta">
+          <ion-select-option value="18">Între 18 si 25</ion-select-option>
+          <ion-select-option value="26">Între 26 si 35 </ion-select-option>
+          <ion-select-option value="36">Între 36 si 45</ion-select-option>
+          <ion-select-option value="46">Între 46 si 60</ion-select-option>
+          <ion-select-option value="61">Peste 60</ion-select-option>
+          <ion-select-option value="-1">Nu doresc să specific</ion-select-option>
+        </ion-select>
       </ion-item>
 
-
     </ion-list>
-    <ion-button style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"  expand="block"  share="round" color="mycolor"  [disabled]="!myForm.valid" (click)="doRegister()">Crează</ion-button>
+    <ion-button style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"
+      expand="block" share="round" color="mycolor" [disabled]="!myForm.valid" (click)="doRegister()">Crează cont
+    </ion-button>
   </form>
 </ion-content>

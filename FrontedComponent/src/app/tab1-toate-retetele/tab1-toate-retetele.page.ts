@@ -57,7 +57,7 @@ export class Tab1ToateRetetelePage  {
 
         this.retete[idx].liked = false;
         this.retete[idx].nr_likes = this.retete[idx].nr_likes - 1 < 0 ? 0: this.retete[idx].nr_likes-1;
-        console.log("Reteta unliked ", retetaUnliked)
+       // console.log("Reteta unliked ", retetaUnliked)
     });
 
     (window as any).EventSystem.listen('retetaReviewed', (ret)=>{
@@ -91,10 +91,17 @@ export class Tab1ToateRetetelePage  {
       },
       'ScorDesc':function(a,b){
         return  b.rating - a.rating //sorteaza desc dupa scor
+      },
+      'MyScorAsc':function(a,b){
+        return  a.user_rating - b.user_rating //sorteaza asc dupa scorul tau
+      },
+      'MyScorDesc':function(a,b){
+        return  b.rating - a.user_rating //sorteaza desc dupa scorul tau
       }
+
     }
     var functieDeCriteriu = criteriiSelectie[criteriu]
-    console.log(ev, criteriu, functieDeCriteriu)
+    //console.log(ev, criteriu, functieDeCriteriu)
 
     this.retete.sort(functieDeCriteriu);
   }
@@ -159,9 +166,7 @@ export class Tab1ToateRetetelePage  {
   }
 
   async openRetetaModal(reteta){
-    console.log("Reteta deschisa", reteta)
-
-
+    //console.log("Reteta deschisa", reteta)
     var modal = await this.modalController.create({
       component:ModalPopupPageRet,
       cssClass:"modalTest",
@@ -183,14 +188,12 @@ export class Tab1ToateRetetelePage  {
 
     modal.present()
     var {data} = await modal.onWillDismiss();
-    console.log(data, "data all")
-
+    //console.log(data, "data all")
     data = JSON.parse(data.payload);
     if(data.nr_likes!= reteta.nr_likes ){
       this.toggleLiked(reteta);
     }
-
-    console.log("Modal closed !", data);
+    //console.log("Modal closed !", data);
     //if(data.user_rating != reteta.user_rating)
     reteta.user_rating = data.user_rating;
     reteta.rating = data.rating;
@@ -199,14 +202,6 @@ export class Tab1ToateRetetelePage  {
       x.nume_reteta == reteta.nume_reteta
     });
 
-    //this.retete[idx]  // = fetch()
-    // var reteteTmp = this.retete;
-    // this.retete= []
-    // setTimeout(()=>{
-    //   this.retete = reteteTmp
-    // },100)
-    //this.retete = reteteTmp;
-   // console.log("modal returned data", data)
 
 
 }
@@ -220,7 +215,7 @@ export class Tab1ToateRetetelePage  {
     reteta.nr_likes=reteta.nr_likes-1;
 
     this.reteteService.toggleLike(reteta.nume_reteta);
-    console.log("before fetched");
+   // console.log("before fetched");
     this.reteteService.fetchReteteApreciate();
   }
 
