@@ -51,7 +51,15 @@ export class ReteteService {
     async getRetetaRandom(){
       var reteta = (await this.http.get(environment.baseUrl+"Retete/random").toPromise() as Array<any>);
       //console.log(reteta , "reteta")
-      return this.groupBy(reteta)[0] //nu merge incarcare modal
+
+      var reviewRetete = (await this.http.post(environment.baseUrl+"Aprecieri/GetByIdReviews",{token:localStorage.getItem('token')}).toPromise() as Array<any>);
+      reviewRetete.forEach(rR =>{
+         try{
+          (reteta.find((x:any) =>{   return x.id == rR.idReteta;}) as any).user_rating = rR.review;
+         }catch(e){}
+       })
+
+      return reteta[0] //nu merge incarcare modal
     }
 
     async allRetete(){

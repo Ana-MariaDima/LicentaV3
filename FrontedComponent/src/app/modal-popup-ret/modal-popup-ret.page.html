@@ -74,7 +74,7 @@
         <br>
         <ul style="display: inline-flex; align-items: center;">
           <rating-stars [rating]="rating" [disabled]="true"> </rating-stars>
-          <span style="margin-left: 10px;">({{rating}})</span>
+          <span style="margin-left: 10px;">({{rating|number:'1.2-2'}})</span>
         </ul>
       </table>
     </ion-card-content>
