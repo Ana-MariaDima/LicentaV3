@@ -19,6 +19,82 @@
 <ion-content>
   <div>
     <ion-list slot="content">
+      <div *ngIf="retete.length==0 && perfectMatch" >
+        <ion-card  style="padding:10px;">
+
+          <ion-card-title class="retetaTitle" style="text-align: center;">Nicio retetea cu potrivire perfectă</ion-card-title>
+
+          <ion-card-content>
+
+        <table>
+          <tr>
+            <div class="container">
+
+                <img src="assets/images/logo.png" class="ImgRetete ImgRetetePopUp" />
+                <br>
+                <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;" routerLink="/generate" [queryParams]="{perfectMatch:false, dataSource:'Pahar'}"  >
+                   Descoperă rețete similare
+                </ion-button>
+            </div>
+
+          </tr>
+          <br>
+        </table>
+        </ion-card-content>
+        </ion-card>
+   </div>
+   <div *ngIf="retete.length==0 && !perfectMatch && !forYou" >
+    <ion-card  style="padding:10px;">
+
+      <ion-card-title class="retetaTitle" style="text-align: center;">Momentan nu exista utilizatori cu un profil similar cu al tau.<br>Ne pare rau! </ion-card-title>
+
+      <ion-card-content>
+
+    <table>
+      <tr>
+        <div class="container">
+
+            <img src="assets/images/logo.png" class="ImgRetete ImgRetetePopUp" />
+            <br>
+            <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;" routerLink='/home/tab1' >
+              Descoperă rețete noi
+           </ion-button>
+        </div>
+
+      </tr>
+      <br>
+    </table>
+    </ion-card-content>
+    </ion-card>
+</div>
+
+
+<div *ngIf="retete.length==0 && forYou" >
+  <ion-card  style="padding:10px;">
+
+    <ion-card-title class="retetaTitle" style="text-align: center;">Pentru a ne putea da seama ce iți place te sfătuim să apreciezi rețetele preferate.</ion-card-title>
+
+    <ion-card-content>
+
+  <table>
+    <tr>
+      <div class="container">
+
+          <img src="assets/images/logo.png" class="ImgRetete ImgRetetePopUp" />
+          <br>
+          <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;" routerLink='/home/tab1' >
+            Apreciază rețete noi
+         </ion-button>
+      </div>
+
+    </tr>
+    <br>
+  </table>
+  </ion-card-content>
+  </ion-card>
+</div>
+
+
 
       <ion-card *ngFor="let reteta of retete | filter: searchTerm" style="padding:10px;">
 
@@ -132,5 +208,5 @@
       </ion-card>
 
     </ion-list>
-  </div>
+</div>
 </ion-content>

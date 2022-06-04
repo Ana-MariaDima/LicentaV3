@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ModalServiceService } from '../modal-service.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class TabUserPage implements OnInit {
   }
   imageBase = environment.imagesUrl;
   userLoaded = false;
-  constructor(private userService: UserService) { }
+  constructor(private modalService:ModalServiceService, private userService: UserService) { }
   ngOnInit(): void {
 
   }
@@ -51,5 +52,10 @@ export class TabUserPage implements OnInit {
     //var token =localStorage.getItem('token');
     localStorage.removeItem("token");
     window.location.reload();
+  }
+  async opneParola()
+  {
+    await this.modalService.openParolaModal();
+    this.ionViewWillEnter();
   }
 }

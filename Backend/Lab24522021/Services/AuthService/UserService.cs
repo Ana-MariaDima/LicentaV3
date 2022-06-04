@@ -60,6 +60,25 @@ namespace Licenta.Services.AuthService
             return jwtToken;
         }
 
+
+
+        public string Update(User model)
+        {
+
+
+            /*var user = context.Users.FirstOrDefault(x => x.Username == model.Username);
+            if (user == null || !BCryptNet.Verify(model.Password, user.PasswordHash))
+            {
+                return true;
+            }*/
+            //JWT generation (Json Web Token)
+            context.Users.Update(model);
+            context.SaveChanges();
+            var jwtToken = iJWTUtils.GenerateJWTToken(model);
+            return jwtToken;
+        }
+
+
         public IEnumerable<User> GetAllUsers()
         {
             // var users = context.Users;

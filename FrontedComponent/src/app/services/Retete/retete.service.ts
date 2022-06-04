@@ -27,6 +27,8 @@ export class ReteteService {
           retetaCurenta.id = item['id']
           retetaCurenta.retetaIngredient = []
           retetaCurenta.tipReteta= {nume_Tip_Retete:item['nume_Tip_Retete']}
+      // retetaCurenta.categorieReteta= {nume_Categori_Retete:item['nume_Categorie_Retete']}
+
           retetaCurenta.poza_reteta = item['poza_reteta']
           retetaCurenta.instructiuni=item['instructiuni_reteta']
           retetaCurenta.nume_pahar=item['nume_Pahar']
@@ -117,6 +119,11 @@ export class ReteteService {
     async getCategoriiRetete():Promise<any>{
       return this.http.get(environment.baseUrl+"CategoriiRetete/").toPromise() ;
     }
+
+    async getCategorieReteta(idCateg: string):Promise<any>{
+      return this.http.get(environment.baseUrl+"CategoriiRetete/"+idCateg).toPromise() ;
+    }
+
 
 
     getTipReteta(idTipReteta:string):Promise<any>{

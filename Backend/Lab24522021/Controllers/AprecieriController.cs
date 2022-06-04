@@ -141,7 +141,7 @@ namespace Licenta.Controllers
             var jwtSecurityToken = handler.ReadJwtToken(payload.Token);
             var id = jwtSecurityToken.Claims.Where(z => z.Type == "id").FirstOrDefault().Value;
 
-            var aprecieriUserTarget = _demoService.GetAprecieriRepository().GetByUser(Guid.Parse(id)).Select(x=>x.IdReteta.ToString()).ToList(); // o lista cu id-uri de RETETE
+            var aprecieriUserTarget = _demoService.GetAprecieriRepository().GetByUser(Guid.Parse(id)).Where(x=>x.Star==false).Select(x=>x.IdReteta.ToString()).ToList(); // o lista cu id-uri de RETETE
             var colectieAprecieri = await _demoService.GetAprecieriRepository().GetAll(); // o lista cu toate aprecierile din baza
 
             /*

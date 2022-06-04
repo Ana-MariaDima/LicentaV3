@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="mycolor" class="toolBar">
+
+
+    <ion-title class="title">Schimbă parola</ion-title>
+
+    <button
+    style="background-color: transparent;padding: 2%; float: right;" (click)="dismiss()"><ion-icon name="close"></ion-icon>
+    </button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding='true'>
+  <br>
+  <br>
+  <div class="center">
+    <img src="assets/images/logo.png" class="smallLogo" />
+  </div>
+  <br>
+  <br>
+
+  <form [formGroup]="myForm">
+    <ion-list>
+
+        <ion-item>
+          <ion-label position="stacked" style="padding: 2%;">Parolă veche</ion-label>
+          <ion-input autocomplete="off" type="password" name="Oldpassword"
+            formControlName="Oldpassword"></ion-input>
+        </ion-item>
+      <ion-item>
+        <ion-label position="stacked" style="padding: 2%;">Parolă nouă</ion-label>
+        <ion-input autocomplete="off" type="password" name="password" placeholder="Minimum 8 caractere"
+          formControlName="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" style="padding: 2%;">Confirmă parola nouă</ion-label>
+        <ion-input autocomplete="off" type="password" name="confirmpassword" placeholder="Minimum 8 caractere"
+          formControlName="confirmpassword"></ion-input>
+      </ion-item>
+
+      <div>
+        <div style="padding:2%; color:red;"
+          *ngIf="!myForm.get('confirmpassword').errors && myForm.hasError('passwordNotMatch') && (myForm.get('confirmpassword').dirty || myForm.get('confirmpassword').touched)">
+          Parololele nu sunt identice!
+        </div>
+      </div>
+
+
+
+    </ion-list>
+    <ion-button style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"
+      expand="block" share="round" color="mycolor"  (click)="doUpdate()">Schimbă parola
+    </ion-button>
+  </form>
+</ion-content>

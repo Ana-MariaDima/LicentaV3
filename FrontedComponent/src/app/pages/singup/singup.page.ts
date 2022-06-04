@@ -55,7 +55,7 @@ export class SingupPage implements OnInit {
           localStorage.setItem('token', result.token);
           this.router.navigate(['home']);
         } else {
-          alert("Inregistrare eșuată!\Nume de utilizator sau e-mail deja existent.  Încercați să vă logați!");
+          alert("Inregistrare eșuată!\nNume de utilizator sau e-mail deja existent.  Încercați să vă logați!");
         }
       }).catch((failure) => {
         if (!failure.error.message) {
@@ -68,4 +68,7 @@ export class SingupPage implements OnInit {
 
     }
   }
+
+
+
 }

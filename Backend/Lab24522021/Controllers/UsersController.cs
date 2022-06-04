@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using BCryptNet = BCrypt.Net.BCrypt;
+
 
 namespace Licenta.Controllers
 {
@@ -60,6 +62,62 @@ namespace Licenta.Controllers
             }
         }
 
+        [HttpPost("Update")]
+        public IActionResult Update(UserInfoDTOPass2 user )
+        {
+
+                var handler = new JwtSecurityTokenHandler();
+                var jwtSecurityToken = handler.ReadJwtToken(user.Token);
+                var id = jwtSecurityToken.Claims.Where(z => z.Type == "id").FirstOrDefault().Value;
+
+
+                var data = _userService.GetById(Guid.Parse(id));
+           // if (data.PasswordHash == BCrypt.Net.BCrypt.HashPassword(user.Oldpassword))
+           if (BCryptNet.Verify(user.Oldpassword, data.PasswordHash))
+            {
+                /* var userUpdate = new User
+                 {
+                     Id = data.Id,
+                     FirstName = data.FirstName,
+                     LastName = data.LastName,
+                     Username = data.Username,
+                     Email = data.Email,
+                     Sex = data.Sex,
+                     Varsta = data.Varsta,
+                     PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.password)
+
+                 };*/
+
+                data.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.password);
+
+
+                try
+                {
+
+                    var result = _userService.Update(data);
+                    return Ok(new { token = result, isSuccess = true });
+                }
+                catch (Exception e)
+                {
+                    return Ok(new { token = "", isSuccess = false });
+                }
+
+
+
+               
+
+
+            }
+            else
+            {
+                return Ok(new { token = "ParolaVecheGresita", isSuccess = false });
+
+            }
+                
+
+            
+        }
+
 
         //Trebuie facut si un CREATE admin (vezi lab 5 min 59
 
@@ -84,6 +142,21 @@ namespace Licenta.Controllers
         }
 
         public class UserInfoDTO{
+            public string Token;
+        }
+        public class UserInfoDTOPass
+        {
+            public string Token;
+            public string OldPass;
+            public string NewPass;
+        }
+
+
+        public class UserInfoDTOPass2
+        {
+            public string Oldpassword;
+            public string confirmpassword;
+            public string password;
             public string Token;
         }
 

@@ -1,3 +1,4 @@
+
 export interface UserToRegister {
 
     username: string;
@@ -5,6 +6,7 @@ export interface UserToRegister {
     email:string;
     firstName:string;
     lastName:string;
+    sex:string;
+    varsta:number;
   }
-
 

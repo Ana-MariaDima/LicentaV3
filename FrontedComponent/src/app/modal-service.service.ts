@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { ModalPopupCartPage } from './modal-popup-cart/modal-popup-cart.page';
 import { ModalPopupIngAll } from './modal-popup-ing-toate/modal-popup-all.page';
 import { ModalPopupPage } from './modal-popup-ing/modal-popup.page';
+import { ModalPopupParolaPage } from './modal-popup-parola/modal-popup-parola.page';
 import { ModalPopupPageRet } from './modal-popup-ret/modal-popup-ret.page';
 
 @Injectable({
@@ -48,6 +49,20 @@ export class ModalServiceService {
  // console.log("popup inchis dupa await!")
 }
 
+
+async openParolaModal(){
+  var modal = await this.modalController.create({
+    component:ModalPopupParolaPage,
+    cssClass:"modalTest",
+    componentProps: {
+    }
+  })
+  console.log(modal)
+  modal.present();
+  const {data} = await modal.onWillDismiss();
+  console.log("popup inchis dupa await!")
+}
+
   async openRetetaModal(reteta, options){
 
     var modal = await this.modalController.create({
@@ -56,6 +71,10 @@ export class ModalServiceService {
       componentProps: {
         'model_title':reteta.nume_reteta,
        'tipReteta': reteta.nume_Tip_Retete,
+       'categorieReteta': reteta.nume_Categorie_Retete,
+       'rating':reteta.rating,
+
+       'user_rating': reteta.user_rating,
         'instructiuni':reteta.instructiuni ,
         'pahar':reteta.nume_pahar ,
         'poza':reteta.poza_reteta,

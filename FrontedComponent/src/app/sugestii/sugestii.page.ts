@@ -17,6 +17,9 @@ export class SugestiiPage implements OnInit {
   searchTerm:any;
   perfectMatch:any = undefined;
   showChecks = true;
+  forYou = false;
+
+
 
   constructor(private route: ActivatedRoute, private modalController: ModalController, private reteteService: ReteteService, private modalService:ModalServiceService) {
       //[queryParams]="{property:value}"
@@ -30,6 +33,7 @@ export class SugestiiPage implements OnInit {
   async setDataSource(params){
     switch(params['dataSource']){
       case 'Pahar':{
+        this.retete=[];
         this.perfectMatch = params['perfectMatch'];
         var arrayIngrediente = localStorage.getItem('cart');
         console.log(arrayIngrediente);
@@ -41,6 +45,7 @@ export class SugestiiPage implements OnInit {
       }break;
 
       case 'AltoraLePlace':{
+        this.retete=[];
         this.showChecks = false;
         var reteteId = await this.reteteService.getRecommandations();
         console.log("Reteteid",reteteId);
@@ -54,6 +59,7 @@ export class SugestiiPage implements OnInit {
       case 'PentruTine':{
         this.showChecks = false;
         var arrayIngrediente = '';
+        this.retete=[];
         var reteteApreciate = await this.reteteService.getLikedRetete();
         console.log(reteteApreciate);
         var frecventaIngrediente = {};
@@ -78,7 +84,9 @@ export class SugestiiPage implements OnInit {
           this.retete = await this.reteteService.getReteteSugerate(ingrediente, false);
           console.log("retete sugerate", this.retete)
         }else{
-          this.retete = []
+          this.retete = [];
+          this.forYou=true;
+
         }
       }break;
     }
@@ -181,5 +189,6 @@ export class SugestiiPage implements OnInit {
 
     this.reteteService.toggleLike(reteta.nume_reteta);
   }
+
 
 }

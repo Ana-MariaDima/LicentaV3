@@ -31,7 +31,8 @@ export class ModalPopupPageRet implements OnInit {
 
   constructor(private modalController: ModalController, private  modalService: ModalServiceService, private reteteService: ReteteService) {}
   async PreopenCardModal(param){
-    var reteta = await this.reteteService.getRetetaRandom()
+    var reteta = await this.reteteService.getRetetaRandom();
+    console.log("retetaRandom",reteta)
     this.modalService.openRetetaModal(reteta, {canReload:this.canReload});
     console.log(this.modalService.getCart());
   }

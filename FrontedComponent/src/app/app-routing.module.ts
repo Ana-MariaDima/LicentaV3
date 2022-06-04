@@ -50,6 +50,10 @@ const routes: Routes = [
     path: 'generate',
     loadChildren: () => import('./sugestii/sugestii.module').then( m => m.SugestiiPageModule)
   },
+  {
+    path: 'parola',
+    loadChildren: () => import('./modal-popup-parola/modal-popup-parola.module').then (m=> m.ModalPopupParolaPageModule )
+  }
 
 
 
