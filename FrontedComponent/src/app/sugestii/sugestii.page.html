@@ -32,7 +32,7 @@
 
                 <img src="assets/images/logo.png" class="ImgRetete ImgRetetePopUp" />
                 <br>
-                <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;" routerLink="/generate" [queryParams]="{perfectMatch:false, dataSource:'Pahar'}"  >
+                <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: 'Libre Franklin', sans-serif;" routerLink="/generate" [queryParams]="{perfectMatch:false, dataSource:'Pahar'}"  >
                    Descoperă rețete similare
                 </ion-button>
             </div>
@@ -56,7 +56,7 @@
 
             <img src="assets/images/logo.png" class="ImgRetete ImgRetetePopUp" />
             <br>
-            <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;" routerLink='/home/tab1' >
+            <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: 'Libre Franklin', sans-serif;" routerLink='/home/tab1' >
               Descoperă rețete noi
            </ion-button>
         </div>
@@ -82,7 +82,7 @@
 
           <img src="assets/images/logo.png" class="ImgRetete ImgRetetePopUp" />
           <br>
-          <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;" routerLink='/home/tab1' >
+          <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: 'Libre Franklin', sans-serif;" routerLink='/home/tab1' >
             Apreciază rețete noi
          </ion-button>
       </div>
@@ -112,7 +112,7 @@
 
             <tr>
               <td>
-                <img [src]="reteta.poza_reteta" class="ImgRetete" />
+                <img [src]="'https'+reteta.poza_reteta" class="ImgRetete" />
               </td>
               <td>
                 <table>

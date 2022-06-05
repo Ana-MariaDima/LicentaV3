@@ -83,6 +83,15 @@ export class SugestiiPage implements OnInit {
         if(ingrediente.length > 0){
           this.retete = await this.reteteService.getReteteSugerate(ingrediente, false);
           console.log("retete sugerate", this.retete)
+
+         // this.retete=  this.retete.filter(item =>item.includes(reteteApreciate) );
+            //reteteApreciate.find(test => test.idReteta !== item.id));
+
+           // this.retete= this.retete.filter(a => reteteApreciate.some(b => b.idReteta === a.id));
+          this.retete = this.retete.filter(item => !reteteApreciate.map(x=>x.idReteta).includes(item.id) );
+
+          // this.retete=this.retete.
+          console.log("retete sugerate", this.retete)
         }else{
           this.retete = [];
           this.forYou=true;

@@ -29,7 +29,7 @@
       <table>
         <tr>
           <div class="container">
-            <img [src]="poza" class="ImgRetete ImgRetetePopUp" />
+            <img [src]="'https'+poza" class="ImgRetete ImgRetetePopUp" />
             <button class="btn" *ngIf="!liked" (click)="toggleLiked()">
               <ion-icon name="heart-outline"></ion-icon>
 

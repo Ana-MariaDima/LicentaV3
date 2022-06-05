@@ -2,10 +2,14 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
+//var a =  prompt(@dati serverul@)
+
+export var environment = {
   production: false,
-  baseUrl:'https://localhost:44370/api/',
-  imagesUrl:'https://localhost:44370/staticfiles'
+  //baseUrl: a+'/api/'
+  //imagesUrl: a+'/staticfiles'
+  baseUrl:'https://0161-5-12-164-118.ngrok.io/api/',
+  imagesUrl:'https://0161-5-12-164-118.ngrok.io/staticfiles'
 };
 
 /*

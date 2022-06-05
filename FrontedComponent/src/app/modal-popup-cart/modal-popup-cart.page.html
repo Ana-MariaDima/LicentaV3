@@ -38,7 +38,7 @@
 
               <img src="assets/images/logo.png" class="ImgRetete ImgRetetePopUp" />
               <br>
-              <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"  (click)="dismiss()" >
+              <ion-button  expand="block" share="round" color="mycolor" style="font-size: large;text-decoration:  solid; font-family: 'Libre Franklin', sans-serif;"  (click)="dismiss()" >
                  Descoperă ingredientele
               </ion-button>
 
@@ -81,5 +81,5 @@
 
 </ion-content >
 <ion-footer >
-  <ion-button  *ngIf="itemsInCart.length!=0" style="font-size: large;text-decoration:  solid; font-family: “Comic Sans MS”, “Comic Sans”, cursive;"  expand="block" [disabled]="buttonDisabled" share="round" color="mycolor" routerLink="/generate" [queryParams]="{perfectMatch:perfectMatch, dataSource:'Pahar'}" (click)="genertaePerfectMatch()">Generează Rețetă</ion-button>
+  <ion-button  *ngIf="itemsInCart.length!=0" style="font-size: large;text-decoration:  solid; font-family: 'Libre Franklin', sans-serif;"  expand="block" [disabled]="buttonDisabled" share="round" color="mycolor" routerLink="/generate" [queryParams]="{perfectMatch:perfectMatch, dataSource:'Pahar'}" (click)="genertaePerfectMatch()">Generează Rețetă</ion-button>
 </ion-footer>

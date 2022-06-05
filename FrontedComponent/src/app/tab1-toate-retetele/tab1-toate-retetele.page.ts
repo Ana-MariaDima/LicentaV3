@@ -96,7 +96,7 @@ export class Tab1ToateRetetelePage  {
         return  a.user_rating - b.user_rating //sorteaza asc dupa scorul tau
       },
       'MyScorDesc':function(a,b){
-        return  b.rating - a.user_rating //sorteaza desc dupa scorul tau
+        return  b.user_rating - a.user_rating //sorteaza desc dupa scorul tau
       }
 
     }
